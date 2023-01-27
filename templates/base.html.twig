@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+{# probleme : <html> crée un débordement sur la page #}
 	<head>
 		<meta charset="UTF-8">
 		<title>
@@ -7,9 +8,9 @@
 			{% endblock %}
 		</title>
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/bootstrap.css')}}">
+		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/js/bootstrap.min.js')}}">
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		<link
-		rel="stylesheet" href="{{asset('css/style_m.css')}}">
+		<link rel="stylesheet" href="{{asset('css/style_m.css')}}">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -21,9 +22,9 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<nav class="navbar navbar-expend-md bg-green fixed-top d-flex justify-content-between align-items-center px-3">
+			<nav class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3">
 				<div>
-					<img class="img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
+					<img class="img-sm mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
 				</div>
 				<div class="nav">
 					<ul class="nav px-4 fs-5">
@@ -71,16 +72,15 @@
 						</li>
 					</ul>
 				</div>
-				<div class="d-flex flex-column justify-content-center align-items-center">
+				<div class="d-flex flex-column justify-content-center align-items-center mx-4">
 					<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
 					<a class="nav-link text-clear" href="">S'inscrire | Se connecter</a>
 				</div>
 			</nav>
 
-
 			{% block body %}{% endblock %}
 
-			<footer class="bg-blue fixed-bottom">
+			<footer class="bg-blue sticky-bottom">
 				<div>
 					<div class="text-clear row">
 						<div class="col-md-5 d-flex flex-column align-items-center">

@@ -11,6 +11,10 @@
     --bs-font-title: Raleway;
     --bs-font-decor: "Covered By Your Grace", Roboto, Arial;
 }
+.container-fluid {
+   padding: 0px !important;
+   margin: 0px !important;
+}
 /* colors */
 .bg-green {
     background-color: var(--bs-green) !important;
@@ -18,10 +22,18 @@
 .bg-blue {
     background-color: var(--bs-blue);
 }
+.bg-clear {
+    background-color:var(--bs-white);
+}
 .text-clear {
     color: var(--bs-white) !important;
 }
-
+.text-green {
+    color:var(--bs-green);
+}
+.text-blue {
+    color: var(--bs-blue);
+}
 /* fonts */
 
 p, li, h5, h6, td {
@@ -30,7 +42,9 @@ p, li, h5, h6, td {
 h1, h2, h3, h4, a, button {
     font-family: var(--bs-font-title) !important;
 }
-
+.text-decor {
+    font-family: var(--bs-font-decor);
+}
 /* images */
 .img-sm {
     width: 60px; 
@@ -39,4 +53,17 @@ h1, h2, h3, h4, a, button {
 .img-min {
     width: 40px;
     height: 40px;
+}
+.img-caroussel{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+/* button & link */
+.btn:hover {
+    opacity: 0.7;
+}
+.nav-link:hover {
+    opacity: 0.7;
 }
