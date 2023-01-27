@@ -15,6 +15,9 @@
 .bg-green {
     background-color: var(--bs-green) !important;
 }
+.bg-blue {
+    background-color: var(--bs-blue);
+}
 .text-clear {
     color: var(--bs-white) !important;
 }
