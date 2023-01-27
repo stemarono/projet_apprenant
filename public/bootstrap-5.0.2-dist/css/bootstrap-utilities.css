@@ -1285,6 +1285,23 @@
   color: #fff !important;
 }
 
+/* Addition */
+.text-green {
+  color : #39ac80;
+}
+.text-white {
+  color : #f9f5f6;
+}
+.text-bluelight {
+  color : #3c8cd7;
+}
+.text-blue {
+  color : #153c51;
+}
+.text-red {
+  color : #ac4039;
+}
+
 .text-body {
   color: #212529 !important;
 }
@@ -1337,13 +1354,30 @@
   background-color: #212529 !important;
 }
 
+/* Addition */
+.bg-green {
+  background-color: #39ac80 !important;
+}
+.bg-white {
+  background-color: #f9f5f6 !important;
+}
+.bg-lightblue {
+  background-color: #3c8cd7 !important;
+}
+.bg-blue {
+  background-color: #153c51 !important;
+}
+.bg-red {
+  background-color: #ac4039 !important;
+}
+
 .bg-body {
   background-color: #fff !important;
 }
 
-.bg-white {
+/* .bg-white {
   background-color: #fff !important;
-}
+} */
 
 .bg-transparent {
   background-color: transparent !important;
