@@ -1,0 +1,69 @@
+/* init */
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Raleway:wght@200;300&family=Roboto:wght@300&display=swap');
+:root {
+    --bs-white: #f9f5f6;
+    --bs-white-tr: #f9f5f6b7;
+    --bs-green: #39ac80;
+    --bs-blue-light: #3c8cd7;
+    --bs-blue: #153c51;
+    --bs-red: #ac4039;
+    --bs-font-body: Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+    --bs-font-title: Raleway;
+    --bs-font-decor: "Covered By Your Grace", Roboto, Arial;
+}
+.container-fluid {
+   padding: 0px !important;
+   margin: 0px !important;
+}
+/* colors */
+.bg-green {
+    background-color: var(--bs-green) !important;
+}
+.bg-blue {
+    background-color: var(--bs-blue);
+}
+.bg-clear {
+    background-color:var(--bs-white);
+}
+.text-clear {
+    color: var(--bs-white) !important;
+}
+.text-green {
+    color:var(--bs-green);
+}
+.text-blue {
+    color: var(--bs-blue);
+}
+/* fonts */
+
+p, li, h5, h6, td {
+    font-family: var(--bs-font-body) !important;
+}
+h1, h2, h3, h4, a, button {
+    font-family: var(--bs-font-title) !important;
+}
+.text-decor {
+    font-family: var(--bs-font-decor);
+}
+/* images */
+.img-sm {
+    width: 60px; 
+    height: 60px; 
+}
+.img-min {
+    width: 40px;
+    height: 40px;
+}
+.img-caroussel{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+/* button & link */
+.btn:hover {
+    opacity: 0.7;
+}
+.nav-link:hover {
+    opacity: 0.7;
+}

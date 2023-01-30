@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projet Apprenant
+{% endblock %}
+
+{% block body %}
+
+	{# caroussel // ne fonctionne pas pour le moment#}
+    {# texte du carousel à revoir #}
+	<div id="carouselHome" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="{{ asset('images/diapo_01.jpg') }}" class="d-block img-caroussel" alt="slide 1">
+				<div class="carousel-caption d-none d-md-block text-end">
+					<h3 class="text-blue">Lorem ipsum</h3>
+					<p class="text-blue text-green">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorem, officiis!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="{{ asset('images/diapo_02.jpg') }}" class="d-block img-caroussel" alt="slide 2">
+                <div class="carousel-caption d-none d-md-block text-end">
+					<h3 class="text-blue">Lorem ipsum</h3>
+					<p class="text-blue text-green">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorem, officiis!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="{{ asset('images/diapo_03.jpg') }}" class="d-block img-caroussel" alt="slide 3">
+                <div class="carousel-caption d-none d-md-block text-end">
+					<h3 class="text-blue">Lorem ipsum</h3>
+					<p class="text-blue text-green">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorem, officiis!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="{{ asset('images/diapo_04.jpg') }}" class="d-block img-caroussel" alt="slide 4">
+                <div class="carousel-caption d-none d-md-block text-end">
+					<h3 class="text-blue">Lorem ipsum</h3>
+					<p class="text-blue text-green">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorem, officiis!</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="{{ asset('images/diapo_05.jpg') }}" class="d-block img-caroussel" alt="slide 5">
+                <div class="carousel-caption d-none d-md-block text-end">
+					<h3 class="text-blue">Lorem ipsum</h3>
+					<p class="text-blue text-green">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                    Dolorem, officiis!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container p-5">
+		<div class="bg-clear shadow p-4">
+			<div class="card-body">
+				<h3 class="m-2">Lorem ipsum</h3>
+				<p class="text-end m-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nemo dolore 
+					                illo alias autem consectetur corporis? Nesciunt quasi ex, reprehenderit, officiis, qui minima suscipit 
+					                tempora a eius assumenda eligendi est nostrum! Dolore facilis quia laudantium asperiores unde corporis 
+					                accusantium numquam possimus quibusdam, ullam qui sequi expedita consectetur eius est nemo sed labore. 
+					                Magnam, ea saepe dolorum molestiae ipsum perferendis nemo, similique voluptatibus aspernatur natus animi 
+					                nesciunt repudiandae labore unde assumenda corrupti eum corporis amet id nam eligendi, eveniet voluptate. 
+					                Inventore!</p>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
+					<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">Déposer une demande</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		onst myCarouselElement = document.querySelector('#carouselHome')
+
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+interval: 2000,
+touch: true
+})
+	</script>
+{% endblock %}
