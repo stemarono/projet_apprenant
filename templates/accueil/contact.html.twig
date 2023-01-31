@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %} {% block title %}Formation{% endblock %} {% block
+body %} 
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Nous contacter</h1>
+</div>
+
+{# formulaire #}
+<div class="container p-5 mb-5">
+  <div class="bg-clear shadow p-4">
+    <div class="card-body m-5">
+      {{ form_start(form) }}
+      <div class="row justify-content-around align-items-end">
+        <div class="col-6">
+          <div class="m-3 d-flex">
+            {{ form_widget(form.firstname) }}
+            {{ form_widget(form.lastname) }}
+          </div>
+          <div class="m-3">
+            {{ form_widget(form.email) }}
+          </div>
+          <div class="m-3">
+            {{ form_widget(form.object) }}
+          </div>
+          <div class="m-3">
+            {{ form_widget(form.message) }}
+          </div>
+        </div>
+        <div class="col-4 m-3">
+          <p class="m-3 text-blue">
+            Si vous souhaitez déposer une demande d'inscription, vous pouvez
+            créer un compte et faire la demande directement sur le site. sinon,
+            vous pouvez téléchager le formulaire de préinscription ici.
+          </p>
+          <button class="m-3 mb-5 btn bg-green text-clear">
+            <a class="text-clear" href="">Télécharger le formulaire</a>
+          </button>
+          {{ form_label(form.file) }}
+          {{ form_widget(form.file) }}
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mx-5 mt-5">
+        <button class="btn bg-green text-clear">
+          {{ button_label|default('Valider') }}
+        </button>
+      </div>
+    </div>
+    {{ form_end(form) }}
+  </div>
+</div>
+{% endblock %}

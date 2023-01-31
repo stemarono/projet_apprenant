@@ -22,7 +22,7 @@ block body %}
       <p class="text-end m-4">{{ formation.description }}</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
         <button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
-          Découvrir
+        <a class="text-clear" href="{{ path('app_formation_show',{'id':formation.id}) }}">Découvrir</a>
         </button>
       </div>
     </div>
@@ -35,9 +35,7 @@ block body %}
 {# bouton de creation formation display:none sauf admin #}
 <div class="container p-5 d-none">
   <button class="btn bg-green">
-    <a class="text-clear" href="{{ path('app_formation_new') }}"
-      >Nouvelle formation</a
-    >
+    <a class="text-clear" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
   </button>
 </div>
 {% endblock %}
