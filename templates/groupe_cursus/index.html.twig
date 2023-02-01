@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GroupeCursus index{% endblock %}
+
+{% block body %}
+    <h1>GroupeCursus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CodeGpeCursus</th>
+                <th>LibelleGpeCursus</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupe_cursu in groupe_cursuses %}
+            <tr>
+                <td>{{ groupe_cursu.id }}</td>
+                <td>{{ groupe_cursu.codeGpeCursus }}</td>
+                <td>{{ groupe_cursu.libelleGpeCursus }}</td>
+                <td>{{ groupe_cursu.dateDebut ? groupe_cursu.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ groupe_cursu.dateFin ? groupe_cursu.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_groupe_cursus_show', {'id': groupe_cursu.id}) }}">show</a>
+                    <a href="{{ path('app_groupe_cursus_edit', {'id': groupe_cursu.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_groupe_cursus_new') }}">Create new</a>
+{% endblock %}
