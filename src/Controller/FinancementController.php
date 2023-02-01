@@ -13,14 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/financement')]
 class FinancementController extends AbstractController
 {
-    #[Route('/', name: 'app_financement_index', methods: ['GET'])]
-    public function index(FinancementRepository $financementRepository): Response
-    {
-        return $this->render('financement/index.html.twig', [
-            'financements' => $financementRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new', name: 'app_financement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, FinancementRepository $financementRepository): Response
     {
@@ -31,20 +23,12 @@ class FinancementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $financementRepository->save($financement, true);
 
-            return $this->redirectToRoute('app_financement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('financement/new.html.twig', [
             'financement' => $financement,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_financement_show', methods: ['GET'])]
-    public function show(Financement $financement): Response
-    {
-        return $this->render('financement/show.html.twig', [
-            'financement' => $financement,
         ]);
     }
 
@@ -57,7 +41,7 @@ class FinancementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $financementRepository->save($financement, true);
 
-            return $this->redirectToRoute('app_financement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('financement/edit.html.twig', [
@@ -73,6 +57,6 @@ class FinancementController extends AbstractController
             $financementRepository->remove($financement, true);
         }
 
-        return $this->redirectToRoute('app_financement_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
     }
 }

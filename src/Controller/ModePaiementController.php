@@ -13,14 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/mode/paiement')]
 class ModePaiementController extends AbstractController
 {
-    #[Route('/', name: 'app_mode_paiement_index', methods: ['GET'])]
-    public function index(ModePaiementRepository $modePaiementRepository): Response
-    {
-        return $this->render('mode_paiement/index.html.twig', [
-            'mode_paiements' => $modePaiementRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new', name: 'app_mode_paiement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ModePaiementRepository $modePaiementRepository): Response
     {
@@ -31,20 +23,12 @@ class ModePaiementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $modePaiementRepository->save($modePaiement, true);
 
-            return $this->redirectToRoute('app_mode_paiement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('mode_paiement/new.html.twig', [
             'mode_paiement' => $modePaiement,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_mode_paiement_show', methods: ['GET'])]
-    public function show(ModePaiement $modePaiement): Response
-    {
-        return $this->render('mode_paiement/show.html.twig', [
-            'mode_paiement' => $modePaiement,
         ]);
     }
 
@@ -57,7 +41,7 @@ class ModePaiementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $modePaiementRepository->save($modePaiement, true);
 
-            return $this->redirectToRoute('app_mode_paiement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('mode_paiement/edit.html.twig', [
@@ -73,6 +57,6 @@ class ModePaiementController extends AbstractController
             $modePaiementRepository->remove($modePaiement, true);
         }
 
-        return $this->redirectToRoute('app_mode_paiement_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
     }
 }

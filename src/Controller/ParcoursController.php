@@ -13,66 +13,50 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/parcours')]
 class ParcoursController extends AbstractController
 {
-    #[Route('/', name: 'app_parcours_index', methods: ['GET'])]
-    public function index(ParcoursRepository $parcoursRepository): Response
-    {
-        return $this->render('parcours/index.html.twig', [
-            'parcours' => $parcoursRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new', name: 'app_parcours_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ParcoursRepository $parcoursRepository): Response
     {
-        $parcour = new Parcours();
-        $form = $this->createForm(ParcoursType::class, $parcour);
+        $parcours = new Parcours();
+        $form = $this->createForm(ParcoursType::class, $parcours);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $parcoursRepository->save($parcour, true);
+            $parcoursRepository->save($parcours, true);
 
-            return $this->redirectToRoute('app_parcours_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('parcours/new.html.twig', [
-            'parcour' => $parcour,
+            'parcours' => $parcours,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_parcours_show', methods: ['GET'])]
-    public function show(Parcours $parcour): Response
-    {
-        return $this->render('parcours/show.html.twig', [
-            'parcour' => $parcour,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_parcours_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Parcours $parcour, ParcoursRepository $parcoursRepository): Response
+    public function edit(Request $request, Parcours $parcours, ParcoursRepository $parcoursRepository): Response
     {
-        $form = $this->createForm(ParcoursType::class, $parcour);
+        $form = $this->createForm(ParcoursType::class, $parcours);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $parcoursRepository->save($parcour, true);
+            $parcoursRepository->save($parcours, true);
 
-            return $this->redirectToRoute('app_parcours_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('parcours/edit.html.twig', [
-            'parcour' => $parcour,
+            'parcours' => $parcours,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_parcours_delete', methods: ['POST'])]
-    public function delete(Request $request, Parcours $parcour, ParcoursRepository $parcoursRepository): Response
+    public function delete(Request $request, Parcours $parcours, ParcoursRepository $parcoursRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$parcour->getId(), $request->request->get('_token'))) {
-            $parcoursRepository->remove($parcour, true);
+        if ($this->isCsrfTokenValid('delete'.$parcours->getId(), $request->request->get('_token'))) {
+            $parcoursRepository->remove($parcours, true);
         }
 
-        return $this->redirectToRoute('app_parcours_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
     }
 }

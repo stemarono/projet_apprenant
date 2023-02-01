@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="d-md-flex justify-content-md-end">
+        <button class="btn bg-green text-clear m-5 align-end">{{ button_label|default('Valider') }}</button>
+    </div>
 {{ form_end(form) }}
