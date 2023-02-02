@@ -1,16 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Raleway:wght@200;300&family=Roboto:wght@300&display=swap');
-:root {
-    --bs-white: #f9f5f6;
-    --bs-white-tr: #f9f5f6b7;
-    --bs-green: #39ac80;
-    --bs-blue-light: #3c8cd7;
-    --bs-blue: #153c51;
-    --bs-red: #ac4039;
-    --bs-font-body: Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
-    --bs-font-title: Raleway;
-    --bs-font-decor: "Covered By Your Grace", Roboto, Arial;
+@import url("css/style_m.css"); import du fichier style_m.css dans espacePersonnel.css
+
+.border-color{
+    border-color: var(--bs-green);
 }
-.container-fluid {
-   padding: 0px !important;
-   margin: 0px !important;
+
+.btn-green{
+    background-color: var(--bs-green);
+}
+.btn-blue{
+    background-color: var(--bs-blue);
 }
