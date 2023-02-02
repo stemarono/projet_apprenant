@@ -1329,6 +1329,23 @@
   background-color: #212529 !important;
 }
 
+/* Addition */
+.bg-green {
+  background-color: #39ac80 !important;
+}
+.bg-white {
+  background-color: #f9f5f6 !important;
+}
+.bg-lightblue {
+  background-color: #3c8cd7 !important;
+}
+.bg-blue {
+  background-color: #153c51 !important;
+}
+.bg-red {
+  background-color: #ac4039 !important;
+}
+
 .bg-body {
   background-color: #fff !important;
 }
