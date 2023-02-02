@@ -4,193 +4,207 @@
 {% endblock %}
 
 {% block body %}
-{# titre #}
-<div class="container p-5 my-5 bg-blueclear">
-  <h1 class="pt-2 pb-5 text-clear">Outils de modification du formulaire</h1>
-</div>
+	{# titre #}
+	<div class="container p-5 my-5 bg-blueclear">
+		<h1 class="pt-2 pb-5 text-clear">Outils de modification du formulaire</h1>
+	</div>
 
-{# Table cursus #}
-<div class="container p-5">
-    <div class="d-flex justify-content-between">
-        <h2 class="m-3 bg-blueclear text-clear px-5 py-1">Cursus</h2>
-        <button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
-            <a class="text-clear" href="{{ path('app_cursus_new') }}">Nouveau</a>
-        </button>
-    </div>
-    <table class="table table-responsive m-3">
-        <thead class="bg-blue text-clear">
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Libelle</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cursus in cursuss %}
-            <tr>
-                <td>{{ cursus.id }}</td>
-                <td>{{ cursus.codeCursus }}</td>
-                <td>{{ cursus.libelleCursus }}</td>
-                <td>
-                    <button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
-                        <a class="text-clear" href="{{ path('app_cursus_edit', {'id': cursus.id}) }}">Modifier</a>
-                    </button>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    
-</div>
+	{# Table cursus #}
+	<div class="container p-5">
+		<div class="d-flex justify-content-between">
+			<h2 class="m-3 bg-blueclear text-clear px-5 py-1">Cursus</h2>
+			<button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
+				<a class="text-clear" href="{{ path('app_cursus_new') }}">Nouveau</a>
+			</button>
+		</div>
+		<table class="table table-responsive m-3">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th>Id</th>
+					<th>Code</th>
+					<th>Libelle</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cursus in cursuss %}
+					<tr>
+						<td>{{ cursus.id }}</td>
+						<td>{{ cursus.codeCursus }}</td>
+						<td>{{ cursus.libelleCursus }}</td>
+						<td>
+							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
+								<a class="text-clear" href="{{ path('app_cursus_edit', {'id': cursus.id}) }}">Modifier</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
 
 
-{# Table groupeCursus #}
-<div class="container p-5">
-    <div class="d-flex justify-content-between">
-        <h2 class="m-3 bg-blueclear text-clear px-5 py-1">Cursus</h2>
-        <button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
-            <a class="text-clear" href="{{ path('app_groupe_cursus_new') }}">Nouveau</a>
-        </button>
-    </div>
-</div>
-<h1>GroupeCursus index</h1>
+	{# Table groupeCursus #}
+	<div class="container p-5">
+		<div class="d-flex justify-content-between">
+			<h2 class="m-3 bg-blueclear text-clear px-5 py-1">Groupe Cursus</h2>
+			<button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
+				<a class="text-clear" href="{{ path('app_groupe_cursus_new') }}">Nouveau</a>
+			</button>
+		</div>
+		<table class="table table-responsive m-3">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th>Id</th>
+					<th>CodeGpeCursus</th>
+					<th>LibelleGpeCursus</th>
+					<th>Parcours</th>
+					<th>DateDebut</th>
+					<th>DateFin</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for groupe_cursus in groupe_cursuss %}
+					<tr>
+						<td>{{ groupe_cursus.id }}</td>
+						<td>{{ groupe_cursus.codeGpeCursus }}</td>
+						<td>{{ groupe_cursus.libelleGpeCursus }}</td>
+						<td>{{ groupe_cursus.cursus }}</td>
+						<td>{{ groupe_cursus.dateDebut ? groupe_cursus.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ groupe_cursus.dateFin ? groupe_cursus.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
+								<a class="text-clear" href="{{ path('app_groupe_cursus_edit', {'id': groupe_cursus.id}) }}">Modifier</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CodeGpeCursus</th>
-                <th>LibelleGpeCursus</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for groupe_cursu in groupe_cursuss %}
-            <tr>
-                <td>{{ groupe_cursu.id }}</td>
-                <td>{{ groupe_cursu.codeGpeCursus }}</td>
-                <td>{{ groupe_cursu.libelleGpeCursus }}</td>
-                <td>{{ groupe_cursu.dateDebut ? groupe_cursu.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ groupe_cursu.dateFin ? groupe_cursu.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_groupe_cursus_show', {'id': groupe_cursu.id}) }}">show</a>
-                    <a href="{{ path('app_groupe_cursus_edit', {'id': groupe_cursu.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{# Table parcours #}
+	<div class="container p-5">
+		<div class="d-flex justify-content-between">
+			<h2 class="m-3 bg-blueclear text-clear px-5 py-1">Parcours</h2>
+			<button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
+				<a class="text-clear" href="{{ path('app_parcours_new') }}">Nouveau</a>
+			</button>
+		</div>
+		<table class="table table-responsive m-3">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th>Id</th>
+					<th>CodeParcours</th>
+					<th>LibelleParcours</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for parcours in parcourss %}
+					<tr>
+						<td>{{ parcours.id }}</td>
+						<td>{{ parcours.codeParcours }}</td>
+						<td>{{ parcours.libelleParcours }}</td>
+						<td>
+							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
+								<a class="text-clear" href="{{ path('app_parcours_edit', {'id': parcours.id}) }}">Modifier</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-    <a href="{{ path('app_groupe_cursus_new') }}">Create new</a>
+	{# Table financement #}
+	<div class="container p-5">
+		<div class="d-flex justify-content-between">
+			<h2 class="m-3 bg-blueclear text-clear px-5 py-1">Financement</h2>
+			<button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
+				<a class="text-clear" href="{{ path('app_parcours_new') }}">Nouveau</a>
+			</button>
+		</div>
+		<table class="table table-responsive m-3">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th>Id</th>
+					<th>CodeFinancement</th>
+					<th>LibelleFinancement</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for financement in financements %}
+					<tr>
+						<td>{{ financement.id }}</td>
+						<td>{{ financement.codeFinancement }}</td>
+						<td>{{ financement.libelleFinancement }}</td>
+						<td>
+							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
+								<a class="text-clear" href="{{ path('app_financement_edit', {'id': financement.id}) }}">Modifier</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-{# Table parcours #}
-<h1>Parcours index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CodeParcours</th>
-                <th>LibelleParcours</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for parcour in parcours %}
-            <tr>
-                <td>{{ parcour.id }}</td>
-                <td>{{ parcour.codeParcours }}</td>
-                <td>{{ parcour.libelleParcours }}</td>
-                <td>
-                    <a href="{{ path('app_parcours_show', {'id': parcour.id}) }}">show</a>
-                    <a href="{{ path('app_parcours_edit', {'id': parcour.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_parcours_new') }}">Create new</a>
-
-{# Table financement #}
-<h1>Financement index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CodeFinancement</th>
-                <th>LibelleFinancement</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for financement in financements %}
-            <tr>
-                <td>{{ financement.id }}</td>
-                <td>{{ financement.codeFinancement }}</td>
-                <td>{{ financement.libelleFinancement }}</td>
-                <td>
-                    <a href="{{ path('app_financement_show', {'id': financement.id}) }}">show</a>
-                    <a href="{{ path('app_financement_edit', {'id': financement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_financement_new') }}">Create new</a>
-
-{# Table modePaiement #}
-<h1>ModePaiement index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>CodeModePaie</th>
-                <th>LibelleModePaie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for mode_paiement in mode_paiements %}
-            <tr>
-                <td>{{ mode_paiement.id }}</td>
-                <td>{{ mode_paiement.codeModePaie }}</td>
-                <td>{{ mode_paiement.libelleModePaie }}</td>
-                <td>
-                    <a href="{{ path('app_mode_paiement_show', {'id': mode_paiement.id}) }}">show</a>
-                    <a href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_mode_paiement_new') }}">Create new</a>
+	{# Table modePaiement #}
+	<div class="container p-5">
+		<div class="d-flex justify-content-between">
+			<h2 class="m-3 bg-blueclear text-clear px-5 py-1">Mode de paiement</h2>
+			<button class="btn btn-md bg-blue text-clear px-3 m-3" type="button">
+				<a class="text-clear" href="{{ path('app_mode_paiement_new') }}">Nouveau</a>
+			</button>
+		</div>
+		<table class="table table-responsive m-3">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th>Id</th>
+					<th>CodeModePaie</th>
+					<th>LibelleModePaie</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for mode_paiement in mode_paiements %}
+					<tr>
+						<td>{{ mode_paiement.id }}</td>
+						<td>{{ mode_paiement.codeModePaie }}</td>
+						<td>{{ mode_paiement.libelleModePaie }}</td>
+						<td>
+							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
+								<a class="text-clear" href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}">Modifier</a>
+							</button>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucune donnée trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 {% endblock %}

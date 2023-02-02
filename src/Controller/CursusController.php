@@ -31,7 +31,7 @@ class CursusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $cursusRepository->save($cursu, true);
 
-            return $this->redirectToRoute('app_cursus_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('cursus/new.html.twig', [
@@ -40,39 +40,31 @@ class CursusController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_cursus_show', methods: ['GET'])]
-    public function show(Cursus $cursu): Response
-    {
-        return $this->render('cursus/show.html.twig', [
-            'cursu' => $cursu,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_cursus_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Cursus $cursu, CursusRepository $cursusRepository): Response
+    public function edit(Request $request, Cursus $cursus, CursusRepository $cursusRepository): Response
     {
-        $form = $this->createForm(CursusType::class, $cursu);
+        $form = $this->createForm(CursusType::class, $cursus);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $cursusRepository->save($cursu, true);
+            $cursusRepository->save($cursus, true);
 
-            return $this->redirectToRoute('app_cursus_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('cursus/edit.html.twig', [
-            'cursu' => $cursu,
+            'cursus' => $cursus,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'app_cursus_delete', methods: ['POST'])]
-    public function delete(Request $request, Cursus $cursu, CursusRepository $cursusRepository): Response
+    public function delete(Request $request, Cursus $cursus, CursusRepository $cursusRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cursu->getId(), $request->request->get('_token'))) {
-            $cursusRepository->remove($cursu, true);
+        if ($this->isCsrfTokenValid('delete'.$cursus->getId(), $request->request->get('_token'))) {
+            $cursusRepository->remove($cursus, true);
         }
 
-        return $this->redirectToRoute('app_cursus_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
     }
 }

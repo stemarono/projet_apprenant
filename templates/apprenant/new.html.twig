@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Apprenant{% endblock %}
+{% block title %}Nouvel Apprenant{% endblock %}
 
 {% block body %}
-    <h1>Create new Apprenant</h1>
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Ajouter un apprenant</h1>
+</div>
 
+{# Formulaire #}
+<div class="container">
     {{ include('apprenant/_form.html.twig') }}
+</div>
 
-    <a href="{{ path('app_apprenant_index') }}">back to list</a>
+{# Bouton retour #}
+<div class="d-md-flex justify-content-md-end">
+    <button class="btn bg-green text-clear m-5 align-end"><a href="javascript:history.back()">Retour</a></button>
+</div>
 {% endblock %}

@@ -35,6 +35,9 @@ class Formation
     #[ORM\Column(length: 255)]
     private ?string $parcours = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Parcours $Parcours = null;
+
     public function getId(): ?int
     {
         return $this->id;

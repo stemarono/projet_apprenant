@@ -29,6 +29,9 @@
 .bg-clear {
     background-color:var(--bs-white);
 }
+.bg-red {
+    background-color: var(--bs-red);
+}
 .text-clear {
     color: var(--bs-white) !important;
 }

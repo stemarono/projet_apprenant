@@ -12,8 +12,14 @@ class FinancementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('codeFinancement')
-            ->add('libelleFinancement')
+            ->add('codeFinancement', TextType::class, [
+                'label_attr' => ['class' => 'd-none'],
+                'attr' => ['class' => 'form-control my-4', 'placeholder' => 'Code']
+            ])
+            ->add('libelleFinancement', TextType::class, [
+                'label_attr' => ['class' => 'd-none'],
+                'attr' => ['class' => 'form-control my-4', 'placeholder' => 'Libelle']
+            ])
         ;
     }
 

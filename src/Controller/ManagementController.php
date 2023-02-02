@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/management')]
 class ManagementController extends AbstractController
 {
-    #[Route('/', name: 'app_management_index', methods: ['GET'])]
+    #[Route('/tools', name: 'app_management_tools', methods: ['GET'])]
     public function index(CursusRepository $cursusRepository, 
                             GroupeCursusRepository $groupeCursusRepository, 
                             ParcoursRepository $parcoursRepository,
@@ -24,7 +24,7 @@ class ManagementController extends AbstractController
         return $this->render('management/index.html.twig', [
             'cursuss' => $cursusRepository->findAll(),
             'groupe_cursuss' => $groupeCursusRepository->findAll(),
-            'parcours' => $parcoursRepository->findAll(),
+            'parcourss' => $parcoursRepository->findAll(),
             'financements' => $financementRepository->findAll(),
             'mode_paiements' => $modePaiementRepository->findAll(),
         ]);

@@ -13,14 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/groupe/cursus')]
 class GroupeCursusController extends AbstractController
 {
-    #[Route('/', name: 'app_groupe_cursus_index', methods: ['GET'])]
-    public function index(GroupeCursusRepository $groupeCursusRepository): Response
-    {
-        return $this->render('groupe_cursus/index.html.twig', [
-            'groupe_cursuses' => $groupeCursusRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new', name: 'app_groupe_cursus_new', methods: ['GET', 'POST'])]
     public function new(Request $request, GroupeCursusRepository $groupeCursusRepository): Response
     {
@@ -31,7 +23,7 @@ class GroupeCursusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $groupeCursusRepository->save($groupeCursu, true);
 
-            return $this->redirectToRoute('app_groupe_cursus_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('groupe_cursus/new.html.twig', [
@@ -40,28 +32,20 @@ class GroupeCursusController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_groupe_cursus_show', methods: ['GET'])]
-    public function show(GroupeCursus $groupeCursu): Response
-    {
-        return $this->render('groupe_cursus/show.html.twig', [
-            'groupe_cursu' => $groupeCursu,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_groupe_cursus_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, GroupeCursus $groupeCursu, GroupeCursusRepository $groupeCursusRepository): Response
+    public function edit(Request $request, GroupeCursus $groupeCursus, GroupeCursusRepository $groupeCursusRepository): Response
     {
-        $form = $this->createForm(GroupeCursusType::class, $groupeCursu);
+        $form = $this->createForm(GroupeCursusType::class, $groupeCursus);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $groupeCursusRepository->save($groupeCursu, true);
+            $groupeCursusRepository->save($groupeCursus, true);
 
-            return $this->redirectToRoute('app_groupe_cursus_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('groupe_cursus/edit.html.twig', [
-            'groupe_cursu' => $groupeCursu,
+            'groupe_cursus' => $groupeCursus,
             'form' => $form,
         ]);
     }
@@ -73,6 +57,6 @@ class GroupeCursusController extends AbstractController
             $groupeCursusRepository->remove($groupeCursu, true);
         }
 
-        return $this->redirectToRoute('app_groupe_cursus_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
     }
 }
