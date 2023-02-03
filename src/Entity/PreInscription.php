@@ -14,10 +14,10 @@ class PreInscription
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -41,9 +41,7 @@ class PreInscription
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $pays = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $telephone = null;
-
+   
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $email = null;
 
@@ -65,6 +63,12 @@ class PreInscription
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $autreDoc = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $n_ss = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $telephone = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,7 +79,7 @@ class PreInscription
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
@@ -87,7 +91,7 @@ class PreInscription
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
 
@@ -178,17 +182,6 @@ class PreInscription
         return $this;
     }
 
-    public function getTelephone(): ?int
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?int $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
 
     public function getEmail(): ?string
     {
@@ -270,6 +263,30 @@ class PreInscription
     public function setAutreDoc(?string $autreDoc): self
     {
         $this->autreDoc = $autreDoc;
+
+        return $this;
+    }
+
+    public function getNSs(): ?string
+    {
+        return $this->n_ss;
+    }
+
+    public function setNSs(?string $n_ss): self
+    {
+        $this->n_ss = $n_ss;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
