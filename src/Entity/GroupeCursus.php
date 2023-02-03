@@ -93,4 +93,11 @@ class GroupeCursus
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $code = $this->codeGpeCursus;
+        $libelle = $this->libelleGpeCursus;
+        return "$code | $libelle";
+    }
 }

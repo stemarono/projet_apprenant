@@ -16,18 +16,18 @@ class GroupeCursusController extends AbstractController
     #[Route('/new', name: 'app_groupe_cursus_new', methods: ['GET', 'POST'])]
     public function new(Request $request, GroupeCursusRepository $groupeCursusRepository): Response
     {
-        $groupeCursu = new GroupeCursus();
-        $form = $this->createForm(GroupeCursusType::class, $groupeCursu);
+        $groupeCursus = new GroupeCursus();
+        $form = $this->createForm(GroupeCursusType::class, $groupeCursus);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $groupeCursusRepository->save($groupeCursu, true);
+            $groupeCursusRepository->save($groupeCursus, true);
 
             return $this->redirectToRoute('app_management_tools', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('groupe_cursus/new.html.twig', [
-            'groupe_cursu' => $groupeCursu,
+            'groupe_cursus' => $groupeCursus,
             'form' => $form,
         ]);
     }

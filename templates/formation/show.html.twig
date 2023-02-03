@@ -28,7 +28,7 @@ body %}
     </p>
     <h5 class="my-3">Dates disponibles</h5>
     <p class="my-3">
-      {{ formation.dateFormation ? formation.dateFormation|date('Y-m-d H:i:s') : '' }}
+      {{ formation.dateFormation ? formation.dateFormation|date('d-m-Y') : '' }}
     </p>
     <h5 class="my-3">Parcours</h5>
     <p>{{ formation.parcours }}</p>
