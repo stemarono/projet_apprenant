@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InscriptionApprenant index{% endblock %}
+
+{% block body %}
+    <h1>InscriptionApprenant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Identifiant</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>DateNaissance</th>
+                <th>Sexe</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Ville</th>
+                <th>Region</th>
+                <th>Pays</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>NumSecu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inscription_apprenant in inscription_apprenants %}
+            <tr>
+                <td>{{ inscription_apprenant.id }}</td>
+                <td>{{ inscription_apprenant.identifiant }}</td>
+                <td>{{ inscription_apprenant.nom }}</td>
+                <td>{{ inscription_apprenant.prenom }}</td>
+                <td>{{ inscription_apprenant.dateNaissance ? inscription_apprenant.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ inscription_apprenant.sexe }}</td>
+                <td>{{ inscription_apprenant.adresse }}</td>
+                <td>{{ inscription_apprenant.codePostal }}</td>
+                <td>{{ inscription_apprenant.ville }}</td>
+                <td>{{ inscription_apprenant.region }}</td>
+                <td>{{ inscription_apprenant.pays }}</td>
+                <td>{{ inscription_apprenant.telephone }}</td>
+                <td>{{ inscription_apprenant.email }}</td>
+                <td>{{ inscription_apprenant.numSecu }}</td>
+                <td>
+                    <a href="{{ path('app_inscription_apprenant_show', {'id': inscription_apprenant.id}) }}">show</a>
+                    <a href="{{ path('app_inscription_apprenant_edit', {'id': inscription_apprenant.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_inscription_apprenant_new') }}">Create new</a>
+{% endblock %}

@@ -82,3 +82,10 @@ h1, h2, h3, h4, a, button {
 a {
     text-decoration:none;
 }
+/* Formulaire multipages */
+.page {
+    display: none;
+}
+.header {
+    display: none;
+}
