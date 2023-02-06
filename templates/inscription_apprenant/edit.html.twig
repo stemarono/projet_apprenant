@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit InscriptionApprenant{% endblock %}
+{% block title %}Modifier l'inscription{% endblock %}
 
 {% block body %}
-    <h1>Edit InscriptionApprenant</h1>
+    {# titre #}
+	<div class="container p-5 my-5 bg-blueclear">
+		<h1 class="pt-2 pb-5 text-clear">Modifier l'inscription</h1>
+	</div>
 
-    {{ include('inscription_apprenant/_form.html.twig', {'button_label': 'Update'}) }}
+	{# Bouton retour #}
+	<div class="d-md-flex p-5 justify-content-md-start">
+		<button class="btn bg-green text-clear mx-5 align-start">
+			<a class="text-clear" href="javascript:history.back()">Retour</a>
+		</button>
+	</div>
 
-    <a href="{{ path('app_inscription_apprenant_index') }}">back to list</a>
+	{# formulaire #}
+	<div class="container w-50">
+		{{ include('inscription_apprenant/_form.html.twig') }}
+	</div>
 
-    {{ include('inscription_apprenant/_delete_form.html.twig') }}
 {% endblock %}

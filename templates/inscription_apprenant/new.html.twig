@@ -1,10 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New InscriptionApprenant{% endblock %}
+{% block title %}Nouvelle inscription
+{% endblock %}
 
 {% block body %}
-    <h1>Create new InscriptionApprenant</h1>
+	{# titre #}
+	<div class="container p-5 my-5 bg-blueclear">
+		<h1 class="pt-2 pb-5 text-clear">Nouvelle inscription</h1>
+	</div>
 
-    {{ include('inscription_apprenant/_form.html.twig') }}
+	{# Bouton retour #}
+	<div class="container d-md-flex p-5 justify-content-md-start">
+		<button class="btn bg-green text-clear align-start">
+			<a class="text-clear" href="javascript:history.back()">Retour</a>
+		</button>
+	</div>
+
+	{# formulaire #}
+	<div class="container w-50">
+		{{ include('inscription_apprenant/_form.html.twig') }}
+	</div>
 
 {% endblock %}

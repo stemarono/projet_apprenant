@@ -17,7 +17,7 @@
 }
 /* colors */
 .bg-green {
-    background-color: var(--bs-green) !important;
+    background-color: var(--bs-green);
 }
 .bg-blue {
     background-color: var(--bs-blue);
@@ -40,6 +40,9 @@
 }
 .text-blue {
     color: var(--bs-blue);
+}
+.opacity {
+    opacity: 0.7;
 }
 /* fonts */
 

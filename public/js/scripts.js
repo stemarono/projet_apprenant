@@ -25,10 +25,17 @@ window.onload = () => {
     })
 
     // on gère les boutons "suivant"
-    let boutons = document.querySelectorAll("button[type=button]")
+    let boutons = document.querySelectorAll(".next")
 
     for(let bouton of boutons){
         bouton.addEventListener("click", pageSuivante)
+    }
+
+    // on gère les boutons "précédent"
+    boutons = document.querySelectorAll(".prev")
+
+    for (let bouton of boutons){
+        bouton.addEventListener("click", pagePrecedente)
     }
 }
 
@@ -49,9 +56,12 @@ function pageSuivante() {
     // on incrémente pageActive
      pageActive++
 
+     // on "active" le noueau numéro
+     document.querySelector("#num"+pageActive).classList.add("active")
+
 }
 
-// on crée la fonction qui fait avancer le formulaire d'une page
+// on crée la fonction qui fait reculer le formulaire d'une page
 function pagePrecedente() {
    
     // on masque toutes les pages
@@ -60,12 +70,15 @@ function pagePrecedente() {
     }
 
     // on affiche la page suivante
-    this.parentElement.parentElement.nextElementSibling.style.display = "initial"
+    this.parentElement.parentElement.previousElementSibling.style.display = "initial"
 
     // on "désactive" la page active
     document.querySelector(".active").classList.remove("active")
      
     // on incrémente pageActive
-     pageActive++
+     pageActive--
+
+     // on "active" le nouveau numéro
+     document.querySelector("#num"+pageActive).classList.add("active")
 
 }

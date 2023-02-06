@@ -96,8 +96,10 @@ class GroupeCursus
 
     public function __toString()
     {
-        $code = $this->codeGpeCursus;
-        $libelle = $this->libelleGpeCursus;
-        return "$code | $libelle";
+        // $libelle = $this->libelleGpeCursus;
+        // $dateDebut = $this->dateDebut;
+        // $dateFin = $this->dateFin;
+        // return "$libelle | du $dateDebut au $dateFin";
+        return $this->libelleGpeCursus;
     }
 }
