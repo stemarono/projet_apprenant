@@ -47,4 +47,9 @@ class Financement
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->libelleFinancement;
+    }
 }

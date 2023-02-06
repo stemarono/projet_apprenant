@@ -55,7 +55,7 @@ class FormationType extends AbstractType
                 'format' => 'dd/mm/yyyy',
                 'html5' => false,
                 'label' => 'Date :',
-                'attr' => ['class' => 'form-control', 'placeholder' => 'jj/mm/aaaa']
+                'attr' => ['class' => 'form-control datepicker', 'placeholder' => 'jj/mm/aaaa']
             ])
             ->add('parcours', EntityType::class, [
                 'class' => Parcours::class,

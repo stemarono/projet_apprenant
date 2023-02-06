@@ -1,0 +1,119 @@
+<div class="container form bg-clear shadow p-4 m-5">
+	<div class="header"></div>
+	<div>
+		{{ form_start(form) }}
+		<div class="form page" id="page1">
+			<div class="d-flex align-items-center justify-content-start m-5">
+				<h2>Informations personnelles 1/2</h2>
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.identifiant) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.nom) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.prenom) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.dateNaissance) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.sexe) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.numSecu) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-end m-5">
+				<button class="btn bg-green text-clear next" type="button">
+					Suivant
+				</button>
+			</div>
+		</div>
+		<div class="form page" id="page2">
+			<div class="d-flex align-items-center justify-content-start m-5">
+				<h2>Informations personnelles 2/2</h2>
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.adresse) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.codePostal) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.ville) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.region) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.pays) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.telephone) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.email) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-between m-5">
+				<button class="btn bg-blue text-clear prev" type="button">
+					Précédent
+				</button>
+				<button class="btn bg-green text-clear next" type="button">
+					Suivant
+				</button>
+			</div>
+		</div>
+		<div class="form page" id="page3">
+			<div class="d-flex align-items-center justify-content-start m-5">
+				<h2>Inscription au cursus</h2>
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.dateInscription) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.cursus) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.groupeCursus) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.parcours) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-between m-5">
+				<button class="btn bg-blue text-clear prev" type="button">
+					Précédent
+				</button>
+				<button class="btn bg-green text-clear next" type="button">
+					Suivant
+				</button>
+			</div>
+		</div>
+		<div class="form page" id="page4">
+			<div class="d-flex align-items-center justify-content-start m-5">
+				<h2>Financement</h2>
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.financement) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.modePaiement) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.montant) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-start m-3 mx-5">
+				{{ form_widget(form.nbEcheance) }}
+			</div>
+			<div class="d-flex align-items-center justify-content-between m-5">
+				<button class="btn bg-blue text-clear prev" type="button">
+					Précédent
+				</button>
+				<button class="btn bg-green text-clear">
+					{{ button_label|default('Valider') }}
+				</button>
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+</div>

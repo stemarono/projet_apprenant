@@ -76,8 +76,8 @@
 						<td>{{ groupe_cursus.codeGpeCursus }}</td>
 						<td>{{ groupe_cursus.libelleGpeCursus }}</td>
 						<td>{{ groupe_cursus.cursus }}</td>
-						<td>{{ groupe_cursus.dateDebut ? groupe_cursus.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ groupe_cursus.dateFin ? groupe_cursus.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ groupe_cursus.dateDebut ? groupe_cursus.dateDebut|date('d-m-Y') : '' }}</td>
+						<td>{{ groupe_cursus.dateFin ? groupe_cursus.dateFin|date('d-m-Y') : '' }}</td>
 						<td>
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_groupe_cursus_edit', {'id': groupe_cursus.id}) }}">Modifier</a>
