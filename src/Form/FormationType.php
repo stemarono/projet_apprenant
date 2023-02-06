@@ -43,7 +43,7 @@ class FormationType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'images/*',
+                            'image/*',
                         ],
                         'mimeTypesMessage' => 'Choisir un fichier valide'
                     ])

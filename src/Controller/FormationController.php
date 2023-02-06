@@ -55,6 +55,19 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $photo = $form->get('photo')->getData();
+
+            if ($photo) {
+                $fichier = md5(uniqid()) . '.' . $photo->guessExtension();
+
+                $photo->move(
+                    $this->getParameter('images_directory'),
+                    $fichier,
+                );
+            }
+            $formation->setPhoto($fichier);
+            
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
