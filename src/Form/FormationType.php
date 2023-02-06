@@ -20,23 +20,19 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('code', TextType::class, [
-                'label' => 'Code :',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Code']
             ])
             ->add('titre', TextType::class, [
-                'label' => 'Titre :',
-                'attr' => ['class' => 'form-control']
+
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Titre']
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'description :',
-                'attr' => ['class' => 'form-control', 'rows' => '3']
+                'attr' => ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Description']
             ])
             ->add('contenu', TextareaType::class, [
-                'label' => 'contenu :',
-                'attr' => ['class' => 'form-control', 'rows' => '10']
+                'attr' => ['class' => 'form-control', 'rows' => '10', 'placeholder' => 'Contenu']
             ])
             ->add('photo', FileType::class, [
-                'label' => 'Image :',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -54,8 +50,7 @@ class FormationType extends AbstractType
                 'widget' => 'single_text', 
                 'format' => 'dd/mm/yyyy',
                 'html5' => false,
-                'label' => 'Date :',
-                'attr' => ['class' => 'form-control datepicker', 'placeholder' => 'jj/mm/aaaa']
+                'attr' => ['class' => 'form-control datepicker', 'placeholder' => 'Date']
             ])
             ->add('parcours', EntityType::class, [
                 'class' => Parcours::class,

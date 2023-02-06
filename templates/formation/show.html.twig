@@ -1,5 +1,8 @@
-{% extends 'base.html.twig' %} {% block title %}Formation{% endblock %} {% block
-body %} 
+{% extends 'base.html.twig' %} 
+
+{% block title %}Formation{% endblock %} 
+
+{% block body %} 
 
 {# titre #}
 <div class="container p-5 my-5 bg-blueclear">
@@ -8,6 +11,7 @@ body %}
 
 {# contenu de la formation #}
 <div class="container d-flex justify-content-center">
+
   <div class="w-75 p-5">
     {# sous-titre #}
     <h3 class="my-3">
@@ -17,9 +21,10 @@ body %}
     <p class="my-3">
       {{ formation.contenu }}
     </p>
-    <img class="img-page" src="{{ formation.photo }}" alt="">
+    <img class="img-page" src="{{ asset('images/' ~ formation.photo) }}" alt="">
   </div>
-  {# a side #}
+
+  {# aside #}
   <aside class="w-25 p-3 px-5 border-start">
     <h4 class="my-3">{{ formation.titre }}</h4>
     <h5 class="my-3">Cursus proposés</h5>
@@ -35,11 +40,16 @@ body %}
     <button class="btn bg-green text-clear">S'inscrire</button>
   </aside>
 </div>
+
+{# Bouton retour #}
 <div class="container p-5">
     <button class="btn bg-blue"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
 </div>
+
+{# Boutons modifiation / suppression #}
 <div class="container p-5 d-none">
     <button class="btn bg-green"><a class="text-light" href="{{ path('app_formation_edit', { id: formation.id }) }}">Modifier</a></button>
     <button class="btn bg-red">{{ include("formation/_delete_form.html.twig") }}</button>
 </div>
+
 {% endblock %}

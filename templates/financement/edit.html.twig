@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier le financement{% endblock %}
+{% block title %}Modifier le mode de financement{% endblock %}
 
 {% block body %}
+
 {# titre #}
 <div class="container p-5 my-5 bg-blueclear">
-  <h1 class="pt-2 pb-5 text-clear">Modifier le financement</h1>
+  <h1 class="pt-2 pb-5 text-clear">Modifier le mode de financement</h1>
 </div>
 
 {# Boutons retour et supprimer #}
@@ -18,6 +19,5 @@
 <div class="container">
     {{ include('financement/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 </div>
-
 
 {% endblock %}

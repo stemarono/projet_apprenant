@@ -8,13 +8,14 @@
   <h1 class="pt-2 pb-5 text-clear">Ajouter une formation</h1>
 </div>
 
+{# Bouton retour #}
+<div class="container">
+    <button class="btn bg-blue text-clear"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
+</div>
+
 {# Formulaire #}
 <div class="container">
     {{ include('formation/_form.html.twig') }}
 </div>
 
-{# Bouton retour #}
-<div class="d-md-flex justify-content-md-end">
-    <button class="btn bg-green text-clear m-5 align-end"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
-</div>
 {% endblock %}

@@ -33,15 +33,20 @@
 							<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link text-clear dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">Formations</a>
-							<ul class="dropdown-menu bg-green">
+							<a class="nav-link text-clear" href="{{ path('app_formation_list') }}" >Formations</a>
+							{# besoin de faire fonctionner un foreach ici // creation de BaseController.php // ne fonctionne pas #}
+							{# <ul class="dropdown-menu bg-green">
 								<li class="dropdown-item">
-									<a href="{{ path('app_formation_index') }}" class="text-clear">Toutes les formations</a>
+									<a href="{{ path('app_formation_list') }}" class="text-clear">Toutes les formations</a>
 								</li>
+								{% for formation in formations %}
 								<li class="dropdown-item">
-									<a href="" class="text-clear">Formation 1</a>
+									<a href="" class="text-clear">{{ formation.titre }}</a>
 								</li>
-							</ul>
+								{% else %}
+									<p>Informations indisponibles</p>
+								{% endfor %}
+							</ul> #}
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{ path('app_about')}}">À propos</a>
@@ -60,16 +65,19 @@
 							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Inscriptions</a>
 							<ul class="dropdown-menu bg-green">
 								<li>
-									<a href="" class="dropdown-item text-clear">Préincsriptions</a>
+									<a class="dropdown-item text-clear" href="">Préincsriptions</a>
 								</li>
 								<li>
-									<a href="{{ path('app_inscription_apprenant_new')}}" class="dropdown-item text-clear">Nouvelle inscription</a>
+									<a class="dropdown-item text-clear" href="{{ path('app_inscription_apprenant_new')}}">Nouvelle inscription</a>
 								</li>
 								<li>
-									<a href="{{ path('app_inscription_apprenant_index') }}" class="dropdown-item text-clear">Inscrits</a>
+									<a class="dropdown-item text-clear" href="{{ path('app_inscription_apprenant_index') }}">Inscrits</a>
 								</li>
 								<li>
-									<a href="{{ path('app_management_tools')}}" class="dropdown-item text-clear">Outils d'administration</a>
+									<a class="dropdown-item text-clear" href="{{ path('app_formation_index')}}">Administrer les formations</a>
+								</li>
+								<li>
+									<a class="dropdown-item text-clear" href="{{ path('app_management_tools')}}">Outils d'administration</a>
 								</li>
 							</ul>
 						</li>
@@ -132,6 +140,14 @@
 				});
 
 			})
+
+			const myCarouselElement = document.querySelector('#carouselHome')
+
+			const carousel = new bootstrap.Carousel(myCarouselElement, {
+				interval: 4000,
+				touch: true
+			})
+
 		</script>
 	</body>
 </html>
