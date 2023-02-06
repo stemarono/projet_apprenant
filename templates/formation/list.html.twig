@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Formations{% endblock %} 
+
+{% block body %}
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Les formations</h1>
+</div>
+
+{# sous-titre #}
+<div class="container p-5">
+  <h4>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
+    doloremque cumque eum molestias quas illo exercitationem mollitia excepturi
+    assumenda aut, minima possimus facere tenetur suscipit architecto, animi
+    necessitatibus? Voluptatem, qui.
+  </h4>
+</div>
+
+{# Cartes lien formations #} 
+{% for formation in formations %}
+<div class="container mb-5 p-5 bg-clear shadow p-4">
+    <div class="card-body row">
+      <h3 class="m-2 col">{{ formation.titre }}</h3>
+      <p class="text-end m-2 col">{{ formation.description }}</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
+        <button class="btn btn-md bg-green text-clear p-2 px-4 m-2" type="button">
+          <a class="text-clear" href="{{ path('app_formation_show',{'id':formation.id}) }}">Découvrir</a>
+        </button>
+      </div>
+    </div>
+</div>
+{% else %}
+  <p>Informations indisponibles</p>
+{% endfor %}
+
+{# bouton de creation formation display:none sauf admin #}
+<div class="container p-5 d-none">
+  <button class="btn bg-green">
+    <a class="text-clear" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
+  </button>
+</div>
+{% endblock %}

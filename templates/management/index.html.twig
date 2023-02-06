@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Projet Apprenant
-{% endblock %}
+{% block title %}Outils formulaire{% endblock %}
 
 {% block body %}
+
 	{# titre #}
 	<div class="container p-5 my-5 bg-blueclear">
 		<h1 class="pt-2 pb-5 text-clear">Outils de modification du formulaire</h1>
@@ -23,7 +23,7 @@
 					<th>Id</th>
 					<th>Code</th>
 					<th>Libelle</th>
-					<th>actions</th>
+					<th class="text-end pe-3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,7 +32,7 @@
 						<td>{{ cursus.id }}</td>
 						<td>{{ cursus.codeCursus }}</td>
 						<td>{{ cursus.libelleCursus }}</td>
-						<td>
+						<td class="text-end pe-3">
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_cursus_edit', {'id': cursus.id}) }}">Modifier</a>
 							</button>
@@ -48,7 +48,6 @@
 
 	</div>
 
-
 	{# Table groupeCursus #}
 	<div class="container p-5">
 		<div class="d-flex justify-content-between">
@@ -61,12 +60,12 @@
 			<thead class="bg-blue text-clear">
 				<tr>
 					<th>Id</th>
-					<th>CodeGpeCursus</th>
-					<th>LibelleGpeCursus</th>
+					<th>Code</th>
+					<th>Libelle</th>
 					<th>Parcours</th>
-					<th>DateDebut</th>
-					<th>DateFin</th>
-					<th>actions</th>
+					<th>Date de début</th>
+					<th>Date de fin</th>
+					<th class="text-end pe-3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -78,7 +77,7 @@
 						<td>{{ groupe_cursus.cursus }}</td>
 						<td>{{ groupe_cursus.dateDebut ? groupe_cursus.dateDebut|date('d-m-Y') : '' }}</td>
 						<td>{{ groupe_cursus.dateFin ? groupe_cursus.dateFin|date('d-m-Y') : '' }}</td>
-						<td>
+						<td class="text-end pe-3">
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_groupe_cursus_edit', {'id': groupe_cursus.id}) }}">Modifier</a>
 							</button>
@@ -105,9 +104,9 @@
 			<thead class="bg-blue text-clear">
 				<tr>
 					<th>Id</th>
-					<th>CodeParcours</th>
-					<th>LibelleParcours</th>
-					<th>actions</th>
+					<th>Code</th>
+					<th>Libelle</th>
+					<th class="text-end pe-3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -116,7 +115,7 @@
 						<td>{{ parcours.id }}</td>
 						<td>{{ parcours.codeParcours }}</td>
 						<td>{{ parcours.libelleParcours }}</td>
-						<td>
+						<td class="text-end pe-3">
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_parcours_edit', {'id': parcours.id}) }}">Modifier</a>
 							</button>
@@ -143,9 +142,9 @@
 			<thead class="bg-blue text-clear">
 				<tr>
 					<th>Id</th>
-					<th>CodeFinancement</th>
-					<th>LibelleFinancement</th>
-					<th>actions</th>
+					<th>Code</th>
+					<th>Libelle</th>
+					<th class="text-end pe-3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -154,7 +153,7 @@
 						<td>{{ financement.id }}</td>
 						<td>{{ financement.codeFinancement }}</td>
 						<td>{{ financement.libelleFinancement }}</td>
-						<td>
+						<td class="text-end pe-3">
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_financement_edit', {'id': financement.id}) }}">Modifier</a>
 							</button>
@@ -181,9 +180,9 @@
 			<thead class="bg-blue text-clear">
 				<tr>
 					<th>Id</th>
-					<th>CodeModePaie</th>
-					<th>LibelleModePaie</th>
-					<th>actions</th>
+					<th>Code</th>
+					<th>Libelle</th>
+					<th class="text-end pe-3">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -192,7 +191,7 @@
 						<td>{{ mode_paiement.id }}</td>
 						<td>{{ mode_paiement.codeModePaie }}</td>
 						<td>{{ mode_paiement.libelleModePaie }}</td>
-						<td>
+						<td class="text-end">
 							<button class="btn btn-md bg-green text-clear p-2 px-4" type="button">
 								<a class="text-clear" href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}">Modifier</a>
 							</button>
