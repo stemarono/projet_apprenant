@@ -15,4 +15,15 @@ class EspacePersonnelController extends AbstractController
             'controller_name' => 'EspacePersonnelController',
         ]);
     }
+
+
+    #[Route('/espace/personnel/show', name: 'app_espace_personnel_show')]
+    public function show(): Response
+    {
+        return $this->render('espace_personnel/Espace_preinscription.html.twig', [
+           
+        ]);
+    }
+
+
 }

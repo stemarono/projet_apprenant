@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace personnel / Pré-inscription{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>Votre pré-inscription</h1>
+    </div>
+    <div class=" m-auto w-75">
+        {{ include('pre_inscription/_form.html.twig') }}
+    </div>
+    {# <a href="{{ path('app_pre_inscription_index') }}">back to list</a> #}
+{% endblock %}

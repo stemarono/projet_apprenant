@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\PreInscription;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,10 +14,27 @@ class PreInscriptionJustifType extends AbstractType
     {
         $builder
           
-            ->add('carteIdentite')
-            ->add('justifFinancement')
-            ->add('carteVitale')
-            ->add('autreDoc')
+            ->add('carteIdentite',FileType::class,[
+                'label'=>'Carte d\'identité :',
+                'mapped'=>false,
+                'required'=>false,
+            ])
+            ->add('justifFinancement',FileType::class,[
+                'label'=>' Justificatifs de financement :',
+                'mapped'=>false,
+                'required'=>false,
+            ])
+            ->add('carteVitale',FileType::class,[
+                'label'=>'attestation de la carte Vitale :',
+                'mapped'=>false,
+                'required'=>false,
+
+            ])
+            ->add('autreDoc',FileType::class,[
+                'label'=>'Autre Document :',
+                'mapped'=>false,
+                'required'=> false,
+            ])
            
         ;
     }
