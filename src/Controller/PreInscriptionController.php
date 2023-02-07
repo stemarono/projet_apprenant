@@ -118,7 +118,7 @@ class PreInscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_pre_inscription_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_pre_inscription_show', methods: ['GET'])]
     public function show(PreInscription $preInscription): Response
     {
         return $this->render('pre_inscription/show.html.twig', [
@@ -126,7 +126,7 @@ class PreInscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_pre_inscription_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_pre_inscription_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository): Response
     {
         $form = $this->createForm(PreInscriptionType::class, $preInscription);
@@ -144,7 +144,7 @@ class PreInscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_pre_inscription_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_pre_inscription_delete', methods: ['POST'])]
     public function delete(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$preInscription->getId(), $request->request->get('_token'))) {

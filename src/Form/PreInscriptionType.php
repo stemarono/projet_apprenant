@@ -21,62 +21,62 @@ class PreInscriptionType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'label'=>'Nom :',
-                'label_attr'=>['class'=>'me-3 mb-3']
+                
             ])
             ->add('prenom',TextType::class,[
                 'label'=>'Prénom :',
-                'label_attr'=>['class'=>'me-3 mb-3']
+               
             ])
             ->add('dateNaissance',BirthdayType::class,[
                 'label'=>'Date de Naissance :',
                 'widget'=>'single_text',
                 'html5'=>false,
                 'format'=>'dd/mm/yyyy',
-                'label_attr'=>['class'=>'me-3 mb-3']
+                
             ])
             ->add('n_ss',textType::class,[
                 'label'=>'Numéro de Sécurité Sociale :',
-                'label_attr'=>['class'=>'me-3 mb-3']
+                
+                
             ])
             ->add('sexe',ChoiceType::class,[
-                'label'=>'Sexe',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+                'label'=>'Sexe :',
+               
                 'choices'=>[
                     'Femme'=>1,
                     'Homme'=>2,
                     'Autre'=>3,
-                ]
+                ],
+                
             ])
-            ->add('adresse',TextareaType::class,[
+            ->add('adresse',TextType::class,[
                 'label'=> 'Adresse :',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+               
             ])
             ->add('codePostal',NumberType::class,[
                 'label'=>'Code Postal :',
-                'label_attr'=>['class'=>'me-3 mb-3 '],
-                'attr'=>['class'=>'d-inline w-20']
+                
             ]
             )
             ->add('ville',TextType::class,[
                 'label'=>'Ville :',
-                'label_attr'=>['class'=>'me-3 mb-3 '],
-                'attr'=>['class'=>'d-inline w-20']
+               
             ])
             ->add('region',TextType::class,[
                 'label'=> 'région :',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+                
             ])
             ->add('pays',CountryType::class,[
-                'label'=>'Pays :',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+                'label'=>'Veuillez sélectionner votre Pays :',
+                
             ])
             ->add('telephone',NumberType::class,[
                 'label'=> 'Téléphone',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+                
             ])
             ->add('email',EmailType::class,[
                 'label'=>' Adresse Mail :',
-                'label_attr'=>['class'=>'me-3 mb-3'],
+                
             ])
                 
         ;
