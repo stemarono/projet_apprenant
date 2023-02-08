@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+{% block body %}
+        <div class="bg-personnal bg-blueclear p-5 mt-5 ">
+            <h4><span class="text-capitalize">formulaire</span> d'inscription</h4>
+        </div>
+        <div class="my-5 text-center">
+            <h4>Inscription au cursus</h4>
+        </div>
+
+        <div class="m-auto w-20">
+            {{include ('pre_inscription/_formCursus.html.twig')}}
+        </div>
+
+
+{% endblock %}

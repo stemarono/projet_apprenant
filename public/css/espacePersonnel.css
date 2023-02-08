@@ -1,0 +1,22 @@
+@import url("css/style_m.css"); import du fichier style_m.css dans espacePersonnel.css
+
+.border-color{
+    border-color: var(--bs-green);
+}
+
+.btn-green{
+    background-color: var(--bs-green);
+    color:var(--bs-white)
+}
+.btn-blue{
+    background-color: var(--bs-blue);
+    color:var(--bs-white)
+}
+.btn-red{
+    background-color: var(--bs-red);
+    color:var(--bs-white)
+}
+a:hover{
+    color:var(--bs-white);
+}
+

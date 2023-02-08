@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liens de téléchargement{% endblock %}
+
+{% block body %}
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liens de téléchargement</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container p-5 d-md-flex justify-content-md-start">
+  <button class="btn bg-green text-clear align-start">
+    <a class="text-clear" href="javascript:history.back()">Retour</a>
+  </button>
+</div>
+
+{# liste des liens #}
+<div class="d-md-flex justify-content-evenly m-5">
+    <button class="btn bg-green"><a class="text-clear" href="">Liste des pré-inscriptions</a></button>
+    <button class="btn bg-green"><a class="text-clear" href="{{ path('app_inscription_pdf')}}">Liste des inscriptions</a></button>
+    <button class="btn bg-green"><a class="text-clear" href="">Liste des utilisateurs</a></button>
+</div>
+
+{% endblock %}
