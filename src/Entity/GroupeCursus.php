@@ -93,4 +93,13 @@ class GroupeCursus
 
         return $this;
     }
+
+    public function __toString()
+    {
+        // $libelle = $this->libelleGpeCursus;
+        // $dateDebut = $this->dateDebut;
+        // $dateFin = $this->dateFin;
+        // return "$libelle | du $dateDebut au $dateFin";
+        return $this->libelleGpeCursus;
+    }
 }

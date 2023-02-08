@@ -32,11 +32,8 @@ class Formation
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateFormation = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $parcours = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Parcours $Parcours = null;
+    #[ORM\ManyToOne]
+    private ?Parcours $parcours = null;
 
     public function getId(): ?int
     {
@@ -115,15 +112,16 @@ class Formation
         return $this;
     }
 
-    public function getParcours(): ?string
+    public function getParcours(): ?Parcours
     {
         return $this->parcours;
     }
 
-    public function setParcours(string $parcours): self
+    public function setParcours(?Parcours $parcours): self
     {
         $this->parcours = $parcours;
 
         return $this;
     }
+    
 }

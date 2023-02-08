@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier la formation{% endblock %}
+{% block title %}Modifier l'inscription{% endblock %}
 
 {% block body %}
 
-	{# titre #}
+    {# titre #}
 	<div class="container p-5 my-5 bg-blueclear">
-		<h1 class="pt-2 pb-5 text-clear">Modifier la formation</h1>
+		<h1 class="pt-2 pb-5 text-clear">Modifier l'inscription</h1>
 	</div>
 
 	{# Bouton retour #}
@@ -18,7 +18,7 @@
 
 	{# formulaire #}
 	<div class="container w-50">
-		{{ include('formation/_form.html.twig') }}
+		{{ include('inscription_apprenant/_form.html.twig') }}
 	</div>
 
 {% endblock %}

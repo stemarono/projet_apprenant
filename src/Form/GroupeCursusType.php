@@ -36,7 +36,7 @@ class GroupeCursusType extends AbstractType
                 'widget'=>'single_text',
                 'format'=>'dd/MM/yyyy',
                 'html5'=>false,
-                'attr'=>['class'=>'form-control my-4', 'placeholder'=>'dd/mm/yyyy']
+                'attr'=>['class'=>'form-control datepicker my-4', 'placeholder'=>'dd/mm/yyyy']
             ])
             ->add('cursus', EntityType::class, [
                 'label_attr' => ['class' => 'd-none'],
