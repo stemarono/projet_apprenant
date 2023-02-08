@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+
+    {{form_label(form.motivations,'Expliquez en quelques phrases vos motivations (1000 caractères maximum)',{'label_attr':{'class':'mb-4 ms-5'}})}}
+    {{ form_widget(form.motivations,{'attr':{'class':'form-control w-75 p-5 my-4 ms-5 border-color shadow bg-clear'}})}}
+
+
+    {{form_label(form.financement,'Quels parcours et quel type de financement souhaitez-vous ? (500 caractères maximum)',{'label_attr':{'class':'mb-4 ms-5'}})}}
+    {{ form_widget(form.financement,{'attr':{'class':'form-control w-75 p-5 my-4 ms-5 border-color shadow bg-clear'}})}}
+
+    <div class="my-5 d-flex flex-row justify-content-around">
+        <a class=" btn btn-md btn-blue" href="{{ path('app_pre_inscription_new') }}">Précédent</a>
+        <button class="btn btn-md btn-success">{{ button_label|default('Suivant') }}</button>
+     </div>
+{{ form_end(form) }}
