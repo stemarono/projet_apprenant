@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription</title>
+    <style>
+      .title {
+        background-color: #3c8cd7;
+        padding: 20px;
+        margin: 20px;
+      }
+      h1 {
+        margin-bottom: 40px;
+        color: #f9f5f6;
+        font-size: larger;
+      }
+      .content {
+        padding: 20px;
+        margin-left: 80px;
+      }
+      p{
+        padding: 0px;
+        margin: 2px;
+      }
+      .flex {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Inscription</h1>
+    </div>
+    <div class="content">
+      <h3>Récapitulatif du dossier</h3>
+      <div class="flex">
+        <p><b>Id :</b> {{ inscription_apprenant.id }}</p>
+        <p><b>Nom :</b> {{ inscription_apprenant.nom }}</p>
+        <p><b>Prénom :</b> {{ inscription_apprenant.prenom }}</p>
+        <p><b>Identifiant :</b> {{ inscription_apprenant.identifiant }}</p>
+        <p><b>E-mail :</b> {{ inscription_apprenant.email }}</p>
+        <p><b>Téléphone :</b> {{ inscription_apprenant.telephone }}</p>
+        <p>
+          <b>N° de sécurité sociale :</b> {{ inscription_apprenant.numSecu }}
+        </p>
+        <p>
+          <b>Date de naissance :</b>
+          {{ inscription_apprenant.dateNaissance ? inscription_apprenant.dateNaissance|date('d/m/Y') : '' }}
+        </p>
+        <p><b>Sexe :</b> {{ inscription_apprenant.sexe }}</p>
+        <p><br /></p>
+        <p><b>Adresse :</b> {{ inscription_apprenant.adresse }}</p>
+        <p><b>Code postal :</b> {{ inscription_apprenant.codePostal }}</p>
+        <p><b>Ville :</b> {{ inscription_apprenant.ville }}</p>
+        <p><b>Région :</b> {{ inscription_apprenant.region }}</p>
+        <p><b>Pays :</b> {{ inscription_apprenant.pays }}</p>
+        <p>
+          <b>Date d'inscription :</b>
+          {{ inscription_apprenant.dateInscription ? inscription_apprenant.dateInscription|date('d/m/Y') : '' }}
+        </p>
+        <p><b>Cursus :</b> {{ inscription_apprenant.cursus }}</p>
+        {# trouver un moyen d'afficher les dates aussi #}
+        <p><b>Groupe :</b> {{ inscription_apprenant.groupeCursus }}</p>
+        <p><b>Formation :</b> {{ inscription_apprenant.parcours }}</p>
+        <p><br /></p>
+        <p><b>Financement :</b> {{ inscription_apprenant.financement }}</p>
+        <p>
+          <b>Mode de paiement :</b> {{ inscription_apprenant.modePaiement }}
+        </p>
+        <p><b>Montant :</b> {{ inscription_apprenant.montant }}€</p>
+        <p>
+          <b>Nombre d'échéances :</b> {{ inscription_apprenant.nbEcheance }}
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
