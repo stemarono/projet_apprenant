@@ -1,45 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administrators/Tableau des Utilisateurs{% endblock %}
+{% block title %}Administrateur/ liste des Utilisateurs{% endblock %}
 
 {% block body %}
-    <h1 class=>liste des Utilisateurs</h1>
+    <div class="bg-blueclear my-5 p-5">
+        <h1>Liste des utilisateurs</h1>
+    </div>
+    <div class="my-5">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Identifiant</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.identifiant }}</td>
+                    {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+                    <td>
+                        <select name="" id=""class="form-select w-100">
+                        {% for role in user.roles %}
+                            <option value="">{{ role }}</option>
+                        {% endfor %}
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.password }}</td>
 
-    <table class="table table-responsive table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Identifiant</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Roles</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.identifiant }}</td>
-                <td>{{ user.nom }}</td>
-                <td>{{ user.prenom }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <td>
+                        <a class="btn btn-md btn-green me-5 "href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+                        <a class=" btn btn-md btn-blue" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">aucun enregistrement</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    <div class="my-5">
+        <a  class="btn btn-md btn-blue ms-5" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    </div>
 {% endblock %}
