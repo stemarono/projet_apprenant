@@ -1,0 +1,123 @@
+/* init */
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Raleway:wght@200;300&family=Roboto:wght@300&display=swap');
+:root {
+    --bs-white: #f9f5f6;
+    --bs-white-tr: #f9f5f6b7;
+    --bs-green: #39ac80;
+    --bs-blue-light: #3c8cd7;
+    --bs-blue: #153c51;
+    --bs-red: #ac4039;
+    --bs-font-body: Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+    --bs-font-title: Raleway;
+    --bs-font-decor: "Covered By Your Grace", Roboto, Arial;
+}
+.container-fluid {
+   padding: 0px !important;
+   margin: 0px !important;
+}
+html {
+    overflow-x: hidden;
+}
+/* colors */
+.bg-green {
+    background-color: var(--bs-green);
+}
+.bg-blue {
+    background-color: var(--bs-blue);
+}
+.bg-blueclear {
+    background-color: var(--bs-blue-light);
+    opacity: 0.7;
+}
+.bg-clear {
+    background-color:var(--bs-white);
+}
+.bg-red {
+    background-color: var(--bs-red);
+}
+.text-clear {
+    color: var(--bs-white) !important;
+}
+.text-green {
+    color:var(--bs-green);
+}
+.text-blue {
+    color: var(--bs-blue);
+}
+.opacity {
+    opacity: 0.7;
+}
+/* fonts */
+
+p, li, h5, h6, td {
+    font-family: var(--bs-font-body) !important;
+}
+h1, h2, h3, h4, a, button {
+    font-family: var(--bs-font-title) !important;
+}
+.text-decor {
+    font-family: var(--bs-font-decor);
+}
+/* images */
+.img-sm {
+    width: 60px; 
+    height: 60px; 
+}
+.img-min {
+    width: 40px;
+    height: 40px;
+}
+.img-caroussel{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+.img-page {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+/* button & link */
+.btn:hover {
+    opacity: 0.7;
+}
+.nav-link:hover {
+    opacity: 0.7;
+}
+a {
+    text-decoration:none;
+}
+/* Formulaire multipages */
+.page {
+    display: none;
+}
+.header {
+    display: none;
+}
+
+/* Responsive */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+}

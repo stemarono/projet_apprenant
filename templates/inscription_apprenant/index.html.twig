@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Liste des inscriptions{% endblock %} 
+
+{% block body %} 
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des inscriptions</h1>
+</div>
+
+{# boutons #}
+<div class="container d-flex justify-content-between py-5">
+  <button class="btn bg-blue">
+    <a class="text-clear" href="{{ path('app_inscription_apprenant_new') }}">Nouvelle inscription</a>
+  </button>
+  <button class="btn bg-green">
+    <a class="text-clear" href="">Imprimer</a>
+  </button>
+</div>
+
+{# table #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+      <tr>
+        <th>Id</th>
+        <th>Identifiant</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Téléphone</th>
+        <th>E-mail</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for inscription_apprenant in inscription_apprenants %}
+      <tr>
+        <td>{{ inscription_apprenant.id }}</td>
+        <td>{{ inscription_apprenant.identifiant }}</td>
+        <td>{{ inscription_apprenant.nom }}</td>
+        <td>{{ inscription_apprenant.prenom }}</td>
+        <td>
+          {{ inscription_apprenant.dateNaissance ? inscription_apprenant.dateNaissance|date('d/m/Y') : '' }}
+        </td>
+        <td>{{ inscription_apprenant.telephone }}</td>
+        <td>{{ inscription_apprenant.email }}</td>
+        <td>
+          <button class="btn bg-green">
+            <a
+              class="text-clear"
+              href="{{
+                path('app_inscription_apprenant_show', {
+                  id: inscription_apprenant.id
+                })
+              }}"
+              >Détails</a
+            >
+          </button>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="15">no records found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<a href="{{ path('app_inscription_apprenant_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des formations{% endblock %} 
+
+{% block body %} 
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des formations</h1>
+</div>
+
+{# boutons #}
+<div class="container d-flex justify-content-between py-5">
+  <button class="btn bg-blue">
+    <a class="text-clear" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
+  </button>
+  <button class="btn bg-green">
+    <a class="text-clear" href="">Imprimer</a>
+  </button>
+</div>
+
+{# table #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Contenu</th>
+        <th>Photo</th>
+        <th>Dates</th>
+        <th>Parcours</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for formation in formations %}
+      <tr>
+        <td>{{ formation.id }}</td>
+        <td>{{ formation.code }}</td>
+        <td>{{ formation.titre }}</td>
+        <td>{{ formation.description }}</td>
+        <td>{{ formation.contenu }}</td>
+        <td>{{ formation.photo }}</td>
+        <td>{{ formation.dateFormation ? formation.dateFormation|date('d/m/Y') : '' }}</td>
+        <td>{{ formation.parcours }}</td>
+        <td class="d-flex justify-content-center">
+          <button class="btn bg-blue mx-3"><a class="text-clear" href="{{ path('app_formation_edit', {id: formation.id }) }}">Modifier</a></button>
+         {{ include('formation/_delete_form.html.twig') }}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="9">no records found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

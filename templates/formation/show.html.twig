@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Formation{% endblock %} 
+
+{% block body %} 
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">{{ formation.titre }}</h1>
+</div>
+
+{# contenu de la formation #}
+<div class="container d-flex justify-content-center">
+
+  <div class="w-75 p-5">
+    {# sous-titre #}
+    <h3 class="my-3">
+      {{ formation.description }}
+    </h3>
+    {# Contenu #}
+    <p class="my-3">
+      {{ formation.contenu }}
+    </p>
+    <img class="img-page" src="{{ asset('images/' ~ formation.photo) }}" alt="">
+  </div>
+
+  {# aside #}
+  <aside class="w-25 p-3 px-5 border-start">
+    <h4 class="my-3">{{ formation.titre }}</h4>
+    <h5 class="my-3">Cursus proposés</h5>
+    <p class="my-3">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, beatae.
+    </p>
+    <h5 class="my-3">Dates disponibles</h5>
+    <p class="my-3">
+      {{ formation.dateFormation ? formation.dateFormation|date('d-m-Y') : '' }}
+    </p>
+    <h5 class="my-3">Parcours</h5>
+    <p>{{ formation.parcours }}</p>
+    <button class="btn bg-green text-clear">S'inscrire</button>
+  </aside>
+</div>
+
+{# Bouton retour #}
+<div class="container p-5">
+    <button class="btn bg-blue"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
+</div>
+
+{# Boutons modifiation / suppression #}
+<div class="container p-5 d-none">
+    <button class="btn bg-green"><a class="text-light" href="{{ path('app_formation_edit', { id: formation.id }) }}">Modifier</a></button>
+    <button class="btn bg-red">{{ include("formation/_delete_form.html.twig") }}</button>
+</div>
+
+{% endblock %}
