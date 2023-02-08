@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projet Apprenant | Inscriptions</title>
+    <style>
+        .title{background-color: #3c8cd7; padding: 20px; margin: 20px;}
+        h1{margin-bottom: 40px; color: #f9f5f6; font-size: larger;}
+        .content{padding: 20px; margin-left: 80px;}
+        table{}
+        th, td{font-size: large;}
+        .header{background-color: #153c51;}
+        th{color: #f9f5f6; padding: 10px 30px; text-align: center;}
+        td{padding: 15px 0; padding-left: 10px;}
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Liste des inscriptions</h1>
+    </div>
+    <div class="content">
+        <table>
+          <thead>
+            <tr class="header">
+              <th>Identifiant</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Date de naissance</th>
+              <th>Téléphone</th>
+              <th>Adresse e-mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for inscription_apprenant in inscriptions %}
+            <tr>
+              <td>{{ inscription_apprenant.identifiant }}</td>
+              <td>{{ inscription_apprenant.nom }}</td>
+              <td>{{ inscription_apprenant.prenom }}</td>
+              <td>
+                {{ inscription_apprenant.dateNaissance ? inscription_apprenant.dateNaissance|date('d/m/Y') : '' }}
+              </td>
+              <td>{{ inscription_apprenant.telephone }}</td>
+              <td>{{ inscription_apprenant.email }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="6">Aucune donnée trouvée</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr class="header">
+                <th colspan="6">Projet Apprenant | 2023</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+  </body>
+</html>

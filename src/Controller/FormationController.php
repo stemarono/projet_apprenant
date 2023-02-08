@@ -59,7 +59,7 @@ class FormationController extends AbstractController
             //     try {
             //         $file->move(
             //             // penser à ajouter le paramètre dans services.yaml
-            //             $this->getParameter('images_directory'),
+            //             $this->getParameter('files_directory'),
             //             $newFilename
             //         );
             //     } catch (FileException $e) {
