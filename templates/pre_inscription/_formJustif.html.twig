@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+    
+    {{form_label(form.carteIdentite,"Carte d'identité : ",{'label_attr':{'class':'my-2 ms-5'}})}}
+    {{ form_widget(form.carteIdentite,{'attr':{'class':'form-control w-75 mb-4 ms-5 bg-clear'}})}}
+
+
+    {{form_label(form.justifFinancement,'Justificatif de Financement : ',{'label_attr':{'class':'my-2 ms-5' }})}}
+    {{ form_widget(form.justifFinancement,{'attr':{'class':'form-control w-75 mb-4 ms-5 bg-clear'}})}}
+
+
+    {{form_label(form.carteVitale,'Carte Vitale : ',{'label_attr':{'class':'my-2 ms-5'}})}}
+    {{ form_widget(form.carteVitale,{'attr':{'class':'form-control w-75 mb-4 ms-5 bg-clear'}})}}
+
+
+    {{form_label(form.autreDoc,'Autre document (facultatif) : ',{'label_attr':{'class':'my-2 ms-5'}})}}
+    {{ form_widget(form.autreDoc,{'attr':{'class':'form-control w-75 mb-4 ms-5 bg-clear'}})}}
+    
+    <div class="d-flex justify-content-around my-5">
+      <a class='btn btn-md btn-blue  mx-5'href="{{ path('app_new_form_Cursus') }}">Précédent</a>
+      <button class="btn btn-md btn-success ">{{ button_label|default('Valider') }}</button>
+    </div>
+{{ form_end(form) }}
