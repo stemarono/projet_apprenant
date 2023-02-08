@@ -21,7 +21,7 @@
     <p class="my-3">
       {{ formation.contenu }}
     </p>
-    <img class="img-page" src="{{ asset('images/' ~ formation.photo) }}" alt="">
+    <img class="img-page" src="{{ asset('assets/uploads/' ~ formation.photo) }}" alt="">
   </div>
 
   {# aside #}
@@ -37,7 +37,7 @@
     </p>
     <h5 class="my-3">Parcours</h5>
     <p>{{ formation.parcours }}</p>
-    <button class="btn bg-green text-clear">S'inscrire</button>
+    <button class="btn bg-green"><a class="text-clear" href="{{ path('app_pre_inscription_new') }}">S'inscrire</a></button>
   </aside>
 </div>
 

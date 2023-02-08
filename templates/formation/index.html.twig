@@ -43,7 +43,7 @@
         <td>{{ formation.titre }}</td>
         <td>{{ formation.description }}</td>
         <td>{{ formation.contenu }}</td>
-        <td>{{ formation.photo }}</td>
+        <td><img src="{{ formation.photo }}" alt=""></td>
         <td>{{ formation.dateFormation ? formation.dateFormation|date('d/m/Y') : '' }}</td>
         <td>{{ formation.parcours }}</td>
         <td class="d-flex justify-content-center">
