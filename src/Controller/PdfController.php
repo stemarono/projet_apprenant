@@ -27,7 +27,7 @@ class PdfController extends AbstractController
         $html = $this->renderView('pdf/inscription_liste_pdf.html.twig', [
             'inscriptions' => $inscriptions
         ]);
-        $html2pdf = new Html2Pdf('L', 'A4', 'fr');
+        $html2pdf = new Html2Pdf('P', 'A4', 'fr');
         $fichier = 'liste_inscrits.pdf';
         $html2pdf->writeHTML($html);
         $html2pdf->output($fichier, 'D');
@@ -42,9 +42,21 @@ class PdfController extends AbstractController
        $html = $this->renderView('pdf/inscription_apprenant_pdf.html.twig', [
         'inscription_apprenant' => $inscription
        ]);
-       $html2pdf = new Html2Pdf('L', 'A4', 'fr');
+       $html2pdf = new Html2Pdf('P', 'A4', 'fr');
        $fichier = 'inscription_apprenant.pdf';
        $html2pdf->writeHTML($html);
        $html2pdf->output($fichier, 'D');
     }
+
+    // fonction qui génère le pdf du formulaire de préinscription
+    #[Route('/preinscription', name: 'app_preinscription_pdf')]
+    public function pdfPreinscription() {
+
+        $html = $this->renderView('pdf/preinscription_form.html.twig');
+        $html2pdf = new Html2Pdf('P', 'A4');
+        $fichier = 'formulaire_inscription.pdf';
+        $html2pdf->writeHTML($html);
+        $html2pdf->output($fichier, 'D');
+    }
+
 }

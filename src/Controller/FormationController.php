@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -33,44 +34,24 @@ class FormationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_formation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FormationRepository $formationRepository, SluggerInterface $slugger): Response
+    public function new(Request $request, FormationRepository $formationRepository, FileUploader $fileUploader): Response
     {
         $formation = new Formation();
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // gestion upload des images
+            $photoFile = $form->get('photo')->getData();
+            if ($photoFile) {
+                $photoFilename = md5(uniqid()) . '.' . $photoFile->guessExtension();
+                $photoFile->move($this->getParameter('files_directory'), $photoFilename);
+                $formation->setPhoto($photoFilename);
+            }
+
             $formationRepository->save($formation, true);
 
-            // // gestion des photos
-            // /** @var UploadedFile $file */
-            // $file = $form->get('photo')->getData();
-
-            // // on doit mettre un if car le champ 'photo' n'est pas required
-            // if ($file) {
-            //     // on récupère le nom du fichier
-            //     $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            //     // on sécurise l'inclusion du nom du fichier dans l'url
-            //     $safeFilename = $slugger->slug($originalFilename);
-            //     // on recrée le nom du fichier
-            //     $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-
-            //     // on déplace le fichier vers le dossier images
-            //     try {
-            //         $file->move(
-            //             // penser à ajouter le paramètre dans services.yaml
-            //             $this->getParameter('files_directory'),
-            //             $newFilename
-            //         );
-            //     } catch (FileException $e) {
-            //         // on ajoute une exception si quelque chose arrive durant le téléchargement
-            //     }
-
-            //     // on met à jour la propriété 'filename' pour stocker le nom du fichier
-            //     // plutôt que son contenu
-            //     $formation->setPhotoFilename($newFilename);
-            // }
-            
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -91,11 +72,20 @@ class FormationController extends AbstractController
     #[Route('/{id}/edit', name: 'app_formation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Formation $formation, FormationRepository $formationRepository): Response
     {
-        
+
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // gestion upload des images
+            $photoFile = $form->get('photo')->getData();
+            if ($photoFile) {
+                $photoFilename = md5(uniqid()) . '.' . $photoFile->guessExtension();
+                $photoFile->move($this->getParameter('files_directory'), $photoFilename);
+                $formation->setPhoto($photoFilename);
+            }
+            
             $formationRepository->save($formation, true);
 
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
@@ -110,11 +100,10 @@ class FormationController extends AbstractController
     #[Route('/{id}', name: 'app_formation_delete', methods: ['POST'])]
     public function delete(Request $request, Formation $formation, FormationRepository $formationRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$formation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $formation->getId(), $request->request->get('_token'))) {
             $formationRepository->remove($formation, true);
         }
 
         return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
     }
- 
 }
