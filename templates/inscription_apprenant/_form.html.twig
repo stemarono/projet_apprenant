@@ -118,9 +118,7 @@
 				<button class="btn bg-blue text-clear prev" type="button">
 					Précédent
 				</button>
-				<button class="btn bg-green text-clear">
-					{{ button_label|default('Valider') }}
-				</button>
+				{{ form_widget(form.save)}}
 			</div>
 		</div>
 		{{ form_end(form) }}
