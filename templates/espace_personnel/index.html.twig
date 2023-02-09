@@ -36,20 +36,21 @@
             </div>
             <div class=" border-2 border-start border-success"></div>
             <div class="me-5">
+            {% for user in users %}
                 <div class="my-5">
                     <h4>Informations personnelles</h4>
                 </div>
                 <div class="ms-5">
-                    <p>Nom :</p>
+                    <p>Nom :{{user.nom}}</p>
                 </div>
                 <div class="ms-5">
-                    <p>Prénom :</p>
+                    <p>Prénom :{{user.prenom}}</p>
                 </div>
                 <div class="ms-5">
-                    <p>Email:</p>
+                    <p>Email:{{user.email}}</p>
                 </div>
                 <div class="ms-5">
-                    <p>Mot de passe :</p>
+                    <p>Mot de passe :{{user.password}}</p>
                 </div>
                 <div>
                     <a class="btn btn-md btn-green text-light mt-5 ms-5" href="">Modifier</a>

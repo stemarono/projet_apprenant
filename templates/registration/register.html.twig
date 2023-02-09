@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+<div class="mt-5">
+   <div class="border border-1 border-color shadow bg-clear w-50 m-auto ">
+        <div class="p-2">
+            <h4>S'inscrire</h4>
+        </div>
+        {{ form_start(registrationForm) }}
+        <div class="d-flex align-items-center justify-content-center m-5 ">
+        {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="d-flex align-items-center justify-content-center m-4">
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-5">
+        {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+   </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-md btn-green my-5">Valider</button>
+        </div>
+</div>
+    {{ form_end(registrationForm) }}
+{% endblock %}
