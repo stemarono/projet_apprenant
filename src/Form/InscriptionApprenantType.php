@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -110,6 +111,13 @@ class InscriptionApprenantType extends AbstractType
             ])
             ->add('nbEcheance', IntegerType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Nombre d\'échéances']
+            ])
+            ->add('save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn bg-green text-clear',
+                    'data-bs-toggle' => 'modal',
+                    'data-bs-target' => '#validationModal'
+                ]
             ])
         ;
     }

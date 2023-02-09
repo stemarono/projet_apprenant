@@ -31,7 +31,7 @@ class InscriptionApprenantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $inscriptionApprenantRepository->save($inscriptionApprenant, true);
 
-            return $this->redirectToRoute('app_inscription_apprenant_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_inscription_apprenant_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('inscription_apprenant/new.html.twig', [

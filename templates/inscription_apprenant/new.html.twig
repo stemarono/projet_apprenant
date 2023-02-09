@@ -1,8 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle inscription{% endblock %}
+{% block title %}Nouvelle inscription
+{% endblock %}
 
 {% block body %}
+
+	{# modal #}
+		<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p id="exampleModalLabel">Votre formulaire a bien été envoyé !</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn bg-green text-clear" data-bs-dismiss="modal">Ok</button>
+						<button type="button" class="btn bg-blue"><a class="text-clear" href="">Télécharger en version pdf</a></button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	{# titre #}
 	<div class="container p-5 my-5 bg-blueclear">
