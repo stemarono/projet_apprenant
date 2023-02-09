@@ -36,13 +36,13 @@ class FormationType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'images/*',
-                        ],
-                        'mimeTypesMessage' => 'Choisir un fichier valide'
-                    ])
+                    // new File([
+                    //     'maxSize' => '1024k',
+                    //     'mimeTypes' => [
+                    //         'images/*',
+                    //     ],
+                    //     'mimeTypesMessage' => 'Choisir un fichier valide'
+                    // ])
                     ],
                 'attr' => ['class' => 'form-control', 'type' => 'file']
             ])

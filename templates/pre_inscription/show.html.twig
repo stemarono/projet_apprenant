@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PreInscription{% endblock %}
+
+{% block body %}
+    <h1>PreInscription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pre_inscription.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ pre_inscription.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ pre_inscription.prenom }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ pre_inscription.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ pre_inscription.adresse }}</td>
+            </tr>
+            <tr>
+                <th>CodePostal</th>
+                <td>{{ pre_inscription.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ pre_inscription.ville }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ pre_inscription.region }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ pre_inscription.pays }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ pre_inscription.email }}</td>
+            </tr>
+            <tr>
+                <th>Motivations</th>
+                <td>{{ pre_inscription.motivations }}</td>
+            </tr>
+            <tr>
+                <th>Financement</th>
+                <td>{{ pre_inscription.financement }}</td>
+            </tr>
+            <tr>
+                <th>CarteIdentite</th>
+                <td>{{ pre_inscription.carteIdentite }}</td>
+            </tr>
+            <tr>
+                <th>JustifFinancement</th>
+                <td>{{ pre_inscription.justifFinancement }}</td>
+            </tr>
+            <tr>
+                <th>CarteVitale</th>
+                <td>{{ pre_inscription.carteVitale }}</td>
+            </tr>
+            <tr>
+                <th>AutreDoc</th>
+                <td>{{ pre_inscription.autreDoc }}</td>
+            </tr>
+            <tr>
+                <th>N_ss</th>
+                <td>{{ pre_inscription.nSs }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ pre_inscription.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pre_inscription_index') }}">back to list</a>
+
+    <a href="{{ path('app_pre_inscription_edit', {'id': pre_inscription.id}) }}">edit</a>
+
+    {{ include('pre_inscription/_delete_form.html.twig') }}
+{% endblock %}

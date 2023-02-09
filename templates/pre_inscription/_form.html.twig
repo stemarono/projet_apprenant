@@ -1,0 +1,61 @@
+<div class='d-flex justify-content-between align-content-center'>
+{{ form_start(form) }}
+
+    <div>
+        <div>
+            {{form_label(form.nom,'Nom :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.nom,{'attr':{'class':'form-control bg-clear my-5 ','placeholder':'Nom'}})}}       
+        </div>
+        <div>
+            {{form_label(form.prenom,'Prénom :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.prenom,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Prénom'}})}}       
+        </div>
+        <div>
+            {{form_label(form.dateNaissance,'Date de naissance :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.dateNaissance,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Date de naissance'}})}}       
+        </div>
+        <div>
+            {{form_label(form.sexe,'Sexe :')}} 
+            {{form_widget(form.sexe,{'attr':{'class':'form-control bg-clear my-5'}})}}       
+        </div>
+        <div>
+            {{form_label(form.n_ss,'Numéro de Sécurité Sociale :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.n_ss,{'attr':{'class':'form-control bg-clear my-5 px-5','placeholder':'N° de Sécurité Sociale'}})}}       
+        </div>
+        <div>
+            {{form_label(form.telephone,'Téléphone :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.telephone,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Téléphone'}})}}       
+        </div>
+        <div>
+            {{form_label(form.email,'Email :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.email,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Email :'}})}}       
+        </div>
+    </div>
+    <div>
+        <div>
+            {{form_label(form.adresse,'Adresse :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.adresse,{'attr':{'class':'form-control bg-clear my-5 w-auto p-5','placeholder':'Adresse'}})}}       
+        </div>
+        <div>
+            {{form_label(form.codePostal,'Code Postal :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.codePostal,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Code Postal'}})}}       
+        </div>
+        <div>
+            {{form_label(form.ville,'Ville :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.ville,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Ville'}})}}       
+        </div>
+        <div>
+            {{form_label(form.region,'Région :',{'label_attr':{'class':'visually-hidden'}})}} 
+            {{form_widget(form.region,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Région'}})}}       
+        </div>
+        <div>
+            {{form_label(form.pays,'Veuillez sélectionner votre Pays :')}} 
+            {{form_widget(form.pays,{'attr':{'class':'form-control bg-clear my-5','placeholder':'Pays'}})}}       
+        </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-lg btn-green my-5 ">{{ button_label|default('Suivant') }}</button>
+            </div>
+     </div>
+            {{ form_end(form) }}
+</div>
