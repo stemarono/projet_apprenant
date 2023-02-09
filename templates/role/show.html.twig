@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Role{% endblock %}
+{% block title %}Administrateur/rôle{% endblock %}
 
 {% block body %}
-    <h1>Role</h1>
+    <h1>Liste des Rôles</h1>
 
     <table class="table">
         <tbody>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_role_index') }}">back to list</a>
+    <a href="{{ path('app_role_index') }}">Revenir à la liste</a>
 
-    <a href="{{ path('app_role_edit', {'id': role.id}) }}">edit</a>
+    <a href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
 
     {{ include('role/_delete_form.html.twig') }}
 {% endblock %}

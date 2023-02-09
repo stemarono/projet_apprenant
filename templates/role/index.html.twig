@@ -3,9 +3,11 @@
 {% block title %}Role index{% endblock %}
 
 {% block body %}
-    <h1>Role index</h1>
+    <div class="bg-blueclear my-5 p-5">
+        <h1>Role index</h1>
+    </div>
 
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,17 +23,17 @@
                 <td>{{ role.libelle }}</td>
                 <td>{{ role.codeRole }}</td>
                 <td>
-                    <a href="{{ path('app_role_show', {'id': role.id}) }}">show</a>
-                    <a href="{{ path('app_role_edit', {'id': role.id}) }}">edit</a>
+                    <a class="btn btn-md btn-green" href="{{ path('app_role_show', {'id': role.id}) }}">Afficher</a>
+                    <a  class="btn btn-md btn-blue" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_role_new') }}">Create new</a>
+    <a class="btn btn-md btn-blue ms-5 my-5" href="{{ path('app_role_new') }}">Créer un nouveau rôle</a>
 {% endblock %}
