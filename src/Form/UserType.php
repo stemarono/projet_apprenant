@@ -19,7 +19,7 @@ class UserType extends AbstractType
             ->add('nom',TextType::class,[
                 'label'=>'Nom :',
                 'label_attr'=>['class'=>'mx-5 mb-3'],
-                'attr'=>['form-control']
+                'attr'=>['form-control ms-4']
             ])
             ->add('prenom',TextType::class,[
                 'label'=>'Prénom :',

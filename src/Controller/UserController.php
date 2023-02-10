@@ -57,7 +57,7 @@ class UserController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(UserPasswordHasherInterface $passwordHasher,Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em): Response
     {
-        $roles=$em->getRepository(Role::class)->findBy([],['code_role'=>'asc']);
+        // $roles=$em->getRepository(Role::class)->findBy([],['code_role'=>'asc']);
         // $choice_roles=[];
         // foreach($roles as $role)
         // {

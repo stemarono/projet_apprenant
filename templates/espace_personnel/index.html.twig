@@ -36,22 +36,23 @@
             </div>
             <div class=" border-2 border-start border-success"></div>
             <div class="me-5">
-            {% for user in users %}
+            {# {% for user in users %} #}
                 <div class="my-5">
                     <h4>Informations personnelles</h4>
                 </div>
                 <div class="ms-5">
-                    <p>Nom :{{user.nom}}</p>
+                    <p>Nom :</p>
                 </div>
                 <div class="ms-5">
-                    <p>Prénom :{{user.prenom}}</p>
+                    <p>Prénom :</p>
                 </div>
                 <div class="ms-5">
-                    <p>Email:{{user.email}}</p>
+                    <p>Email:</p>
                 </div>
                 <div class="ms-5">
-                    <p>Mot de passe :{{user.password}}</p>
+                    <p>Mot de passe :</p>
                 </div>
+            {# {% endfor %}     #}
                 <div>
                     <a class="btn btn-md btn-green text-light mt-5 ms-5" href="">Modifier</a>
                 </div>

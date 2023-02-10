@@ -3,10 +3,13 @@
 {% block title %}Administrateur/Nouvel utilisateur{% endblock %}
 
 {% block body %}
+<>
     <div class="bg-blueclear my-5 p-5">
         <h1>Créer un nouvel utilisateur</h1>
     </div>
     {{ include('user/_form.html.twig') }}
-
-    <a href="{{ path('app_user_index') }}">Revenir à la liste</a>
+        <div class='mb-1 text-center'> 
+            <a class= "btn btn-md btn-blue mb-3" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+        </div>
+</div>
 {% endblock %}

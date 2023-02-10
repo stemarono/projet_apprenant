@@ -9,7 +9,7 @@
     <div class="my-5">
         <table class="table table-responsive">
             <thead>
-                <tr>
+                <tr class="text-center bg-blue text-light">
                     <th>Id</th>
                     <th>Email</th>
                     <th>Roles</th>
@@ -17,25 +17,25 @@
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Identifiant</th>
-                    <th>actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.nom }}</td>
-                    <td>{{ user.prenom }}</td>
-                    <td>{{ user.identifiant }}</td>
+                    <td class="text-center">{{ user.id }}</td>
+                    <td class="text-center">{{ user.nom }}</td>
+                    <td class="text-center">{{ user.prenom }}</td>
+                    <td class="text-center">{{ user.identifiant }}</td>
                     {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
-                    <td>
+                    <td class="text-center">
                         <select name="" id=""class="form-select w-100">
                         {% for role in user.roles %}
                             <option value="">{{ role }}</option>
                         {% endfor %}
                     </td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.password }}</td>
+                    <td class="text-center">{{ user.email }}</td>
+                    <td class="text-center">{{ user.password }}</td>
 
                     <td>
                         <a class="btn btn-md btn-green me-5 "href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>

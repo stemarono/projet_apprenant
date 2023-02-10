@@ -31,8 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $nom = null;
+    
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $prenom = null;
@@ -42,6 +41,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PreInscription $nom = null;
 
     public function getId(): ?int
     {
@@ -113,17 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(?string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
+    
 
     public function getPrenom(): ?string
     {
@@ -162,6 +155,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getNom(): ?PreInscription
+    {
+        return $this->nom;
+    }
+
+    public function setNom(PreInscription $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }

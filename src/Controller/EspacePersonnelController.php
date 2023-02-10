@@ -15,20 +15,20 @@ class EspacePersonnelController extends AbstractController
     #[Route('/espace/personnel', name: 'app_espace_personnel')]
     public function index(Request $request,EntityManagerInterface $em,$id=0): Response
     {
-        $user=$em->getRepository(User::class)->find($id);
+        // $user=$em->getRepository(User::class)->find($id);
 
-        $form=$this->createForm(UserType::class,$user);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('app_espace_personnel');
-        }
+        // $form=$this->createForm(UserType::class,$user);
+        // $form->handleRequest($request);
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $em->persist($user);
+        //     $em->flush();
+        //     return $this->redirectToRoute('app_espace_personnel');
+        // }
         
         return $this->render('espace_personnel/index.html.twig', [
-            'form'=>$form->createView(),
-           'user'=>$user,
+        //     'form'=>$form->createView(),
+        //    'user'=>$user,
         ]);
     }
 
