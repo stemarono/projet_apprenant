@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,11 +29,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?PreInscription $nom = null;
+   
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $prenom = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PreInscription::class)]
+    private Collection $nom;
+
+    public function __construct()
+    {
+        $this->nom = new ArrayCollection();
+    }
+
+    
+
+    
 
     public function getId(): ?int
     {
@@ -103,27 +116,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?PreInscription
-    {
-        return $this->nom;
-    }
-
-    public function setNom(?PreInscription $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
+   
 
     public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, PreInscription>
+     */
+    public function getNom(): Collection
+    {
+        return $this->nom;
+    }
+
+    public function addNom(PreInscription $nom): self
+    {
+        if (!$this->nom->contains($nom)) {
+            $this->nom->add($nom);
+            $nom->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNom(PreInscription $nom): self
+    {
+        if ($this->nom->removeElement($nom)) {
+            // set the owning side to null (unless already changed)
+            if ($nom->getUser() === $this) {
+                $nom->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+  
+   
 }

@@ -19,4 +19,17 @@
 a:hover{
     color:var(--bs-white);
 }
+.btn-red:hover{
+    color:white;
+    opacity: 2;
+}
+.btn-blue:hover{
+    color:white;
+    opacity:2;
+}
+.btn-green:hover{
+    color:white;
+    opacity:2;
+}
+
 

@@ -6,9 +6,10 @@
     <div class="bg-blueclear my-5 p-5">
         <h1>Créer un nouveau rôle</h1>
     </div>
-    
-    {{ include('role/_form.html.twig') }}
-    <div class="d-flex m-auto w-70 ">    
-        <a class="btn btn-md btn-blue" href="{{ path('app_role_index') }}">Revenir à la liste</a>
+    <div class="m-auto w-50 border border-1 border-color shadow bg-clear">
+        {{ include('role/_form.html.twig') }}
+    </div>
+      <div class="text-center ">  
+        <a class="btn btn-md btn-blue m-5 text-decoration-none" href="{{ path('app_role_index') }}">Revenir à la liste</a>
     </div>
 {% endblock %}

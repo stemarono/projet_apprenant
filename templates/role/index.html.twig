@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Role index{% endblock %}
+{% block title %}Administrateur/liste des Rôles{% endblock %}
 
 {% block body %}
     <div class="bg-blueclear my-5 p-5">
-        <h1>Role index</h1>
+        <h1>liste des Rôles</h1>
     </div>
 
     <table class="table table-responsive ">
@@ -25,7 +25,7 @@
                 <td class="text-center">
                     <a class="btn btn-md btn-green" href="{{ path('app_role_show', {'id': role.id}) }}">Afficher</a>
                     <a  class="btn btn-md btn-blue" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
-                    <a  class="btn btn-md btn-red" href="{{ path('app_role_delete', {'id': role.id}) }}">Supprimer</a>
+                   
                 </td>
             </tr>
         {% else %}
