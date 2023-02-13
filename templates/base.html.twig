@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-	{# probleme : <html> crée un débordement sur la page #}
 	<head>
 		<meta charset="UTF-8">
 		<title>
@@ -10,8 +9,8 @@
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/bootstrap.css')}}">
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/datepicker.css')}}">
-		<link rel="stylesheet" href="{{asset('css/Style_m.css')}}">
-		<link rel="stylesheet" href="{{asset('css/admin.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style_m.css')}}">
+        <link rel="stylesheet" href="{{asset('css/espacePersonnel.css')}}"
 		
 		<script src="{{asset('js/jquery.js')}}"></script>
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -19,31 +18,37 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</head>
-	<body>
-		<div class="container-fluid">
-			<nav class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3">
-				<div>
-					<img class="img-sm mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
-				</div>
-				<div class="nav">
-					<ul class="nav px-4 fs-5">
-						<li class="nav-item">
-							<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link text-clear" href="{{ path('app_formation_list') }}" >Formations</a>
-							{# besoin de faire fonctionner un foreach ici // creation de BaseController.php // ne fonctionne pas #}
-							{# <ul class="dropdown-menu bg-green">
+{% block javascripts %}
+{{ encore_entry_script_tags('app') }}
+{% endblock %}
+		</html>
+	</script>
+</head>
+<body>
+	<div
+		class="container-fluid">
+		{# navbar desktop #}
+		<nav
+			class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3">
+			{# logo #}
+			<div>
+				<img class="img-sm img-min mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
+			</div>
+			{# menu desktop #}
+			<div class="desktop nav w-65">
+				<ul class="nav flex-center px-4 fs-5">
+					<li class="nav-item">
+						<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Formations</a>
+						<ul class="dropdown-menu bg-green">
+							<li class="dropdown-item">
+								<a href="{{ path('app_formation_list') }}" class="text-clear">Toutes les formations</a>
+							</li>
+							{% for cat in cats.getFormations %}
 								<li class="dropdown-item">
-									<a href="{{ path('app_formation_list') }}" class="text-clear">Toutes les formations</a>
-								</li>
-								{% for formation in formations %}
-								<li class="dropdown-item">
-									<a href="" class="text-clear">{{ formation.titre }}</a>
+									<a href="{{ path('app_formation_show', { id: cat.id })}}" class="text-clear">{{ cat.titre }}</a>
 								</li>
 								{% else %}
 									<p>Informations indisponibles</p>
@@ -84,72 +89,76 @@
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-clear" href="{{ path('app_user_index')}}">Utilisateurs</a>
+							<a class="nav-link text-clear" href="">Utilisateurs</a>
 						</li>
 
 					</ul>
 				</div>
-				<div class="d-flex flex-column justify-content-center align-items-center mx-4">
-					<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
-					<a class="nav-link text-clear" href="">S'inscrire | Se connecter</a>
-				</div>
-			</nav>
+			</div>
+			{# lien login #}
+			{# version desktop #}
+			<div class="desktop text-center">
+				<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
+				<a class="nav-link text-clear" href="{{ path('app_login') }}">S'inscrire | Se connecter</a>
+			</div>
+			{# version mobile #}
+			<div class="mobile mx-4">
+				<a class="nav-link" href="{{ path('app_login') }}"><img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt=""></a>
+			</div>
+		</nav>
 
-			{% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-			<footer class="bg-blue sticky-bottom">
-				<div>
-					<div class="text-clear row">
-						<div class="col-md-5 d-flex flex-column align-items-center">
-							<h4 class="m-4">Nous contacter</h4>
-							<div class="d-flex justify-content-arround">
-								<div class="m-4">
-									<p>Lorem ipsum<br>105 rue Adresse<br>10 000 Codepostal</p>
-								</div>
-								<div class="m-4">
-									<p>Tél. : 00 00 00 00 00<br>Email : mail@mail.com<br>Lorem ipsum</p>
-								</div>
+		<footer class="bg-blue sticky-bottom">
+			<div>
+				<div class="text-clear row">
+					<div class="col-md-5 d-flex flex-column align-items-center">
+						<h4 class="m-4">Nous contacter</h4>
+						<div class="d-flex justify-content-arround">
+							<div class="m-4">
+								<p>Lorem ipsum<br>105 rue Adresse<br>10 000 Codepostal</p>
+							</div>
+							<div class="m-4">
+								<p>Tél. : 00 00 00 00 00<br>Email : mail@mail.com<br>Lorem ipsum</p>
 							</div>
 						</div>
-						<div class="col-md-4 d-flex justify-content-between align-items-center">
-							<h4>
-								<a class="nav-link text-clear" href="">Mentions légales</a>
-							</h4>
-							<h4>
-								<a class="nav-link text-clear" href="">Conditions d'utilisation</a>
-							</h4>
-						</div>
-						<div class="col-md-3 d-flex justify-content-center align-items-center">
-							<img class="img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
-						</div>
 					</div>
-					<div class="mx-3">
-						<p class="text-center text-clear border-top p-3">Afpa 2023 | Formation CDA</p>
+					<div class="col-md-4 d-flex justify-content-between align-items-center">
+						<h4>
+							<a class="nav-link text-clear" href="">Mentions légales</a>
+						</h4>
+						<h4>
+							<a class="nav-link text-clear" href="">Conditions d'utilisation</a>
+						</h4>
+					</div>
+					<div class="col-md-3 d-flex justify-content-center align-items-center">
+						<img class="desktop img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
 					</div>
 				</div>
-			</footer>
-		</div>
-		<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.js')}}"></script>
-		<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap-datepicker.js')}}"></script>
-		<script src="{{asset('js/scripts.js')}}"></script>
-		<script>
-			$(function () {
-				$('.datepicker').datepicker({ // affichage du calendrier
-				format: 'dd/mm/yyyy',
-				autoclose: true,
-				clearBtn: true,
-				todayHighlight: true
-				});
+				<div class="mx-3">
+					<p class="text-center text-clear border-top p-3">Afpa 2023 | Formation CDA</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.js')}}"></script>
+	<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap-datepicker.js')}}"></script>
+	<script src="{{asset('js/scripts.js')}}"></script>
+	<script>
+		$(function () {
+$('.datepicker').datepicker({ // affichage du calendrier
+format: 'dd/mm/yyyy',
+autoclose: true,
+clearBtn: true,
+todayHighlight: true
+});
+})
 
-			})
+const myCarouselElement = document.querySelector('#carouselHome')
 
-			const myCarouselElement = document.querySelector('#carouselHome')
-
-			const carousel = new bootstrap.Carousel(myCarouselElement, {
-				interval: 4000,
-				touch: true
-			})
-
-		</script>
-	</body>
-</html>
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+interval: 4000,
+touch: true
+})
+	</script>
+</body></html>

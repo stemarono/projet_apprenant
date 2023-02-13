@@ -78,6 +78,22 @@ h1, h2, h3, h4, a, button {
     height: 10vw;
     object-fit: cover;
 }
+/* mise en page */
+.w-30 {
+    width: 30%;
+}
+.w-45 {
+    width: 45%;
+}
+.w-55 {
+    width: 55%;
+}
+.w-70 {
+    width: 70%;
+}
+aside {
+    border-left: 1px solid #dee2e6;
+}
 /* button & link */
 .btn:hover {
     opacity: 0.7;
@@ -96,28 +112,83 @@ a {
     display: none;
 }
 
-/* Responsive */
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
+/* RESPONSIVE */
+/* petits écrans */
+@media all and (max-device-width: 799px)
+{
+    .desktop {
+        display: none;
+    }
+    .img-min {
+        width: 100px;
+        height: 100px;
+    }
+    .font2 {
+        font-size: 2rem;
+    }
+    .font3 {
+        font-size: 3rem;
+    }
+    p {
+        font-size: 150%;
+    }
+    button {
+        font-size: 200% !important;
+    }
+    h1, h3 {
+        font-size: 350%;
+    }
+    .container {
+        margin: 0px;
+        max-width: 100%;
+    }
+    .responsive-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+    aside {
+        border-left: 0px;
+    }
+    .responsive-center {
+        text-align: center;
+    }
+    .responsive-width {
+        width: 90% !important;
+    }
+    .responsive-margin {
+        margin-bottom: 50px;
+    }
 }
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-
+/* écrans moyens */
+@media all and (min-device-width:800px) {
+    .mobile {
+        display: none;
+    }
+    .w-65 {
+        width: 65%;
+    }
+    .flex-center {
+        display: flex;
+        justify-content: center;
+    }
+    .responsive-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+    aside, .aside {
+        border-left: 0px;
+    }
+    .responsive-center {
+        text-align: center;
+    }
+    .responsive-width {
+        width: 90% !important;
+    }
+    .responsive-margin {
+        margin-bottom: 50px;
+    }
 }
+/* grands écrans */
+@media all and (min-device-width: 1024px) {
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    
 }
