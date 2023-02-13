@@ -4,14 +4,10 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -31,20 +27,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    
-
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $identifiant = null;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
     private ?PreInscription $nom = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $prenom = null;
 
     public function getId(): ?int
     {
@@ -116,57 +103,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    
+    public function getNom(): ?PreInscription
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?PreInscription $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
 
     public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 
-    public function setPrenom(?string $prenom): self
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getIdentifiant(): ?string
-    {
-        return $this->identifiant;
-    }
-
-    public function setIdentifiant(?string $identifiant): self
-    {
-        $this->identifiant = $identifiant;
-
-        return $this;
-    }
-
-    // public function __toString()
-    // {
-    //     return $this->roles;
-    // }
-
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
-
-    public function getNom(): ?PreInscription
-    {
-        return $this->nom;
-    }
-
-    public function setNom(PreInscription $nom): self
-    {
-        $this->nom = $nom;
 
         return $this;
     }

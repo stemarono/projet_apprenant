@@ -69,6 +69,9 @@ class PreInscription
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $telephone = null;
 
+    #[ORM\OneToOne(mappedBy: 'nom', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -287,6 +290,28 @@ class PreInscription
     public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setNom(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getNom() !== $this) {
+            $user->setNom($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

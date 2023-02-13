@@ -1,8 +1,4 @@
 {{ form_start(form) }}
-    <div class=" border border-1 border-color shadow bg-clear m-auto w-50 my-5 p-5">
-    
-    </div>
-    <div class="text-center mb-4">
-        <button class="btn btn-md btn-green  ">{{ button_label|default('Enregistrer') }}</button>
-    </div>
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
