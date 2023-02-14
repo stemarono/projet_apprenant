@@ -10,8 +10,8 @@
             {{ form_widget(form.prenom,{'attr':{'class':'form-control'}} )}}
         </div>
         <div class="row g-2">
-            {{ form_label(form.roles,'Roles :',{'label_attr':{'class':'mt-4'}}) }}
-            {{ form_widget(form.roles,{'attr':{'class':'form-control'}} )}}
+
+           
         </div>
         <div class="row g-2">
             {{ form_label(form.email,'Email :',{'label_attr':{'class':'mt-4'}}) }}
@@ -21,10 +21,12 @@
             {{ form_label(form.password,'Mot de passe :',{'label_attr':{'class':'mt-4'}}) }}
             {{ form_widget(form.password,{'attr':{'class':'form-control'}} )}}
         </div>
-           
+            {{ form_rest(form)}}
         <div class="text-center m-4">
             <button class="btn btn-md btn-green">{{ button_label|default('Enregistrer') }}</button>
         </div>
     </div>
 
 {{ form_end(form) }}
+
+            

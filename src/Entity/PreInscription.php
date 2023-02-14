@@ -69,8 +69,10 @@ class PreInscription
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $telephone = null;
 
-    #[ORM\ManyToOne(inversedBy: 'nom')]
+    #[ORM\ManyToOne(inversedBy: 'preInscriptions')]
     private ?User $user = null;
+
+   
 
    
 
@@ -307,6 +309,8 @@ class PreInscription
 
         return $this;
     }
+
+   
 
    
     

@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte avec cette adresse mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -35,11 +37,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $prenom = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PreInscription::class)]
-    private Collection $nom;
+    private Collection $preInscriptions;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $nom = null;
+
+   
 
     public function __construct()
     {
-        $this->nom = new ArrayCollection();
+        $this->preInscriptions = new ArrayCollection();
     }
 
     
@@ -133,33 +140,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, PreInscription>
      */
-    public function getNom(): Collection
+    public function getPreInscriptions(): Collection
     {
-        return $this->nom;
+        return $this->preInscriptions;
     }
 
-    public function addNom(PreInscription $nom): self
+    public function addPreInscription(PreInscription $preInscription): self
     {
-        if (!$this->nom->contains($nom)) {
-            $this->nom->add($nom);
-            $nom->setUser($this);
+        if (!$this->preInscriptions->contains($preInscription)) {
+            $this->preInscriptions->add($preInscription);
+            $preInscription->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeNom(PreInscription $nom): self
+    public function removePreInscription(PreInscription $preInscription): self
     {
-        if ($this->nom->removeElement($nom)) {
+        if ($this->preInscriptions->removeElement($preInscription)) {
             // set the owning side to null (unless already changed)
-            if ($nom->getUser() === $this) {
-                $nom->setUser(null);
+            if ($preInscription->getUser() === $this) {
+                $preInscription->setUser(null);
             }
         }
 
         return $this;
     }
 
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->nom;
+    }
 
   
    

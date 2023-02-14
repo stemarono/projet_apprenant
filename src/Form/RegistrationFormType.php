@@ -20,37 +20,47 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class,[
-                'label_attr'=>['class'=>'me-5']
+                'label'=>'adresse Email :',
+                'attr'=>['class'=>'form-control mb-4']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label'=> 'Conditions d\'utilisation',
-                'label_attr'=>['class'=>'me-3'],
+            ->add('nom',TextType::class,[
+                'label'=>'Nom :',
+                'label_attr'=>['class'=>'mt-4'],
+                'attr'=>['class'=>'form-control mb-4']
+            ])
+            ->add('prenom', TextType::class,[
+                'label'=>'Prénom :',
+                'attr'=>['class'=>'form-control mb-4']
+            ])
+            ->add('RGPDConsent', CheckboxType::class, [
+                'label'=>'j\'accepte les conditions générales',
+                'label_attr'=>['class'=>'me-3 mb-4'],
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous devez être d\'accord avec les termes.',
+                        'message' => 'You should agree to our terms.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label_attr'=>['class'=>'me-2'],
+                'label'=>'Mot de passe',
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'nouveau mot de passe'],
+                'attr' => ['autocomplete' => 'new-password',
+                    'class'=>'form-control mb-4'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez votre mot de passe, s\'il vous plait',
+                        'message' => 'Please enter a password',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
-            
         ;
     }
 

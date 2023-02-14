@@ -3,13 +3,22 @@
 {% block title %}Administrateur/ Utilisateur{% endblock %}
 
 {% block body %}
+<div class='text-center my-5 bg-blueclear p-5'>
     <h1>Utilisateur</h1>
-
+</div>
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -23,16 +32,15 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
+            
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">Revenir à la liste</a>
+    <div class="d-flex justify-content-around my-5">
+        <a  class="btn btn-md btn-blue" href="{{ path('app_user_index') }}">Revenir à la liste</a>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+        <a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
 
-    {{ include('user/_delete_form.html.twig') }}
+        {{ include('user/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

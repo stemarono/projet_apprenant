@@ -38,10 +38,12 @@
 			{# menu desktop #}
 			<div class="desktop nav w-65">
 				<ul class="nav flex-center px-4 fs-5">
+				
 					<li class="nav-item">
 						<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
 					</li>
 					<li class="nav-item dropdown">
+					{# lien lié à l'utilisateur du site #}
 						<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Formations</a>
 						<ul class="dropdown-menu bg-green">
 							<li class="dropdown-item">
@@ -53,8 +55,8 @@
 								</li>
 								{% else %}
 									<p>Informations indisponibles</p>
-								{% endfor %}
-							</ul> #}
+								{% endfor %}#}
+							</ul> 
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{ path('app_about')}}">À propos</a>
@@ -68,7 +70,9 @@
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{path('app_espace_personnel')}}">Espace personnel</a>
 						</li>
+					
 						{# Lien destiné aux Managers #}
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Inscriptions</a>
 							<ul class="dropdown-menu bg-green">
@@ -89,8 +93,19 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-clear" href="{{path('app_user_index')}}">Utilisateurs</a>
+						
+						{# lien destiné aux administrateurs #}
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Administrateurs</a>
+							<ul class="dropdown-menu bg-green">
+								<li class ="dropdown-item">
+									<a class="snav-link text-clear" href="{{path('app_user_index')}}">Utilisateurs</a>
+								</li>
+								<li class="dropdown-item">
+									<a class="nav-link text-clear" href="{{path('app_role_index')}}">Rôles</a>
+								</li>
+							</ul>
 						</li>
 
 					</ul>
@@ -100,7 +115,17 @@
 			{# version desktop #}
 			<div class="desktop text-center">
 				<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
-				<a class="nav-link text-clear" href="{{ path('app_login') }}">S'inscrire | Se connecter</a>
+				<ul class="navbar-nav">
+					{% if app.user %}
+						<li class="nav-item"><a class="nav-link text-decoration-none" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+					{% else %}
+						<div class='d-flex justify-content-center'>
+							<li class="nav-item"><a class="nav-link text-decoration-none" href="{{ path('app_register') }}">S'inscrire |</a></li>
+							<li class="nav-item"><a class="nav-link text-decoration-none ms-1" href="{{ path('app_login') }}"> Se connecter</a></li>
+						</div>
+					{% endif %}	
+					
+				</ul>
 			</div>
 			{# version mobile #}
 			<div class="mobile mx-4">

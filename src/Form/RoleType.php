@@ -13,17 +13,16 @@ class RoleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('code_role',TextType::class,[
+            'label'=>'Rang :' ,
+            'label_attr'=>['class'=>"m-5"],
+            'attr'=>['class'=>'m-3']
+            ])
             ->add('libelle',TextType::class,[
                 'label'=>'Libellé :',
                 'label_attr'=>['class'=> "m-5"]
             ])
-            ->add('code_role',TextType::class,[
-                'label'=>'Role :' ,
-                'label_attr'=>['class'=>"m-5"],
-                'attr'=>['class'=>'m-3']
-                
-
-            ])
+            
         ;
     }
 

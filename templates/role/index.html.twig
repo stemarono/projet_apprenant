@@ -7,24 +7,24 @@
         <h1>liste des Rôles</h1>
     </div>
 
-    <table class="table table-responsive ">
+    <table class="table table-responsive m-auto w-70">
         <thead>
             <tr class="text-center bg-blue text-light">
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Code_role</th>
-                <th >Actions</th>
+                <th class="text-center">Id</th>
+                <th class="text-center ps-5">Rang</th>
+                <th class="text-center">Libellé</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for role in roles %}
             <tr>
                 <td class="text-center">{{ role.id }}</td>
+                <td class="text-center ps-5">{{ role.codeRole }}</td>
                 <td class="text-center">{{ role.libelle }}</td>
-                <td class="text-center">{{ role.codeRole }}</td>
                 <td class="text-center">
                     <a class="btn btn-md btn-green" href="{{ path('app_role_show', {'id': role.id}) }}">Afficher</a>
-                    <a  class="btn btn-md btn-blue" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
+                    <a class="btn btn-md btn-blue" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
                    
                 </td>
             </tr>
@@ -36,6 +36,6 @@
         </tbody>
     </table>
     <div class="text-center">
-        <a class="btn btn-md btn-blue ms-5 my-5" href="{{ path('app_role_new') }}">Créer un nouveau rôle</a>
+        <a class="btn btn-md btn-blue my-5" href="{{ path('app_role_new') }}">Créer un nouveau rôle</a>
     </div>
 {% endblock %}
