@@ -40,7 +40,7 @@ class RoleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_role_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_role_show', methods: ['GET'])]
     public function show(Role $role): Response
     {
         return $this->render('role/show.html.twig', [
@@ -66,7 +66,7 @@ class RoleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_role_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_role_delete', methods: ['POST','GET'])]
     public function delete(Request $request, Role $role, RoleRepository $roleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$role->getId(), $request->request->get('_token'))) {

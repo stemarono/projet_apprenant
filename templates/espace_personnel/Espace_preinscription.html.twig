@@ -34,14 +34,15 @@
                 </div>
                 <div class=" border-2 border-start border-success my-5"></div>
                     <div class="me-5">
+                    {# {% for users in user %} #}
                         <div class="my-5">
                             <h4>Informations personnelles</h4>
                         </div>
                         <div class="ms-5">
-                            <p>Nom :</p>
+                            <p>Nom : </p>
                         </div>
                         <div class="ms-5">
-                            <p>Prénom :</p>
+                            <p>Prénom : </p>
                         </div>
                         <div class="ms-5">
                             <p>Email:</p>
@@ -50,8 +51,9 @@
                             <p>Mot de passe :</p>
                         </div>
                         <div>
-                            <a class="btn btn-md btn-green text-light mt-5 ms-5" href="">Modifier</a>
+                            <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                         </div>
+                    {# {% endfor %} #}
                         <div class="">
                             <a href="" class="btn btn-md btn-green text-light my-5 ms-5">Nous contacter</a>
                         </div>

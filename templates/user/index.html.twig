@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administrateur/ liste des Utilisateurs{% endblock %}
+{% block title %}Adiministrateur/ liste des Utilisateurs{% endblock %}
 
 {% block body %}
-    <div class="bg-blueclear my-5 p-5">
-        <h1>Liste des utilisateurs</h1>
+    <div class="bg-blueclear p-5">
+        <h1>Liste des Utilisateurs</h1>
     </div>
-    <div class="my-5">
-        <table class="table table-responsive">
+    <div class="m-auto w-70">
+        <table class="table table-responsive m-5">
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Email</th>
-                    <th>Roles</th>
-                    <th>Password</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Identifiant</th>
-                    <th>actions</th>
+                <tr class="bg-blue text-light">
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">Prenom</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Roles</th>
+                    <th class="text-center">Password</th>
+
+                    <th class='text-center'>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,32 +26,30 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
-                    <td>{{ user.identifiant }}</td>
-                    {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+                    <td>{{ user.email }}</td>
+                     {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
                     <td>
-                        <select name="" id=""class="form-select w-100">
+                        <select name="" id="" class="form-select w-100">
                         {% for role in user.roles %}
-                            <option value="">{{ role }}</option>
+                            <option value="">{{role}}</option>
                         {% endfor %}
                     </td>
-                    <td>{{ user.email }}</td>
+                    
                     <td>{{ user.password }}</td>
-
-                    <td>
-                        <a class="btn btn-md btn-green me-5 "href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
-                        <a class=" btn btn-md btn-blue" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    <td class="d-flex justify-content-around">
+                        <a class="btn btn-md btn-blue" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+                        <a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="8">aucun enregistrement</td>
+                    <td colspan="6">aucun enregistrement trouvé</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <div class="my-5">
-        <a  class="btn btn-md btn-blue ms-5" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    <div class="text-center">
+        <a class="btn btn-md btn-blue m-5" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
     </div>
 {% endblock %}

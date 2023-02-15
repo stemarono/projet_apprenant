@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Role;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Role;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -32,7 +33,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -52,33 +52,47 @@ class UserController extends AbstractController
         ]);
     }
 
-
-    
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(UserPasswordHasherInterface $passwordHasher,Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,$id=0,UserPasswordHasherInterface $passwordHasher): Response
     {
+       if($id)
+       {
+        $user=$em->getRepository(User::class)->find($id);
+       }else{
+        $user =new User;
+       }
+       
         $roles=$em->getRepository(Role::class)->findBy([],['code_role'=>'asc']);
-        // $choice_roles=[];
-        // foreach($roles as $role)
-        // {
-        //     $libelle = $role->getLibelle();
-        //     $choice_roles[$libelle]=$libelle;
+        $choice_roles=[];
+        foreach($roles as $role)
+        {
+            $libelle=$role->getLibelle();
+            $choice_roles[$libelle]=$libelle;
+           
+            
+        }
         
-        // }
         $form = $this->createForm(UserType::class, $user);
+        $form
+            ->add('Roles',ChoiceType::class,[
+                'mapped'=>false,
+                'choices'=>$choice_roles,
+                'multiple'=>true,
+                'label'=>'Roles :',
+                'attr'=>['class'=>'form-control']
+             
+            ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pwd=$form->get('password')->getData();
-            if($pwd)
-            {
-                $plaintTextPassword=$pwd;
-                $password=$passwordHasher->hashPassword($user,$plaintTextPassword);
+            $roles=$form->get('Roles')->getData();
+            $user->setRoles($roles);
+            $passwd=$form->get('password')->getData();
+            if($passwd){
+                $password =$passwordHasher->hashPassword($user,$passwd);
                 $user->setPassword($password);
             }
-
             $userRepository->save($user, true);
-
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 

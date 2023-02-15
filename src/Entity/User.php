@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte avec cette adresse mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -28,14 +31,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $nom = null;
+   
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $identifiant = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PreInscription::class)]
+    private Collection $preInscriptions;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $nom = null;
+
+   
+
+    public function __construct()
+    {
+        $this->preInscriptions = new ArrayCollection();
+    }
+
+    
+
+    
 
     public function getId(): ?int
     {
@@ -107,17 +123,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(?string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
+   
 
     public function getPrenom(): ?string
     {
@@ -131,20 +137,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIdentifiant(): ?string
+    /**
+     * @return Collection<int, PreInscription>
+     */
+    public function getPreInscriptions(): Collection
     {
-        return $this->identifiant;
+        return $this->preInscriptions;
     }
 
-    public function setIdentifiant(?string $identifiant): self
+    public function addPreInscription(PreInscription $preInscription): self
     {
-        $this->identifiant = $identifiant;
+        if (!$this->preInscriptions->contains($preInscription)) {
+            $this->preInscriptions->add($preInscription);
+            $preInscription->setUser($this);
+        }
 
         return $this;
     }
 
-    // public function __toString()
-    // {
-    //     return $this->roles;
-    // }
+    public function removePreInscription(PreInscription $preInscription): self
+    {
+        if ($this->preInscriptions->removeElement($preInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($preInscription->getUser() === $this) {
+                $preInscription->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->nom;
+    }
+
+  
+   
 }

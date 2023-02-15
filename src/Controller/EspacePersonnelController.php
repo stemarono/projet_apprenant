@@ -1,20 +1,34 @@
 <?php
 
 namespace App\Controller;
-use App\Controller\PreInscriptionController;
-use App\Entity\PreInscription;
+
+use App\Entity\User;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EspacePersonnelController extends AbstractController
 {
     #[Route('/espace/personnel', name: 'app_espace_personnel')]
-    public function index(): Response
+    public function index(Request $request,EntityManagerInterface $em,$id=0): Response
     {
+        // $user=$em->getRepository(User::class)->find($id);
+
+        // $form=$this->createForm(UserType::class,$user);
+        // $form->handleRequest($request);
+        // if($form->isSubmitted() && $form->isValid())
+        // {
+        //     $em->persist($user);
+        //     $em->flush();
+        //     return $this->redirectToRoute('app_espace_personnel');
+        // }
+        
         return $this->render('espace_personnel/index.html.twig', [
-            'controller_name' => 'EspacePersonnelController',
+        //     'form'=>$form->createView(),
+        //    'user'=>$user,
         ]);
     }
 
