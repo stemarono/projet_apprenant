@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Adiministrateur/ liste des Utilisateurs{% endblock %}
+{% block title %}Administrateur/ liste des Utilisateurs{% endblock %}
 
 {% block body %}
     <div class="bg-blueclear p-5">
@@ -23,10 +23,10 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.nom }}</td>
-                    <td>{{ user.prenom }}</td>
-                    <td>{{ user.email }}</td>
+                    <td class="text-center">{{ user.id }}</td>
+                    <td class="text-center">{{ user.nom }}</td>
+                    <td class="text-center">{{ user.prenom }}</td>
+                    <td class="text-center">{{ user.email }}</td>
                      {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
                     <td>
                         <select name="" id="" class="form-select w-100">
@@ -35,7 +35,7 @@
                         {% endfor %}
                     </td>
                     
-                    <td>{{ user.password }}</td>
+                    <td class="text-center">******</td>
                     <td class="d-flex justify-content-around">
                         <a class="btn btn-md btn-blue" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
                         <a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
