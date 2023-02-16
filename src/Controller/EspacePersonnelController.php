@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EspacePersonnelController extends AbstractController
 {
     #[Route('/espace/personnel', name: 'app_espace_personnel')]
-    public function index(UserRepository $userRepository,$id=0): Response
+    public function index(UserRepository $userRepository): Response
     {
         
         return $this->render('espace_personnel/index.html.twig', [
