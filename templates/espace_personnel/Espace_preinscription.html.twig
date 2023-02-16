@@ -19,10 +19,10 @@
                                     <h5>Etat :</h5>
                                 </div>
                             </div>
-                            <div class="d-flex flex-row my-5">
-                                <button type="submit" class="mx-5 btn-green border-0 p-2">Voir mon dossier</button>
-                                <a href= class="mx-5 text-decoration-none btn-blue p-2">Modifier</a>
-                                <a href= class="mx-5 text-decoration-none btn-red p-2">Supprimer</a> 
+                            <div class="d-flex justify-content-around my-5">
+                                <a href="" class="mx-5 text-decoration-none btn btn-md btn-green p-2">Voir mon dossier</a>
+                                <a href="" class="mx-5 text-decoration-none btn btn-md btn-blue p-2">Modifier</a>
+                                <a href="" class="mx-5 text-decoration-none btn btn-md btn-red p-2">Supprimer</a> 
                                 
                             </div>
                             
@@ -34,26 +34,26 @@
                 </div>
                 <div class=" border-2 border-start border-success my-5"></div>
                     <div class="me-5">
-                    {% for users in user %} 
+                    
                         <div class="my-5">
                             <h4>Informations personnelles</h4>
                         </div>
                         <div class="ms-5">
-                            <p>Nom : {{user.nom}}</p>
+                            <p>Nom : {{app.user.nom}}</p>
                         </div>
                         <div class="ms-5">
-                            <p>Prénom : {{user.prenom}}</p>
+                            <p>Prénom : {{app.user.prenom}}</p>
                         </div>
                         <div class="ms-5">
-                            <p>Email: {{user.email}}</p>
+                            <p>Email: {{app.user.email}}</p>
                         </div>
                         <div class="ms-5">
-                            <p>Mot de passe : {{user.password}}</p>
+                            <p>Mot de passe : {{app.user.password}}</p>
                         </div>
                         <div>
                             <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                         </div>
-                    {% endfor %}
+                    
                         <div class="">
                             <a href="" class="btn btn-md btn-green text-light my-5 ms-5">Nous contacter</a>
                         </div>

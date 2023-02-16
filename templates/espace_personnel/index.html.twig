@@ -36,26 +36,30 @@
             </div>
             <div class=" border-2 border-start border-success aside"></div>
             <div class="me-5">
-            {# {% for user in users %} #}
+           
                 <div class="my-5">
                     <h4>Informations personnelles</h4>
                 </div>
+               
                 <div class="ms-5">
-                    <p>Nom :</p>
-                </div>
-                <div class="ms-5">
-                    <p>Prénom :</p>
+                    <p>Nom : {{app.user.nom}}</p>
                 </div>
                 <div class="ms-5">
-                    <p>Email:</p>
+                    <p>Prénom : {{app.user.prenom}}</p>
                 </div>
                 <div class="ms-5">
-                    <p>Mot de passe :</p>
+                    <p>Email: {{app.user.email}}</p>
                 </div>
-            {# {% endfor %}     #}
-                <div>
-                    <a class="btn btn-md btn-green text-light mt-5 ms-5" href="">Modifier</a>
+                <div class="ms-5">
+                    <p>Mot de passe : ******</p>
                 </div>
+                {# <div>
+                    <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{path('app_user_edit', {'id': user.id})}}">Modifier</a>
+                </div> #}
+           
+             <div>
+               
+                </div>    
             </div>
         </div>
     </div>
