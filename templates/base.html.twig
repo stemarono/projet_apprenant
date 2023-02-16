@@ -55,13 +55,13 @@
 							<a class="nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">Formulaire</a>
 						</li>
 						{# lien lié à l'utilisateur du site #}
-						{% if is_granted("ROLE_USER") %}
+						{# {% if is_granted("ROLE_USER") %}
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{path('app_espace_personnel')}}">Espace personnel</a>
 						</li>
-						{% endif %}
+						{% endif %} #}
 						{# Lien destiné aux Managers #}
-						{% if is_granted("ROLE_GESTIONNAIRE") %}
+						{# {% if is_granted("ROLE_GESTIONNAIRE") %}
 						<li class="nav-item dropdown">
 							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Espace gestion</a>
 							<ul class="dropdown-menu bg-green">
@@ -82,9 +82,9 @@
 								</li>
 							</ul>
 						</li>
-						{% endif %}
+						{% endif %} #}
 						{# lien destiné aux administrateurs #}
-						{% if is_granted("ROLE_ADMIN")%}
+						{# {% if is_granted("ROLE_ADMIN")%}
 						<li class="nav-item dropdown">
 							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Administrateurs</a>
 							<ul class="dropdown-menu bg-green">
@@ -96,9 +96,11 @@
 								</li>
 							</ul>
 						</li>
-						{% endif %}
+						{% endif %} #}
 					</ul>
-				</div>
+					{# menu desktop modifiable #}
+					{{render(path('app_menu_affichage'))}}
+				</div> 
 				{# menu mobile #}
 				{# bouton burger #}
 				<button class="mobile navbar-toggler btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">

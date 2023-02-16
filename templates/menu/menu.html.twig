@@ -1,0 +1,3 @@
+{% for menu in cats.getMenu %}
+    <a class="nav-link text-clear" href="{{ path('menu.route') }}">{{ menu.libelle }}"</a>
+{% endfor %}
