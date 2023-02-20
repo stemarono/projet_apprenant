@@ -85,10 +85,11 @@
             </tr>
         </tbody>
     </table>
+    <div class="d-flex justify-content-between my-5">
+        <a class="btn btn-lg btn-blue" href="{{ path('app_espace_personnel_show') }}">Revenir à votre espace personnel</a>
 
-    <a href="{{ path('app_pre_inscription_index') }}">back to list</a>
+        <a class="btn btn-md btn-green" href="{{ path('app_pre_inscription_edit', {'id': pre_inscription.id}) }}">Modifier</a>
 
-    <a href="{{ path('app_pre_inscription_edit', {'id': pre_inscription.id}) }}">edit</a>
-
-    {{ include('pre_inscription/_delete_form.html.twig') }}
+        {{ include('pre_inscription/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
