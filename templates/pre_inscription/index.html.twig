@@ -3,67 +3,81 @@
 {% block title %}PreInscription index{% endblock %}
 
 {% block body %}
-    <h1>PreInscription index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>DateNaissance</th>
-                <th>Sexe</th>
-                <th>Adresse</th>
-                <th>CodePostal</th>
-                <th>Ville</th>
-                <th>Region</th>
-                <th>Pays</th>
-                <th>Email</th>
-                <th>Motivations</th>
-                <th>Financement</th>
-                <th>CarteIdentite</th>
-                <th>JustifFinancement</th>
-                <th>CarteVitale</th>
-                <th>AutreDoc</th>
-                <th>N_ss</th>
-                <th>Telephone</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des pré-inscriptions</h1>
+</div>
+
+{# boutons #}
+<div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-green">
+    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+  </button>
+</div>
+
+{# table #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Sexe</th>
+        <th>Adresse</th>
+        <th>Code postal</th>
+        <th>Ville</th>
+        <th>Région</th>
+        <th>Pays</th>
+        <th>E-mail</th>
+        <th>Carte d'identite</th>
+        <th>Justif de financement</th>
+        <th>Carte vitale</th>
+        <th>Autre document</th>
+        <th>Numéro de sécu</th>
+        <th>Téléphone</th>
+        <th class="d-print-none">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
         {% for pre_inscription in pre_inscriptions %}
-            <tr>
-                <td>{{ pre_inscription.id }}</td>
-                <td>{{ pre_inscription.nom }}</td>
-                <td>{{ pre_inscription.prenom }}</td>
-                <td>{{ pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</td>
-                <td>{{ pre_inscription.sexe }}</td>
-                <td>{{ pre_inscription.adresse }}</td>
-                <td>{{ pre_inscription.codePostal }}</td>
-                <td>{{ pre_inscription.ville }}</td>
-                <td>{{ pre_inscription.region }}</td>
-                <td>{{ pre_inscription.pays }}</td>
-                <td>{{ pre_inscription.email }}</td>
-                <td>{{ pre_inscription.motivations }}</td>
-                <td>{{ pre_inscription.financement }}</td>
-                <td>{{ pre_inscription.carteIdentite }}</td>
-                <td>{{ pre_inscription.justifFinancement }}</td>
-                <td>{{ pre_inscription.carteVitale }}</td>
-                <td>{{ pre_inscription.autreDoc }}</td>
-                <td>{{ pre_inscription.nSs }}</td>
-                <td>{{ pre_inscription.telephone }}</td>
-                <td>
-                    <a href="{{ path('app_pre_inscription_show', {'id': pre_inscription.id}) }}">Afficher</a>
-                    <a href="{{ path('app_pre_inscription_edit', {'id': pre_inscription.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="20">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+      <tr>
+        <td>{{ pre_inscription.id }}</td>
+        <td>{{ pre_inscription.nom }}</td>
+        <td>{{ pre_inscription.prenom }}</td>
+        <td>
+          {{ pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}
+        </td>
+        <td>{{ pre_inscription.sexe }}</td>
+        <td>{{ pre_inscription.adresse }}</td>
+        <td>{{ pre_inscription.codePostal }}</td>
+        <td>{{ pre_inscription.ville }}</td>
+        <td>{{ pre_inscription.region }}</td>
+        <td>{{ pre_inscription.pays }}</td>
+        <td>{{ pre_inscription.email }}</td>
+        <td>{{ pre_inscription.carteIdentite }}</td>
+        <td>{{ pre_inscription.justifFinancement }}</td>
+        <td>{{ pre_inscription.carteVitale }}</td>
+        <td>{{ pre_inscription.autreDoc }}</td>
+        <td>{{ pre_inscription.nSs }}</td>
+        <td>{{ pre_inscription.telephone }}</td>
+        <td class="d-print-none">
+          <button class="btn bg-green">
+            <a class="text-clear" href="{{ path('app_pre_inscription_show', { id: pre_inscription.id }) }}">Détails</a>
+          </button>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="15">no records found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-    <a href="{{ path('app_pre_inscription_new') }}">Create new</a>
+<a class="btn bg-green" href="{{ path('app_inscription_apprenant_new') }}">Nouvelle inscription</a>
+
 {% endblock %}

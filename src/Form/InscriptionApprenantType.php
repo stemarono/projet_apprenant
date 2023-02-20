@@ -112,7 +112,7 @@ class InscriptionApprenantType extends AbstractType
             ->add('nbEcheance', IntegerType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Nombre d\'échéances']
             ])
-            ->add('save', SubmitType::class, [
+            ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn bg-green text-clear',
                     'data-bs-toggle' => 'modal',
