@@ -35,7 +35,7 @@ class PreInscriptionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $preInscriptionRepository->save($preInscription, true);
 
-            return $this->redirectToRoute('app_new_form_Cursus', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pre_inscription_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pre_inscription/new.html.twig', [
@@ -100,7 +100,7 @@ class PreInscriptionController extends AbstractController
                $preInscription3->setCarteIdentite($autreDocFileName);
             }
 
-            return $this->redirectToRoute('app_espace_preInscription', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_espace_personnel_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pre_inscription/new_formJustif.html.twig', [

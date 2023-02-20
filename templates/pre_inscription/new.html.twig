@@ -3,14 +3,35 @@
 {% block title %}Espace personnel / Pré-inscription{% endblock %}
 
 {% block body %}
-        <div class="bg-personnal bg-blueclear p-5 mt-5 ">
-            <h4><span class="text-capitalize">formulaire</span> d'inscription</h4>
-        </div>
-    <div class="text-center my-5">
-        <h1>Votre pré-inscription</h1>
-    </div>
-    <div class=" m-auto w-75">
-        {{ include('pre_inscription/_form.html.twig') }}
-    </div>
-    {# <a href="{{ path('app_pre_inscription_index') }}">back to list</a> #}
+{# modal #}
+<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p id="exampleModalLabel">Votre formulaire a bien été envoyé !</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-green text-clear" data-bs-dismiss="modal">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+	<h1 class="pt-2 pb-5 text-clear">Votre pré-inscription</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container d-md-flex p-5 justify-content-md-start">
+	<button class="btn bg-green text-clear align-start">
+		<a class="text-clear" href="javascript:history.back()">Retour</a>
+	</button>
+</div>
+
+{# formulaire #}
+<div class="container w-50">
+	{{ include('pre_inscription/_form.html.twig') }}
+</div>
+
 {% endblock %}
