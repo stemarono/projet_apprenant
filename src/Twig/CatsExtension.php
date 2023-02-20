@@ -26,4 +26,5 @@ class CatsExtension extends AbstractExtension
     public function getFormations() {
         return $this->em->getRepository(Formation::class)->findBy([], ['titre' => 'ASC']);
     }
+    
 }
