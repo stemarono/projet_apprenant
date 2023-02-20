@@ -10,13 +10,13 @@
 </div>
 
 {# boutons #}
-<div class="container d-flex justify-content-between py-5">
+<div class="container d-flex justify-content-between py-5 d-print-none">
   <button class="btn bg-blue">
     <a class="text-clear" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
   </button>
-  <button class="btn bg-green">
-    <a class="text-clear" href="">Imprimer</a>
-  </button>
+ <button class="btn bg-green">
+    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+ </button>
 </div>
 
 {# table #}
@@ -32,7 +32,7 @@
         <th>Photo</th>
         <th>Dates</th>
         <th>Parcours</th>
-        <th class="text-center">Actions</th>
+        <th class="text-center d-print-none">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -46,7 +46,7 @@
         <td><img src="{{ formation.photo }}" alt=""></td>
         <td>{{ formation.dateFormation ? formation.dateFormation|date('d/m/Y') : '' }}</td>
         <td>{{ formation.parcours }}</td>
-        <td class="d-flex justify-content-center">
+        <td class="d-flex justify-content-center d-print-none">
           <button class="btn bg-blue mx-3"><a class="text-clear" href="{{ path('app_formation_edit', {id: formation.id }) }}">Modifier</a></button>
          {{ include('formation/_delete_form.html.twig') }}
         </td>

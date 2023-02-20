@@ -82,3 +82,8 @@ function pagePrecedente() {
      document.querySelector("#num"+pageActive).classList.add("active")
 
 }
+
+// Fonction qui permet d'imprimer une page
+function print_page(){
+    window.print();
+  }

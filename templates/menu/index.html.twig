@@ -1,39 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Menu index{% endblock %}
+{% block title %}Menu{% endblock %}
 
 {% block body %}
-    <h1>Menu index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Rang</th>
-                <th>Libelle</th>
-                <th>Route</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for menu in menus %}
-            <tr>
-                <td>{{ menu.id }}</td>
-                <td>{{ menu.rang }}</td>
-                <td>{{ menu.libelle }}</td>
-                <td>{{ menu.route }}</td>
-                <td>
-                    <a href="{{ path('app_menu_show', {'id': menu.id}) }}">show</a>
-                    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des entrées du menu</h1>
+</div>
 
-    <a href="{{ path('app_menu_new') }}">Create new</a>
+{# boutons #}
+<div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-blue">
+    <a class="text-clear" href="{{ path('app_menu_new') }}">Nouvelle entrée</a>
+  </button>
+ <button class="btn bg-green">
+    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+ </button>
+</div>
+
+{# table #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+      <tr>
+        <th>Id</th>
+        <th>Rang</th>
+        <th>Libelle</th>
+        <th>Route</th>
+        <th>Rôle</th>
+        <th class="text-center d-print-none">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for menu in menus %}
+      <tr>
+        <td>{{ menu.id }}</td>
+        <td>{{ menu.rang }}</td>
+        <td>{{ menu.libelle }}</td>
+        <td>{{ menu.route }}</td>
+        <td>{{ menu.role.libelle }}</td>
+        <td class="d-flex justify-content-center d-print-none">
+          <button class="btn bg-blue mx-3"><a class="text-clear" href="{{ path('app_menu_edit', {id: menu.id }) }}">Modifier</a></button>
+         {{ include('menu/_delete_form.html.twig') }}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="9">Aucune donnée trouvée</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}

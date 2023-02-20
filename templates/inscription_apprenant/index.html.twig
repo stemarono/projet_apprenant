@@ -10,12 +10,12 @@
 </div>
 
 {# boutons #}
-<div class="container d-flex justify-content-between py-5">
-  <button class="btn bg-blue">
+<div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-green">
     <a class="text-clear" href="{{ path('app_inscription_apprenant_new') }}">Nouvelle inscription</a>
   </button>
   <button class="btn bg-green">
-    <a class="text-clear" href="">Imprimer</a>
+    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
   </button>
 </div>
 
@@ -31,7 +31,7 @@
         <th>Date de naissance</th>
         <th>Téléphone</th>
         <th>E-mail</th>
-        <th>Actions</th>
+        <th class="d-print-none">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -46,7 +46,7 @@
         </td>
         <td>{{ inscription_apprenant.telephone }}</td>
         <td>{{ inscription_apprenant.email }}</td>
-        <td>
+        <td class="d-print-none">
           <button class="btn bg-green">
             <a
               class="text-clear"
@@ -69,5 +69,4 @@
   </table>
 </div>
 
-<a href="{{ path('app_inscription_apprenant_new') }}">Nouvelle inscription</a>
 {% endblock %}

@@ -3,9 +3,20 @@
 {% block title %}New Menu{% endblock %}
 
 {% block body %}
-    <h1>Create new Menu</h1>
 
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Ajouter une entrée au menu</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container">
+    <button class="btn bg-blue text-clear"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
+</div>
+
+{# Formulaire #}
+<div class="container">
     {{ include('menu/_form.html.twig') }}
+</div>
 
-    <a href="{{ path('app_menu_index') }}">back to list</a>
 {% endblock %}
