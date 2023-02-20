@@ -3,93 +3,67 @@
 {% block title %}PreInscription{% endblock %}
 
 {% block body %}
-    <h1>PreInscription</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ pre_inscription.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ pre_inscription.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ pre_inscription.prenom }}</td>
-            </tr>
-            <tr>
-                <th>DateNaissance</th>
-                <td>{{ pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ pre_inscription.sexe }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ pre_inscription.adresse }}</td>
-            </tr>
-            <tr>
-                <th>CodePostal</th>
-                <td>{{ pre_inscription.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ pre_inscription.ville }}</td>
-            </tr>
-            <tr>
-                <th>Region</th>
-                <td>{{ pre_inscription.region }}</td>
-            </tr>
-            <tr>
-                <th>Pays</th>
-                <td>{{ pre_inscription.pays }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ pre_inscription.email }}</td>
-            </tr>
-            <tr>
-                <th>Motivations</th>
-                <td>{{ pre_inscription.motivations }}</td>
-            </tr>
-            <tr>
-                <th>Financement</th>
-                <td>{{ pre_inscription.financement }}</td>
-            </tr>
-            <tr>
-                <th>CarteIdentite</th>
-                <td>{{ pre_inscription.carteIdentite }}</td>
-            </tr>
-            <tr>
-                <th>JustifFinancement</th>
-                <td>{{ pre_inscription.justifFinancement }}</td>
-            </tr>
-            <tr>
-                <th>CarteVitale</th>
-                <td>{{ pre_inscription.carteVitale }}</td>
-            </tr>
-            <tr>
-                <th>AutreDoc</th>
-                <td>{{ pre_inscription.autreDoc }}</td>
-            </tr>
-            <tr>
-                <th>N_ss</th>
-                <td>{{ pre_inscription.nSs }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ pre_inscription.telephone }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-between my-5">
-        <a class="btn btn-lg btn-blue" href="{{ path('app_espace_personnel_show') }}">Revenir à votre espace personnel</a>
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Détails de la pré-inscription</h1>
+</div>
 
-        <a class="btn btn-md btn-green" href="{{ path('app_pre_inscription_edit', {'id': pre_inscription.id}) }}">Modifier</a>
+{# Bouton retour #}
+<div class="container p-5 d-md-flex justify-content-md-start">
+  <button class="btn bg-green text-clear align-start">
+    <a class="text-clear" href="javascript:history.back()">Retour</a>
+  </button>
+</div>
 
-        {{ include('pre_inscription/_delete_form.html.twig') }}
+{# Carte #}
+<div class="container p-5 mb-5">
+    <div class="bg-clear shadow p-4">
+        <div class="card-body">
+            <h3 class="m-2">Récapitulatif du dossier</h3>
+            <div class="d-flex justify-content-around py-4">
+                <div class="">
+                    <p><b>Id :</b> {{ pre_inscription.id }}</p>
+                    <p><b>Nom :</b> {{ pre_inscription.nom }}</p>
+                    <p><b>Prénom :</b> {{ pre_inscription.prenom }}</p>
+                    <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</p>
+                    <p><b>E-mail :</b> {{ pre_inscription.email }}</p>
+                    <p><b>Téléphone :</b> {{ pre_inscription.telephone }}</p>
+                    <p><b>N° de sécurité sociale :</b> {{ pre_inscription.nSs }}</p>
+                </div>
+                <div>
+                    <p><b>Sexe :</b> {{ pre_inscription.sexe }}</p>
+                    <p><b>Adresse :</b> {{ pre_inscription.adresse }}</p>
+                    <p><b>Code postal :</b> {{ pre_inscription.codePostal }}</p>
+                    <p><b>Ville :</b> {{ pre_inscription.ville }}</p>
+                    <p><b>Région :</b> {{ pre_inscription.region }}</p>
+                    <p><b>Pays :</b> {{ pre_inscription.pays }}</p>
+                    <p><b>Carte d'identité :</b> {{ pre_inscription.carteIdentite }}</p>
+                    <p><b>Justificatif de financement :</b> {{ pre_inscription.justifFinancement }}</p>
+                    <p><b>Carte vitale :</b> {{ pre_inscription.carteVitale }}</p>
+                    <p><b>Autre document :</b> {{ pre_inscription.autreDoc }}</p>
+                </div>
+            </div>
+            <div class="m-4">
+                <p><b>Motivations :</b> <br> {{ pre_inscription.motivations }}</p>
+            </div>
+            <div class="m-4">
+                <p><b>Financement :</b> <br> {{ pre_inscription.financement }}</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
+                <button class="btn btn-md bg-green p-2 px-4 mx-5" type="button">
+                    <a class="text-clear" href="">Télécharger</a>
+                </button>
+                <button class="btn bg-green">
+                    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+                </button>
+                <button class="btn btn-md bg-blue p-2 px-4 mx-5" type="button">
+                    <a class="text-clear" href="{{ path('app_pre_inscription_edit', { id:pre_inscription.id})}}">Modifier</a>
+                </button>
+                {{ include("pre_inscription/_delete_form.html.twig") }}
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}

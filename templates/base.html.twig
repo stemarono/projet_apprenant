@@ -2,62 +2,48 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>
-			{% block title %}Projet Apprenant
-			{% endblock %}
-		</title>
+		<title>{% block title %}Projet Apprenant{% endblock %}</title>
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/bootstrap.css')}}">
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/datepicker.css')}}">
-        <link rel="stylesheet" href="{{asset('css/style_m.css')}}">
-        <link rel="stylesheet" href="{{asset('css/EspacePersonnel.css')}}">
-		
-		
+		<link rel="stylesheet" href="{{asset('css/style_m.css')}}">
+		<link rel="stylesheet" href="{{asset('css/EspacePersonnel.css')}}">
 		<script src="{{asset('js/jquery.js')}}"></script>
-		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-
-{% block javascripts %}
-{{ encore_entry_script_tags('app') }}
-{% endblock %}
-		</html>
-	</script>
-</head>
-<body>
-	<div
-		class="container-fluid">
-		{# navbar desktop #}
-		<nav
-			class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3">
-			{# logo #}
-			<div>
-				<img class="img-sm img-min mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
-			</div>
-			{# menu desktop #}
-			<div class="desktop nav w-65">
-				<ul class="nav flex-center px-4 fs-5">
-				 	
-					<li class="nav-item">
-						<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
-					</li>
-					<li class="nav-item dropdown">
-					{# lien lié à l'utilisateur du site #}
-					
-						<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Formations</a>
-						<ul class="dropdown-menu bg-green">
-							<li class="dropdown-item">
-								<a href="{{ path('app_formation_list') }}" class="text-clear">Toutes les formations</a>
-							</li>
-							{# {% for cat in cats.getFormations %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container-fluid">
+			{# navbar desktop #}
+			<nav class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3 d-print-none">
+				{# logo #}
+				<div class="">
+					<img class="img-sm img-min mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
+				</div>
+				{# menu desktop #}
+				<div class="desktop nav">
+					<ul class="nav flex-center px-4 fs-5">
+						<li class="nav-item">
+							<a class="nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Formations</a>
+							<ul class="dropdown-menu bg-green">
+								<li class="dropdown-item">
+									<a href="{{ path('app_formation_list') }}" class="text-clear">Toutes les formations</a>
+								</li>
+								{% for cat in cats.getFormations %}
 								<li class="dropdown-item">
 									<a href="{{ path('app_formation_show', { id: cat.id })}}" class="text-clear">{{ cat.titre }}</a>
 								</li>
 								{% else %}
 									<p>Informations indisponibles</p>
-								{% endfor %}#}
-							</ul> 
+								{% endfor %}
+							</ul>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{ path('app_about')}}">À propos</a>
@@ -68,14 +54,16 @@
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">Formulaire</a>
 						</li>
+						{# lien lié à l'utilisateur du site #}
+						{# {% if is_granted("ROLE_USER") %}
 						<li class="nav-item">
 							<a class="nav-link text-clear" href="{{path('app_espace_personnel')}}">Espace personnel</a>
 						</li>
-					
+						{% endif %} #}
 						{# Lien destiné aux Managers #}
-					{% if is_granted("ROLE_GESTIONNAIRE") %}
+						{# {% if is_granted("ROLE_GESTIONNAIRE") %}
 						<li class="nav-item dropdown">
-							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Inscriptions</a>
+							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Espace gestion</a>
 							<ul class="dropdown-menu bg-green">
 								<li>
 									<a class="dropdown-item text-clear" href="{{ path('app_pre_inscription_index') }}">Préincsriptions</a>
@@ -94,13 +82,13 @@
 								</li>
 							</ul>
 						</li>
-					{% endif %} 
+						{% endif %} #}
 						{# lien destiné aux administrateurs #}
-					{% if is_granted("ROLE_ADMIN")%} 
+						{# {% if is_granted("ROLE_ADMIN")%}
 						<li class="nav-item dropdown">
 							<a class="nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Administrateurs</a>
 							<ul class="dropdown-menu bg-green">
-								<li class ="dropdown-item">
+								<li class="dropdown-item">
 									<a class="snav-link text-clear" href="{{path('app_user_index')}}">Utilisateurs</a>
 								</li>
 								<li class="dropdown-item">
@@ -108,84 +96,156 @@
 								</li>
 							</ul>
 						</li>
-					{% endif %} 
-					</ul>
+						{% endif %} 
+					</ul>#}
+					{# menu desktop modifiable #}
+					{{render(path('app_menu_affichage'))}}
+				</div> 
+				{# menu mobile #}
+				{# bouton burger #}
+				<button class="mobile navbar-toggler btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+					<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-list text-clear" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+					</svg>
+				</button>
+				{# menu droite #}
+				<div class="mobile offcanvas offcanvas-end bg-green text-clear" tabindex="-2" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+							<li class="nav-item">
+								<a class="font3 nav-link text-clear" href="{{path('app_accueil')}}">Accueil</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="font3 nav-link text-clear dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="">Formations</a>
+								<ul class="dropdown-menu bg-green">
+									<li class="dropdown-item">
+										<a href="{{ path('app_formation_list') }}" class="text-clear font2">Toutes les formations</a>
+									</li>
+									{% for cat in cats.getFormations %}
+									<li class="dropdown-item">
+										<a href="{{ path('app_formation_show', { id: cat.id })}}" class="text-clear font2">{{ cat.titre }}</a>
+									</li>
+									{% else %}
+									<p class="font3">Informations indisponibles</p>
+									{% endfor %}
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="font3 nav-link text-clear" href="{{ path('app_about')}}">À propos</a>
+							</li>
+							<li class="nav-item">
+								<a class="font3 nav-link text-clear" href="{{ path('app_contact')}}">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="font3 nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">Formulaire</a>
+							</li>
+							{# lien lié à l'utilisateur du site #}
+							{% if is_granted("ROLE_USER") %}
+							<li class="nav-item">
+								<a class="font3 nav-link text-clear" href="{{path('app_espace_personnel')}}">Espace personnel</a>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
 				</div>
-			</div>
-			{# lien login #}
-			{# version desktop #}
-			<div class="desktop text-center">
-				<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
-				<ul class="navbar-nav">
-					{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
-						<li class="nav-item"><a class="nav-link text-decoration-none" href="{{ path('app_logout') }}">Se déconnecter</a></li>
-					{% else %}
-						<div class='d-flex justify-content-center'>
-							<li class="nav-item"><a class="nav-link text-decoration-none" href="{{ path('app_register') }}">S'inscrire |</a></li>
-							<li class="nav-item"><a class="nav-link text-decoration-none ms-1" href="{{ path('app_login') }}"> Se connecter</a></li>
-						</div>
-					{% endif %}	
-					
-				</ul>
-			</div>
-			{# version mobile #}
-			<div class="mobile mx-4">
-				<a class="nav-link" href="{{ path('app_login') }}"><img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt=""></a>
-			</div>
-		</nav>
-
-		{% block body %}{% endblock %}
-
-		<footer class="bg-blue sticky-bottom">
-			<div>
-				<div class="text-clear row">
-					<div class="col-md-5 d-flex flex-column align-items-center">
-						<h4 class="m-4">Nous contacter</h4>
-						<div class="d-flex justify-content-arround">
-							<div class="m-4">
-								<p>Lorem ipsum<br>105 rue Adresse<br>10 000 Codepostal</p>
+				<div>
+					<div>
+					{# lien login #}
+					{# version desktop #}
+					<div class="desktop text-center">
+						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
+						<ul class="navbar-nav">
+							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
+							<li class="nav-item">
+								<a class="nav-link text-decoration-none text-clear" href="{{ path('app_logout') }}">Se déconnecter</a>
+							</li>
+							{% else %}
+							<div class='d-flex justify-content-center'>
+								<li class="nav-item">
+									<a class="nav-link text-decoration-none text-clear" href="{{ path('app_register') }}">S'inscrire |</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-decoration-none ms-1 text-clear" href="{{ path('app_login') }}">Se connecter</a>
+								</li>
 							</div>
-							<div class="m-4">
-								<p>Tél. : 00 00 00 00 00<br>Email : mail@mail.com<br>Lorem ipsum</p>
+							{% endif %}
+						</ul>
+					</div>
+					{# version mobile #}
+					<div class="mobile mx-4 text-center">
+						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
+						<ul class="navbar-nav">
+							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
+							<li class="nav-item">
+								<a class="nav-link text-decoration-none text-clear fs-2" href="{{ path('app_logout') }}">Se déconnecter</a>
+							</li>
+							{% else %}
+							<div class='d-flex justify-content-center'>
+								<li class="nav-item">
+									<a class="nav-link text-decoration-none text-clear fs-2" href="{{ path('app_register') }}">S'inscrire |</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-decoration-none ms-1 text-clear fs-2" href="{{ path('app_login') }}">Se connecter</a>
+								</li>
+							</div>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</nav>
+			{% block body %}{% endblock %}
+			<footer class="bg-blue sticky-bottom d-print-none">
+				<div>
+					<div class="text-clear row">
+						<div class="col-md-5 d-flex flex-column align-items-center">
+							<h4 class="m-4">Nous contacter</h4>
+								<div class="d-flex justify-content-arround">
+									<div class="m-4">
+										<p>Lorem ipsum<br>105 rue Adresse<br>10 000 Codepostal</p>
+									</div>
+									<div class="m-4">
+										<p>Tél. : 00 00 00 00 00<br>Email : mail@mail.com<br>Lorem ipsum</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 d-flex justify-content-between align-items-center">
+								<h4>
+									<a class="nav-link text-clear" href="">Mentions légales</a>
+								</h4>
+								<h4>
+									<a class="nav-link text-clear" href="">Conditions d'utilisation</a>
+								</h4>
+							</div>
+							<div class="col-md-3 d-flex justify-content-center align-items-center">
+								<img class="desktop img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 d-flex justify-content-between align-items-center">
-						<h4>
-							<a class="nav-link text-clear" href="">Mentions légales</a>
-						</h4>
-						<h4>
-							<a class="nav-link text-clear" href="">Conditions d'utilisation</a>
-						</h4>
-					</div>
-					<div class="col-md-3 d-flex justify-content-center align-items-center">
-						<img class="desktop img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
+						<div class="mx-3">
+							<p class="text-center text-clear border-top p-3">Afpa 2023 | Formation CDA</p>
+						</div>
 					</div>
 				</div>
-				<div class="mx-3">
-					<p class="text-center text-clear border-top p-3">Afpa 2023 | Formation CDA</p>
-				</div>
-			</div>
-		</footer>
-	</div>
-	<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.js')}}"></script>
-	<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap-datepicker.js')}}"></script>
-	<script src="{{asset('js/scripts.js')}}"></script>
-	<script>
-		$(function () {
-$('.datepicker').datepicker({ // affichage du calendrier
-format: 'dd/mm/yyyy',
-autoclose: true,
-clearBtn: true,
-todayHighlight: true
-});
-})
+			</footer>
+		</div>
+		<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.js')}}"></script>
+		<script src="{{asset('bootstrap-5.0.2-dist/js/bootstrap-datepicker.js')}}"></script>
+		<script src="{{asset('js/scripts.js')}}"></script>
+		<script>
+			$(function () {
+				$('.datepicker').datepicker({ // affichage du calendrier
+					format: 'dd/mm/yyyy',
+					autoclose: true,
+					clearBtn: true,
+					todayHighlight: true
+				});
+			})
 
-const myCarouselElement = document.querySelector('#carouselHome')
+			const myCarouselElement = document.querySelector('#carouselHome')
 
-const carousel = new bootstrap.Carousel(myCarouselElement, {
-interval: 4000,
-touch: true
-})
-	</script>
-</body></html>
+			const carousel = new bootstrap.Carousel(myCarouselElement, {
+				interval: 4000,
+				touch: true
+			})
+		</script>
+	</body>
+</html>

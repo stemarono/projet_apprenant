@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_pre_inscription_delete', {'id': pre_inscription.id}) }}" onsubmit="return confirm('Etes-vous sûre de vouloir supprimer votre demande de pré-inscription ?');">
+<form method="post" action="{{ path('app_pre_inscription_delete', {'id': pre_inscription.id}) }}" onsubmit="return confirm('Êtes-vous sûr.e de vouloir supprimer cette pré-inscription ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pre_inscription.id) }}">
-    <button class="btn btn-md btn-red">Supprimer</button>
+    <button class="btn bg-red text-clear p-3">Supprimer</button>
 </form>

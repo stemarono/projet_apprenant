@@ -192,3 +192,7 @@ a {
 @media all and (min-device-width: 1024px) {
 
 }
+/* Impressions */
+@media print {
+    
+}
