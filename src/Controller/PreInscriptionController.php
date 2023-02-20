@@ -100,7 +100,7 @@ class PreInscriptionController extends AbstractController
                $preInscription3->setCarteIdentite($autreDocFileName);
             }
 
-            return $this->redirectToRoute('app_espace_preInscription', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_espace_personnel_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pre_inscription/new_formJustif.html.twig', [
