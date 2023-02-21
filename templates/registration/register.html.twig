@@ -3,11 +3,11 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<section class="container">
-    <div class="row m-auto w-50">
-        <div class="col border border-1 border-color shadow bg-clear my-5 ">
-            <div class='my-4'>
-                <h1>Inscription</h1>
+<section class="container form bg-clear shadow my-5 w-50">
+    <div class="py-5 d-flex justify-content-center">
+        <div class="py-2 w-70">
+            <div class='my-3'>
+                <h1 class="text-center">S'inscrire</h1>
             </div>
             {{ form_start(registrationForm) }}
                 {{ form_row(registrationForm.nom) }}

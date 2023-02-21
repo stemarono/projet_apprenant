@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\InscriptionApprenant;
+use App\Entity\PreInscription;
 use Doctrine\ORM\EntityManagerInterface;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,21 @@ class PdfController extends AbstractController
        $html2pdf->writeHTML($html);
        $html2pdf->output($fichier, 'D');
     }
+
+     // fonction qui génère le pdf du dossier de pré-inscription
+     #[Route('/pre_inscription/{id}', name: 'app_pre_inscription_apprenant_pdf', methods: ['GET'])]
+     public function pdfPreInscrit(EntityManagerInterface $em, $id)
+     {
+        $pre_inscription = $em->getRepository(PreInscription::class)->find($id);
+ 
+        $html = $this->renderView('pdf/pre_inscription_pdf.html.twig', [
+         'pre_inscription' => $pre_inscription
+        ]);
+        $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+        $fichier = 'pre_inscription.pdf';
+        $html2pdf->writeHTML($html);
+        $html2pdf->output($fichier, 'D');
+     }
 
     // fonction qui génère le pdf du formulaire de préinscription
     #[Route('/preinscription', name: 'app_preinscription_pdf')]

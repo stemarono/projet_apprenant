@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inscription</title>
+        <style>
+            .title {
+                background-color: #3c8cd7;
+                padding: 20px;
+                margin: 20px;
+            }
+            h1 {
+                margin-bottom: 40px;
+                color: #f9f5f6;
+                font-size: larger;
+            }
+            .content {
+                padding: 20px;
+                margin-left: 80px;
+            }
+            p{
+                padding: 0px;
+                margin: 2px;
+            }
+            .flex {
+                display: flex;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">
+            <h1>Inscription</h1>
+        </div>
+        <div class="content">
+            <h3>Récapitulatif du dossier</h3>
+            <div class="flex">
+                <p><b>Nom :</b> {{ pre_inscription.nom }}</p>
+                <p><b>Prénom :</b> {{ pre_inscription.prenom }}</p>
+                <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</p>
+                <p><b>E-mail :</b> {{ pre_inscription.email }}</p>
+                <p><b>Téléphone :</b> {{ pre_inscription.telephone }}</p>
+                <p><b>N° de sécurité sociale :</b> {{ pre_inscription.nSs }}</p>
+                <p><b>Sexe :</b> {{ pre_inscription.sexe }}</p>
+                <p><b>Adresse :</b> {{ pre_inscription.adresse }}</p>
+                <p><b>Code postal :</b> {{ pre_inscription.codePostal }}</p>
+                <p><b>Ville :</b> {{ pre_inscription.ville }}</p>
+                <p><b>Région :</b> {{ pre_inscription.region }}</p>
+                <p><b>Pays :</b> {{ pre_inscription.pays }}</p>
+                <p><b>Carte d'identité :</b> {{ pre_inscription.carteIdentite }}</p>
+                <p><b>Justificatif de financement :</b> {{ pre_inscription.justifFinancement }}</p>
+                <p><b>Carte vitale :</b> {{ pre_inscription.carteVitale }}</p>
+                <p><b>Autre document :</b> {{ pre_inscription.autreDoc }}</p>
+                <p><b>Motivations :</b> <br> {{ pre_inscription.motivations }}</p>
+                <p><b>Financement :</b> <br> {{ pre_inscription.financement }}</p>
+            </div>
+        </div>
+    </body>
+</html>

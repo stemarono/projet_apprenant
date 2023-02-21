@@ -5,13 +5,13 @@
 {% block body %} 
 
 {# titre #}
-<div class="container p-5 my-5 bg-blueclear">
+<div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">Détails de l'inscription</h1>
 </div>
 
 {# Bouton retour #}
 <div class="container p-5 d-md-flex justify-content-md-start">
-  <button class="btn bg-green text-clear align-start">
+  <button class="btn bg-blue align-start">
     <a class="text-clear" href="javascript:history.back()">Retour</a>
   </button>
 </div>
@@ -67,10 +67,10 @@
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
         <button class="btn btn-md bg-green p-2 px-4 mx-5" type="button">
-          <a class="text-clear" href="">Télécharger</a>
+          <a class="text-clear" href="{{ path('app_inscription_apprenant_pdf', {id: inscription_apprenant.id}) }}">Télécharger</a>
         </button>
         <button class="btn bg-green">
-          <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+          <a class="text-clear" type="button" onclick="print_page()">Imprimer</a>
         </button>
         <button class="btn btn-md bg-blue p-2 px-4 mx-5" type="button">
           <a class="text-clear" href="{{ path('app_inscription_apprenant_edit', { id:inscription_apprenant.id})}}">Modifier</a>

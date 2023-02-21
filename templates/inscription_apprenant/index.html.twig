@@ -5,17 +5,20 @@
 {% block body %} 
 
 {# titre #}
-<div class="container p-5 my-5 bg-blueclear">
+<div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">Liste des inscriptions</h1>
 </div>
 
 {# boutons #}
 <div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-blue mx-5 align-start">
+		<a class="text-clear" href="javascript:history.back()">Retour</a>
+	</button>
   <button class="btn bg-green">
     <a class="text-clear" href="{{ path('app_inscription_apprenant_new') }}">Nouvelle inscription</a>
   </button>
-  <button class="btn bg-green">
-    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+  <button class="btn bg-blue">
+    <a class="text-clear" type="button" onclick="print_page()">Imprimer</a>
   </button>
 </div>
 

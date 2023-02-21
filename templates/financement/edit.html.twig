@@ -5,13 +5,13 @@
 {% block body %}
 
 {# titre #}
-<div class="container p-5 my-5 bg-blueclear">
+<div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">Modifier le mode de financement</h1>
 </div>
 
 {# Boutons retour et supprimer #}
 <div class="container d-md-flex justify-content-md-between">
-    <button class="btn bg-green text-clear m-5 align-end"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
+    <button class="btn bg-blue m-5 align-end"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
     {{ include('financement/_delete_form.html.twig') }}
 </div>
 

@@ -3,44 +3,40 @@
 {% block title %}Administrateur/ Utilisateur{% endblock %}
 
 {% block body %}
-<div class='text-center my-5 bg-blueclear p-5'>
-    <h1>Utilisateur</h1>
+
+{# titre #}
+<div class="container p-5 mt-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Utilisateur</h1>
 </div>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            
-        </tbody>
-    </table>
 
-    <div class="d-flex justify-content-around my-5">
-        <a  class="btn btn-md btn-blue" href="{{ path('app_user_index') }}">Revenir à la liste</a>
+{# Bouton retour #}
+<div class="container p-5 d-md-flex justify-content-md-start d-print-none">
+  <button class="btn bg-blue align-start">
+    <a class="text-clear" href="javascript:history.back()">Retour</a>
+  </button>
+</div>
 
-        <a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-
-        {{ include('user/_delete_form.html.twig') }}
+{# Carte #}
+<div class="container p-5 mb-5">
+    <div class="bg-clear shadow p-4">
+        <div class="card-body px-5">
+            <p><b>Id : </b> {{ user.id }}</p>
+            <p><b>Nom : </b> {{ user.nom }}</p>
+            <p><b>Prénom : </b> {{ user.prenom }}</p>
+            <p><b>E-mail : </b> {{ user.email }}</p>
+            <p><b>Rôle : </b> {{ user.roles ? user.roles|json_encode : '' }}</p>
+            <p><b>Mot de passe : </b>******</p>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2 d-print-none">
+            <button class="btn bg-green">
+                <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+            </button>
+            <button class="btn btn-md bg-blue p-2 px-4 mx-5" type="button">
+                <a class="text-clear" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+            </button>
+            {{ include("user/_delete_form.html.twig") }}
+        </div>
     </div>
+</div>
+
 {% endblock %}

@@ -1,55 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administrateur/ liste des Utilisateurs{% endblock %}
+{% block title %}Administrateur/ liste des Utilisateurs
+{% endblock %}
 
 {% block body %}
-    <div class="bg-blueclear p-5">
-        <h1>Liste des Utilisateurs</h1>
-    </div>
-    <div class="m-auto w-70">
-        <table class="table table-responsive m-5">
-            <thead>
-                <tr class="bg-blue text-light">
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Nom</th>
-                    <th class="text-center">Prenom</th>
-                    <th class="text-center">Email</th>
-                    <th class="text-center">Roles</th>
-                    <th class="text-center">Password</th>
 
-                    <th class='text-center'>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <td class="text-center">{{ user.id }}</td>
-                    <td class="text-center">{{ user.nom }}</td>
-                    <td class="text-center">{{ user.prenom }}</td>
-                    <td class="text-center">{{ user.email }}</td>
-                     {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
-                    <td>
-                        <select name="" id="" class="form-select w-100">
-                        {% for role in user.roles %}
-                            <option value="">{{role}}</option>
-                        {% endfor %}
-                    </td>
-                    
-                    <td class="text-center">******</td>
-                    <td class="d-flex justify-content-around">
-                        <a class="btn btn-md btn-blue" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
-                        <a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">aucun enregistrement trouvé</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center">
-        <a class="btn btn-md btn-blue m-5" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
-    </div>
+	{# titre #}
+	<div class="container p-5 my-5 bg-blueclear">
+		<h1 class="pt-2 pb-5 text-clear">Liste des utilisateurs</h1>
+	</div>
+
+	{# boutons #}
+	<div class="container d-flex justify-content-between py-5 d-print-none">
+	  	<button class="btn bg-blue align-start">
+    		<a class="text-clear" href="javascript:history.back()">Retour</a>
+  		</button>
+		<button class="btn bg-green">
+			<a class="text-clear" href="{{ path('app_user_new') }}">Nouvelle entrée</a>
+		</button>
+		<button class="btn bg-blue">
+			<a class="btn text-clear" type="button" onclick="print_page()">Imprimer</a>
+		</button>
+	</div>
+
+	{# table #}
+	<div class="d-flex justify-content-center mb-5">
+		<table class="table table responsive w-75">
+			<thead class="bg-blue text-clear">
+				<tr>
+					<th class="text-center">Id</th>
+					<th class="text-center">Nom</th>
+					<th class="text-center">Prenom</th>
+					<th class="text-center">Email</th>
+					<th class="text-center">Roles</th>
+					<th class="text-center">Password</th>
+					<th class='text-center'>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td class="text-center">{{ user.id }}</td>
+						<td class="text-center">{{ user.nom }}</td>
+						<td class="text-center">{{ user.prenom }}</td>
+						<td class="text-center">{{ user.email }}</td>
+						{# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+						<td>
+							<select name="" id="" class="form-select w-100">
+								{% for role in user.roles %}
+									<option value="">{{role}}</option>
+								{% endfor %}
+							</td>
+						</td>
+						<td class="text-center">******</td>
+						<td class="d-flex justify-content-around">
+							<a class="btn btn-md btn-blue" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+							<a class="btn btn-md btn-green" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">aucun enregistrement trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
 {% endblock %}

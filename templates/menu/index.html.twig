@@ -11,11 +11,14 @@
 
 {# boutons #}
 <div class="container d-flex justify-content-between py-5 d-print-none">
-  <button class="btn bg-blue">
+  <button class="btn bg-blue align-start">
+    <a class="text-clear" href="javascript:history.back()">Retour</a>
+  </button>
+  <button class="btn bg-green">
     <a class="text-clear" href="{{ path('app_menu_new') }}">Nouvelle entrée</a>
   </button>
- <button class="btn bg-green">
-    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+ <button class="btn bg-blue">
+    <a class="text-clear" type="button" onclick="print_page()">Imprimer</a>
  </button>
 </div>
 

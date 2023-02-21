@@ -3,39 +3,51 @@
 {% block title %}Administrateur/liste des Rôles{% endblock %}
 
 {% block body %}
-    <div class="bg-blueclear my-5 p-5">
-        <h1>liste des Rôles</h1>
-    </div>
 
-    <table class="table table-responsive m-auto w-70">
-        <thead>
-            <tr class="text-center bg-blue text-light">
-                <th class="text-center">Id</th>
-                <th class="text-center ps-5">Rang</th>
-                <th class="text-center">Libellé</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for role in roles %}
-            <tr>
-                <td class="text-center">{{ role.id }}</td>
-                <td class="text-center ps-5">{{ role.codeRole }}</td>
-                <td class="text-center">{{ role.libelle }}</td>
-                <td class="text-center">
-                    <a class="btn btn-md btn-green" href="{{ path('app_role_show', {'id': role.id}) }}">Afficher</a>
-                    <a class="btn btn-md btn-blue" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a>
-                   
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="text-center">
-        <a class="btn btn-md btn-blue my-5" href="{{ path('app_role_new') }}">Créer un nouveau rôle</a>
-    </div>
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des rôles</h1>
+</div>
+
+{# boutons #}
+<div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-blue">
+    <a class="text-clear" href="{{ path('app_role_new') }}">Nouveau rôle</a>
+  </button>
+ <button class="btn bg-green">
+    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+ </button>
+</div>
+
+{# table #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+      <tr>
+        <th>Id</th>
+        <th>Rang</th>
+        <th>Libelle</th>
+        <th class="text-center d-print-none">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for role in roles %}
+      <tr>
+        <td>{{ role.id }}</td>
+        <td>{{ role.codeRole }}</td>
+        <td>{{ role.libelle }}</td>
+        <td class="d-flex justify-content-center d-print-none">
+          <button class="btn bg-blue mx-3"><a class="text-clear" href="{{ path('app_role_edit', {'id': role.id}) }}">Modifier</a></button>
+         {{ include('role/_delete_form.html.twig') }}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="9">Aucune donnée trouvée</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}

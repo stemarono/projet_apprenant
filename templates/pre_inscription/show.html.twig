@@ -5,13 +5,13 @@
 {% block body %}
 
 {# titre #}
-<div class="container p-5 my-5 bg-blueclear">
+<div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">Détails de la pré-inscription</h1>
 </div>
 
 {# Bouton retour #}
-<div class="container p-5 d-md-flex justify-content-md-start">
-  <button class="btn bg-green text-clear align-start">
+<div class="container p-5 d-md-flex justify-content-md-start d-print-none">
+  <button class="btn bg-blue align-start">
     <a class="text-clear" href="javascript:history.back()">Retour</a>
   </button>
 </div>
@@ -23,7 +23,6 @@
             <h3 class="m-2">Récapitulatif du dossier</h3>
             <div class="d-flex justify-content-around py-4">
                 <div class="">
-                    <p><b>Id :</b> {{ pre_inscription.id }}</p>
                     <p><b>Nom :</b> {{ pre_inscription.nom }}</p>
                     <p><b>Prénom :</b> {{ pre_inscription.prenom }}</p>
                     <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</p>
@@ -47,12 +46,12 @@
             <div class="m-4">
                 <p><b>Motivations :</b> <br> {{ pre_inscription.motivations }}</p>
             </div>
-            <div class="m-4">
+            <div class="m-4 mb-5">
                 <p><b>Financement :</b> <br> {{ pre_inscription.financement }}</p>
             </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2 d-print-none">
                 <button class="btn btn-md bg-green p-2 px-4 mx-5" type="button">
-                    <a class="text-clear" href="">Télécharger</a>
+                    <a class="text-clear" href="{{ path('app_pre_inscription_apprenant_pdf', {id: pre_inscription.id}) }}">Télécharger</a>
                 </button>
                 <button class="btn bg-green">
                     <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>

@@ -86,7 +86,7 @@ class PreInscriptionType extends AbstractType
             ->add('financement', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control', 
-                    'placeholder' => 'Quels parcours et quel type de financement souhaitez-vous ? (500 caractères maximum)',
+                    'placeholder' => 'Quelle formation souhaitez-vous suivre ? Quel type de financement souhaitez-vous ? (500 caractères maximum)',
                     'rows' => '5'
                     ]
             ])
@@ -115,7 +115,7 @@ class PreInscriptionType extends AbstractType
                 'mapped'=>false,
                 'required'=> false,
             ])
-            ->add('save', SubmitType::class, [
+            ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn bg-green text-clear',
                     'data-bs-toggle' => 'modal',

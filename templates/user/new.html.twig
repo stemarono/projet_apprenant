@@ -3,13 +3,20 @@
 {% block title %}Administrateur/création d'un nouvel utilisateur{% endblock %}
 
 {% block body %}
-    <div class="bg-blueclear p-5">
-        <h1>Créer un nouvel utilisateur</h1>
-    </div>
-    <div class="m-5">
-        {{ include('user/_form.html.twig') }}
-    </div>
-    <div class="text-center">
-        <a class="btn btn-md btn-blue m-5" href="{{ path('app_user_index') }}">Revenir à la liste</a>
-    </div>
+
+{# titre #}
+<div class="container p-5 my-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Ajouter un utilisateur</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container">
+    <button class="btn bg-blue"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
+</div>
+
+{# Formulaire #}
+<div class="container mb-5">
+    {{ include('user/_form.html.twig') }}
+</div>
+
 {% endblock %}

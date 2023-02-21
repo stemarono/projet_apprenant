@@ -5,8 +5,13 @@
 {% block body %} 
 
 {# titre #}
-<div class="container p-5 my-5 bg-blueclear">
+<div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">{{ formation.titre }}</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container p-5">
+    <button class="btn bg-blue"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
 </div>
 
 {# contenu de la formation #}
@@ -39,11 +44,6 @@
     <p>{{ formation.parcours }}</p>
     <button class="btn bg-green"><a class="text-clear" href="{{ path('app_pre_inscription_new') }}">S'inscrire</a></button>
   </aside>
-</div>
-
-{# Bouton retour #}
-<div class="container p-5">
-    <button class="btn bg-blue"><a class="text-clear" href="javascript:history.back()">Retour</a></button>
 </div>
 
 {# Boutons modifiation / suppression #}
