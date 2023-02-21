@@ -23,7 +23,7 @@
                             <div class="d-flex my-5">
                                 <a href="{{path('app_espace_personnel_showFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-green ">Voir mon dossier</a>
                                 <a href="{{path('app_espace_personnel_editFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-blue ">Modifier</a>
-                                <a href="{{path('app_espace_personnel_deleteFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-red">Supprimer</a> 
+                                <a href="{{path('app_espace_personnel_deleteFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-red" id="deleteFolder">Supprimer</a> 
                             </div>
                            
                             
@@ -53,7 +53,7 @@
                             <p>Mot de passe : ******</p>
                         </div>
                         <div>
-                            <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{ path('app_user_edit', {'id': app.user.id}) }}">Modifier</a>
+                            <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{ path('app_user_editFolder', {'id': app.user.id}) }}">Modifier</a>
                         </div>
                     {# {% endfor %} #}
                         <div class="">
@@ -63,4 +63,38 @@
             </div>
 </div>
 
+{% endblock %}
+{% block javascript %}
+ <script> 
+
+var url_delete_folder= "{{path('app_espace_personnel_deleteFolder')}} ";
+
+$(function(){
+    $("#delete").value()
+deleteFolder();
+})
+
+function deleteFolder(id)
+{
+$.ajax({
+    url:url_delete_folder,
+    type:'POST',
+    data :{
+        id: id,
+        action:'delete',
+    }
+    success:function(response)
+    {
+        if(response==1)
+        {
+            alert("Votre dossier a été supprimé !");
+            document.getElementById(id).style.display="none";
+        }else if(response==0){
+            alert("votre dossier ne peut pas être supprimé")
+        }
+    }
+})
+}
+deleteFolder();
+</script>
 {% endblock %}

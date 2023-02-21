@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+
+    <div class="m-auto w-50 border border-1 border-color shadow bg-clear p-5">
+        <div class="row g-2">
+            {{ form_label(form.nom,'Nom :',{'label_attr':{'class':'mt-4'}}) }}
+            {{ form_widget(form.nom,{'attr':{'class':'form-control'}} )}}
+        </div>
+        <div class="row g-2">
+            {{ form_label(form.prenom,'Prénom :',{'label_attr':{'class':'mt-4'}}) }}
+            {{ form_widget(form.prenom,{'attr':{'class':'form-control'}} )}}
+        </div>
+        <div class="row g-2">
+
+           
+        </div>
+        <div class="row g-2">
+            {{ form_label(form.email,'Email :',{'label_attr':{'class':'mt-4'}}) }}
+            {{ form_widget(form.email,{'attr':{'class':'form-control'}} )}}
+        </div>
+        <div class="row g-2">
+            {{ form_label(form.password,'Mot de passe :',{'label_attr':{'class':'mt-4'}}) }}
+            {{ form_widget(form.password,{'attr':{'class':'form-control'}} )}}
+        </div>
+        
+        <div class="text-center m-4">
+            <button class="btn btn-md btn-green">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </div>
+
+{{ form_end(form) }}

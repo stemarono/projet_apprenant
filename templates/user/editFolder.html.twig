@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrateur/modifier vos informations personnelles{% endblock %}
+
+{% block body %}
+    <div class="bg-blueclear p-5 my-4">
+        <h1>Modifiez vos informations personnelles</h1>
+    </div>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <div class =" d-flex justify-content-around my-4">
+        <a  class="btn btn-md btn-blue" href="{{ path('app_espace_personnel_show') }}">Revenir à la liste</a>
+
+        {{ include('user/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
