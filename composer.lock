@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fad732de383a9dd012d181507f79ce2",
+    "content-hash": "596a1c7f29bd8581fc135341c0288777",
     "packages": [
         {
             "name": "craue/formflow-bundle",

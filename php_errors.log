@@ -1,0 +1,4 @@
+[21-Feb-2023 11:16:03 UTC] PHP Fatal error:  Uncaught LogicException: Symfony Runtime is missing. Try running "composer require symfony/runtime". in E:\Documents\Formation CDA 2022\Symfony\projets_symfony\projet_apprenant\bin\console:8
+Stack trace:
+#0 {main}
+  thrown in E:\Documents\Formation CDA 2022\Symfony\projets_symfony\projet_apprenant\bin\console on line 8
