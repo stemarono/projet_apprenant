@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230216094845 extends AbstractMigration
+final class Version20230220210024 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -31,6 +31,5 @@ final class Version20230216094845 extends AbstractMigration
         $this->addSql('ALTER TABLE menu DROP FOREIGN KEY FK_7D053A93D60322AC');
         $this->addSql('ALTER TABLE menu DROP FOREIGN KEY FK_7D053A93727ACA70');
         $this->addSql('DROP TABLE menu');
-        $this->addSql('ALTER TABLE pre_inscription DROP FOREIGN KEY FK_B2AA45A9A76ED395');
     }
 }
