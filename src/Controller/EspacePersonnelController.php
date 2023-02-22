@@ -101,7 +101,7 @@ class EspacePersonnelController extends AbstractController
          {
             $em->remove($preInscription);
              $em->flush();  
-             return $this->render('pre_inscription/_delete_form.html.twig');
+             return $this->render('espace_personnel/Espace_preinscription.html.twig');
              
          }
          return $this->redirectToRoute('app_espace_personnel');

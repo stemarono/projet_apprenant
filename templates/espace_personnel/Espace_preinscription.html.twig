@@ -3,6 +3,20 @@
 {% block title %}Votre Espace personnel{% endblock %}
 
 {% block body %}
+ <div id="overlay" class="overlay">
+        <div id="popup" class="popup">
+            <h3 class="text-center"> {{app.user.prenom}}, êtes-vous sûre de vouloir supprimer votre dossier?</h3>
+            <div class="text-center">
+            <button id="btnClose" class="btnClose ">confirmer</button>
+            <a href="{{path('app_espace_personnel')}}">annuler</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-blueclear p-5 my-4">
+        <h1>Modifiez vos informations personnelles</h1>
+    </div>
+
 <class="container-fluid ">
         <div class="bg-personnal bg-blueclear p-5 mt-5 ">
             <h4><span class="text-capitalize">espace</span> personnel</h4>
@@ -23,7 +37,7 @@
                             <div class="d-flex my-5">
                                 <a href="{{path('app_espace_personnel_showFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-green ">Voir mon dossier</a>
                                 <a href="{{path('app_espace_personnel_editFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-blue ">Modifier</a>
-                                {# <a href="{{path('app_espace_personnel_deleteFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-red" id="deleteFolder">Supprimer</a>  #}
+                                <a href="{{path('app_espace_personnel_deleteFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-red" id="deleteFolder">Supprimer</a>  
                             </div>
                            
                             
@@ -31,6 +45,7 @@
                         <div class=" d-flex flex-row justify-content-around mb-5">
                             <a class="text-decoration-none btn btn-md btn-green" href="{{path('app_formation_index')}}">Découvrir les formations</a>
                             <a class="text-decoration-none btn btn-md btn-green" href="{{path('app_pre_inscription_new')}}">Se pré-inscrire</a>
+                            <a class ="text-decoration-none btn btn-md btn-blue" href="{{path('app_espace_personnel')}}">Revenir à la page précédente</a>
                         </div>
                 </div>
                 <div class=" border-2 border-start border-success my-5"></div>
@@ -80,7 +95,7 @@ $.ajax({
     url:url_delete_folder,
     type:'POST',
     data :{
-        id: id,
+        id: preInscription.id,
         action:'delete',
     }
     success:function(response)
