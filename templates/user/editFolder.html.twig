@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Personnel/modifiez vos informations personnelles{% endblock %}
+
+{% block body %}
+    {# pour le popup #}
+    <div id="overlay" class="overlay">
+        <div id="popup" class="popup">
+            <h3 class="text-center"> {{app.user.prenom}}, vos données personnelles ont bien été modifiées !</h3>
+            <div class="text-center">
+            <button id="btnClose" class="btnClose ">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-blueclear p-5 my-4">
+        <h1>Modifiez vos informations personnelles</h1>
+    </div>
+
+    
+
+
+    {{ include('user/_form_editFolder.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <div class =" d-flex justify-content-around my-4">
+        <a  class="btn btn-md btn-blue" href="{{ path('app_espace_personnel_show') }}">Revenir à votre espace personnel</a>
+
+        {{ include('user/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
+

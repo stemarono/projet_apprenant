@@ -39,8 +39,8 @@ class UserType extends AbstractType
 
             ])
             ->add('password',PasswordType::class,[
-                'mapped'=>false,
-                'required'=>false,
+                'mapped'=>true,
+                'required'=>true,
                 'label'=>'mot de passe :',
                 
             ])

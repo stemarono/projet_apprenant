@@ -102,6 +102,38 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/editFolder', name: 'app_user_editFolder', methods: ['GET', 'POST'])]
+    public function editFolder(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,$id=0,UserPasswordHasherInterface $passwordHasher): Response
+    {
+       if($id)
+       {
+        $user=$em->getRepository(User::class)->find($id);
+       }else{
+        $user =new User;
+       }
+       
+               
+        $form = $this->createForm(UserType::class, $user);   
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $passwd=$form->get('password')->getData();
+            if($passwd){
+                $password =$passwordHasher->hashPassword($user,$passwd);
+                $user->setPassword($password);
+            }
+            $userRepository->save($user, true);
+            return $this->redirectToRoute('app_espace_personnel_show', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('user/editFolder.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+   
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
