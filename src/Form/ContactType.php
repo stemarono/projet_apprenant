@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -58,7 +59,8 @@ class ContactType extends AbstractType
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
-                            'application/pdf'
+                            'application/pdf',
+                            'application/x-pdf,'
                         ],
                         'mimeTypesMessage' => 'Choisir un fichier au format pdf'
                     ])
@@ -75,7 +77,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Contact::class,
         ]);
     }
 }
