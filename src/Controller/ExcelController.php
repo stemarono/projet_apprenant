@@ -5,11 +5,10 @@ namespace App\Controller;
 use App\Entity\InscriptionApprenant;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/excel')]
@@ -22,24 +21,73 @@ class ExcelController extends AbstractController
         return $this->render('excel/index.html.twig');
     }
 
-    // fonction qui génère le pdf du tableau des inscrits
+    // fonction qui génère le fichier excel du tableau des inscrits
     #[Route('/inscription', name: 'app_inscription_excel', methods: ['GET'])]
     public function excelInscrit(EntityManagerInterface $em)
     {
-        $inscriptions = $em->getRepository(InscriptionApprenant::class)->findAll();
-        
-        // trouver le code pour convertir le fichier excel/inscriptions_excel.html.twig
-        // en inscriptions.xls
-
-        // $spreadsheet = new Spreadsheet();
-        // $sheet = $spreadsheet->getActiveSheet();
-        // $sheet->setCellValue('A1', 'Hello World !');
-        // $writer = new Xlsx($spreadsheet);
-        // $writer->save('hello world.xlsx');
-
-        return $this->renderView('excel/inscriptions_excel.html.twig', [
-            'writer' => $writer,
-            'inscriptions' => $inscriptions
-        ]);
+        // ne génère pas les données de la table
+        $spreadsheet=new Spreadsheet();
+        $sheet=$spreadsheet->getActiveSheet();
+        $inscriptions=$em->getRepository(InscriptionApprenant::class)->findAll();
+        $row=1;
+        $sheet->setCellValue("A$row","Identifiant");
+        $sheet->setCellValue("B$row","Nom");
+        $sheet->setCellValue("C$row","Prénom");
+        $sheet->setCellValue("D$row","Date de naissance");
+        $sheet->setCellValue("E$row","Sexe");
+        $sheet->setCellValue("F$row","Adresse");
+        $sheet->setCellValue("G$row","Code postal");
+        $sheet->setCellValue("H$row","Ville");
+        $sheet->setCellValue("I$row","Région");
+        $sheet->setCellValue("J$row","Pays");
+        $sheet->setCellValue("K$row","Téléphone");
+        $sheet->setCellValue("L$row","E-mail");
+        $sheet->setCellValue("M$row","Numéro de sécu");
+        $sheet->setCellValue("N$row","Date d'inscription");
+        $sheet->setCellValue("O$row","Montant");
+        $sheet->setCellValue("P$row","Nombre d'échéances");        
+        $row=2;
+        foreach($inscriptions as $inscription){
+            $identifiant = $inscription->getIdentifiant();
+            $nom = $inscription->getNom();
+            $prenom = $inscription->getPrenom();
+            $dateNaissance = $inscription->getDateNaissance();
+            $sexe = $inscription->getSexe();
+            $adresse = $inscription->getAdresse();
+            $codePostal = $inscription->getCodePostal();
+            $ville = $inscription->getVille();
+            $region = $inscription->getRegion();
+            $pays = $inscription->getPays();
+            $telephone = $inscription->getTelephone();
+            $email = $inscription->getEmail();
+            $numSecu = $inscription->getNumSecu();
+            $dateInscription = $inscription->getDateInscription();
+            $montant = $inscription->getMontant();
+            $nbEcheance = $inscription->getNbEcheance();
+            $sheet->setCellValue("A$row",$identifiant);
+            $sheet->setCellValue("B$row",$nom);
+            $sheet->setCellValue("C$row",$prenom);
+            $sheet->setCellValue("D$row",$dateNaissance);
+            $sheet->setCellValue("A$row",$sexe);
+            $sheet->setCellValue("B$row",$adresse);
+            $sheet->setCellValue("C$row",$codePostal);
+            $sheet->setCellValue("D$row",$ville);
+            $sheet->setCellValue("A$row",$region);
+            $sheet->setCellValue("B$row",$pays);
+            $sheet->setCellValue("C$row",$telephone);
+            $sheet->setCellValue("D$row",$email);
+            $sheet->setCellValue("A$row",$numSecu);
+            $sheet->setCellValue("B$row",$dateInscription);
+            $sheet->setCellValue("C$row",$montant);
+            $sheet->setCellValue("D$row",$nbEcheance);
+            $row++;
+        }
+        $sheet->setTitle('Inscription');
+        $writer=new Xlsx($spreadsheet);
+        $uniqueid=uniqid();
+        $filename="Export_Inscription_$uniqueid.xlsx";
+        $temp_file=tempnam(sys_get_temp_dir(),$filename);
+        $writer->save($temp_file);
+        return $this->file($temp_file,$filename,ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

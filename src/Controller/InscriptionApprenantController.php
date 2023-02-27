@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\InscriptionApprenant;
 use App\Form\InscriptionApprenantType;
 use App\Repository\InscriptionApprenantRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -75,4 +77,32 @@ class InscriptionApprenantController extends AbstractController
 
         return $this->redirectToRoute('app_inscription_apprenant_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/data', name: 'app_product_data')]
+    public function data(EntityManagerInterface $em,Request $request)
+    {
+        $mot=$request->get('mot');//$mot =$_POST['mot'] on peut mettre $mot=$_POST['mot'] mais cela n'est pas aussi sécurisé que le $request->get('mot')
+        $mot=($mot=='')?'0':$mot;
+        $products=$em->getRepository(InscriptionApprenant::class)->findMot($mot);
+        
+        // la partie en dessous apparaît maintenant dans listPorduct.html.twig
+
+        //var_dump($products);die;
+        //json n'aime les objets, il veut un tableau donc on va créer un tableau
+        // $data=[];
+        // foreach($products as $product)
+        // {
+        //    $data[]=[
+        //     'id'=>$product->getId(),
+        //     'code'=>$product->getCode(),
+        //     'designation'=>$product->getDesignation(),
+        //     'pu'=>$product->getPrixUnitaire(),
+        //     'pr'=>$product->getPrixUnitaire()/2,
+        //    ];
+        // }
+        return new JsonResponse($products);
+          
+           
+    }
+
 }

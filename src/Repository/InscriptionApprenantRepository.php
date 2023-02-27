@@ -39,6 +39,27 @@ class InscriptionApprenantRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAll()
+    {
+        $queryBuilder=$this->createQueryBuilder('p');// p est un alias c'est l'équivalent de product as p
+        $queryBuilder->orderBy("p.nom","asc");
+        return $queryBuilder->getQuery()->getResult();//$queryBuilder->getQuery()->getArrayResult();
+        
+    }
+
+    public function findMot($mot)
+    {
+        //$queryBuilder = $qb
+        $qb=$this->createQueryBuilder('p'); 
+        if($mot!='0'){
+            $qb->where("p.nom like :mot or p.prenom like :mot");
+            $qb->setParameter('mot',"%$mot%");
+            
+        }
+        $qb->orderBy("p.nom","asc");
+            return $qb->getQuery()->getArrayResult(); // avoir un tableau au lieu d'un objet, getArrayResult remplace le foreach 
+    }
+
 //    /**
 //     * @return InscriptionApprenant[] Returns an array of InscriptionApprenant objects
 //     */
