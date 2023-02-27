@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ContactType extends AbstractType
 {
@@ -42,7 +43,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'Objet'
                 ] 
             ])
-            ->add('message', TextareaType::class, [
+            ->add('message', CKEditorType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Message',
