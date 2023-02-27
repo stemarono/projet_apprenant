@@ -180,7 +180,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     public function __toString(){
-        return $this->preInscriptions;
+        return $this->nom;
     }
 
   

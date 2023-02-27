@@ -26,15 +26,38 @@ class PreInscriptionController extends AbstractController
     }
 
     #[Route('/new', name: 'app_pre_inscription_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, PreInscriptionRepository $preInscriptionRepository): Response
+    public function new(Request $request, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
     {
         $preInscription = new PreInscription();
         $form = $this->createForm(PreInscriptionType::class, $preInscription);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $preInscriptionRepository->save($preInscription, true);
+           
+            $carteIdentiteFile=$form->get('carteIdentite')->getData();
+            if($carteIdentiteFile){
+               $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
+               $preInscription->setCarteIdentite($carteIdentiteFileName);
+            }
 
+            $justifFinancementFile=$form->get('justifFinancement')->getData();
+            if($justifFinancementFile){
+               $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
+               $preInscription->setCarteIdentite($justifFinancementFileName);
+            }
+
+            $carteVitaleFile=$form->get('carteVitale')->getData();
+            if($carteVitaleFile){
+               $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
+               $preInscription->setCarteIdentite($carteVitaleFileName);
+            }
+
+            $autreDocFile=$form->get('autreDoc')->getData();
+            if($autreDocFile){
+               $autreDocFileName= $fileUploader->upload($autreDocFile);
+               $preInscription->setCarteIdentite($autreDocFileName);
+            }
+            $preInscriptionRepository->save($preInscription, true);
             return $this->redirectToRoute('app_espace_personnel', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -126,12 +149,35 @@ class PreInscriptionController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'app_pre_inscription_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository): Response
+    public function edit(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
     {
         $form = $this->createForm(PreInscriptionType::class, $preInscription);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $carteIdentiteFile=$form->get('carteIdentite')->getData();
+            if($carteIdentiteFile){
+               $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
+               $preInscription->setCarteIdentite($carteIdentiteFileName);
+            }
+
+            $justifFinancementFile=$form->get('justifFinancement')->getData();
+            if($justifFinancementFile){
+               $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
+               $preInscription->setCarteIdentite($justifFinancementFileName);
+            }
+
+            $carteVitaleFile=$form->get('carteVitale')->getData();
+            if($carteVitaleFile){
+               $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
+               $preInscription->setCarteIdentite($carteVitaleFileName);
+            }
+
+            $autreDocFile=$form->get('autreDoc')->getData();
+            if($autreDocFile){
+               $autreDocFileName= $fileUploader->upload($autreDocFile);
+               $preInscription->setCarteIdentite($autreDocFileName);
+            }
             $preInscriptionRepository->save($preInscription, true);
 
             return $this->redirectToRoute('app_pre_inscription_index', [], Response::HTTP_SEE_OTHER);
