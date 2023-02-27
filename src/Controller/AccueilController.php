@@ -42,21 +42,21 @@ class AccueilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // gestion du téléchargement du fichier
-            /** @var UploadedFile $file */
-            $file = $form->get('fichier')->getData();
+            /** @var UploadedFile $fichierContenu */
+            $fichierContenu = $form->get('fichier')->getData();
 
             // condition obligatoire car 'fichier' n'est pas required
-            if ($file) {
-                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            if ($fichierContenu) {
+                $fichiernomOriginal = pathinfo($fichierContenu->getClientOriginalName(), PATHINFO_FILENAME);
                 // inclusion sécurisée du nom du fichier dans l'url
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $fichiernomSur = $slugger->slug($fichiernomOriginal);
+                $fichiernomNouveau = $fichiernomSur.'-'.uniqid().'.'.$fichierContenu->guessExtension();
 
                 // déplacement du fichier dans le dossier assets\contactFiles
                 try {
-                    $file->move(
+                    $fichierContenu->move(
                         $this->getParameter('fichiers_directory'),
-                        $newFilename
+                        $fichiernomNouveau
                     );
                 } catch (FileException $e) {
                     // on invoque le message flash d'erreur'
@@ -65,7 +65,7 @@ class AccueilController extends AbstractController
 
                 // mettre à jour les propriétés de 'filename' pour stocker le nom du fichier pdf
                 // à la place de son contenu
-                $contact->setFilename($newFilename);
+                $contact->setFilename($fichiernomNouveau);
             }
 
             $email = (new TemplatedEmail())
@@ -83,12 +83,12 @@ class AccueilController extends AbstractController
 
             // on envoie l'email
             $mailer->send($email);
-            
-            // on invoque le message flash de confirmation
-            $this->addFlash('message', 'Votre e-mail a bien été envoyé');
 
             // on redirige vers la page elle-même
             return $this->redirectToRoute('app_accueil');
+
+            // on invoque le message flash de confirmation
+            $this->addFlash('message', 'Votre e-mail a bien été envoyé');
             
         }
 

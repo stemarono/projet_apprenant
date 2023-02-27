@@ -29,7 +29,10 @@ class Contact
     private ?string $message = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $fichier = null;
+    private ?string $fichier = null;  
+    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fichiernom = null;
 
     #[ORM\Column(type: 'string')]
     private $filename;
@@ -107,6 +110,18 @@ class Contact
     public function setFichier(?string $fichier): self
     {
         $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    public function getFichiernom(): ?string
+    {
+        return $this->fichiernom;
+    }
+
+    public function setFichiernom(?string $fichiernom): self
+    {
+        $this->fichiernom = $fichiernom;
 
         return $this;
     }
