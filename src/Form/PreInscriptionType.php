@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\PreInscription;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,13 +17,22 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class PreInscriptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom',TextType::class,[
+            // ->add('user',EntityType::class,[
+            //     'class'=>User::class,
+            //     'attr' => ['class' => 'form-control', 'placeholder' => 'Login'],
+            //     'placeholder'=>'Login',
+            //     'required'=>false,
+            // ])
+            
+            ->add('nom',EntityType::class,[
+                'class'=>User::class,
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Nom']
             ])
             ->add('prenom',TextType::class,[
@@ -91,29 +102,69 @@ class PreInscriptionType extends AbstractType
                     ]
             ])
             ->add('carteIdentite', FileType::class,[
-                'attr' => ['class' => 'form-control'],
                 'label'=>'Carte d\'identité :',
                 'mapped'=>false,
                 'required'=>false,
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>[
+                    new File([
+                        'maxSize'=> '1024k',
+                        'mimeTypes'=>[
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    ])
+                    ],
             ])
             ->add('justifFinancement', FileType::class, [
-                'attr' => ['class' => 'form-control'],
                 'label'=>' Justificatifs de financement :',
                 'mapped'=>false,
                 'required'=>false,
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>[
+                    new File([
+                        'maxSize'=> '1024k',
+                        'mimeTypes'=>[
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    ])
+                    ],
             ])
             ->add('carteVitale', FileType::class, [
-                'attr' => ['class' => 'form-control'],
                 'label'=>'attestation de la carte Vitale :',
                 'mapped'=>false,
                 'required'=>false,
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>[
+                    new File([
+                        'maxSize'=> '1024k',
+                        'mimeTypes'=>[
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    ])
+                    ],
 
             ])
             ->add('autreDoc', FileType::class, [
-                'attr' => ['class' => 'form-control'],
                 'label'=>'Autre Document :',
                 'mapped'=>false,
                 'required'=> false,
+                'attr' => ['class' => 'form-control'],
+                'constraints'=>[
+                    new File([
+                        'maxSize'=> '1024k',
+                        'mimeTypes'=>[
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    ])
+                    ],
             ])
             ->add('valider', SubmitType::class, [
                 'attr' => [

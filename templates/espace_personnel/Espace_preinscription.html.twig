@@ -37,12 +37,10 @@
                             <div class="d-flex my-5">
                                 <a href="{{path('app_espace_personnel_showFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-green ">Voir mon dossier</a>
                                 <a href="{{path('app_espace_personnel_editFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-blue ">Modifier</a>
-                                <a href="{{path('app_espace_personnel_deleteFolder')}}" class="mx-5 text-decoration-none btn btn-md btn-red" id="deleteFolder">Supprimer</a>  
-                            </div>
-                           
-                            
+                                <a href="javascript:supprimer()" class="mx-5 text-decoration-none btn btn-md btn-red">Supprimer</a>   
+                            </div> 
                         </div>
-                        <div class=" d-flex flex-row justify-content-around mb-5">
+                        <div class="d-flex justify-content-around mb-5">
                             <a class="text-decoration-none btn btn-md btn-green" href="{{path('app_formation_index')}}">Découvrir les formations</a>
                             <a class="text-decoration-none btn btn-md btn-green" href="{{path('app_pre_inscription_new')}}">Se pré-inscrire</a>
                             <a class ="text-decoration-none btn btn-md btn-blue" href="{{path('app_espace_personnel')}}">Revenir à la page précédente</a>
@@ -54,7 +52,6 @@
                         <div class="my-5">
                             <h4>Informations personnelles</h4>
                         </div>
-                        {# {% for user in users %} #}
                         <div class="ms-5">
                             <p>Nom : {{app.user.nom}}</p>
                         </div>
@@ -70,46 +67,43 @@
                         <div>
                             <a class="btn btn-md btn-green text-light mt-5 ms-5" href="{{ path('app_user_editFolder', {'id': app.user.id}) }}">Modifier</a>
                         </div>
-                    {# {% endfor %} #}
+                   
                         <div class="">
                             <a href="{{ path('app_contact')}}" class="btn btn-md btn-green text-light my-5 ms-5">Nous contacter</a>
                         </div>
                 </div>
             </div>
 </div>
+<script> 
 
-{% endblock %}
-{% block javascript %}
- <script> 
-
-var url_delete_folder= "{{path('app_espace_personnel_deleteFolder')}} ";
+// var url_delete_folder= "{{path('app_espace_personnel_deleteFolder')}}"
+var url_delete="{{path('app_espace_personnel_deleteFolder')}}";
 
 $(function(){
-    $("#delete").value()
-deleteFolder();
+  
 })
-
-function deleteFolder(id)
+function supprimer()
 {
-$.ajax({
-    url:url_delete_folder,
-    type:'POST',
-    data :{
-        id: preInscription.id,
-        action:'delete',
+    if(confirm ('{{app.user.prenom}}, Êtes-vous sûr(e) de vouloir supprimer votre dossier de pré-inscription ? ')){
+       
+       $.ajax({
+        type:"POST",
+        url: url_delete,
+        data:{
+          
+        },
+        beforeSend: function(){
+
+        },
+
+        success:function(response){
+            alert(response);
+        },
+        error: function(){
+            alert('il existe une erreur');
+        },
+       })
     }
-    success:function(response)
-    {
-        if(response==1)
-        {
-            alert("Votre dossier a été supprimé !");
-            document.getElementById(id).style.display="none";
-        }else if(response==0){
-            alert("votre dossier ne peut pas être supprimé")
-        }
-    }
-})
 }
-deleteFolder();
 </script>
 {% endblock %}

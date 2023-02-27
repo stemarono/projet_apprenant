@@ -45,6 +45,7 @@
         <th>Autre document</th>
         <th>Numéro de sécu</th>
         <th>Téléphone</th>
+         <th>User</th>
         <th class="d-print-none">Actions</th>
       </tr>
     </thead>
@@ -70,6 +71,7 @@
         <td>{{ pre_inscription.autreDoc }}</td>
         <td>{{ pre_inscription.nSs }}</td>
         <td>{{ pre_inscription.telephone }}</td>
+        <td>{{ pre_inscription.User }}</td>
         <td class="d-print-none">
           <button class="btn bg-green">
             <a class="text-clear" href="{{ path('app_pre_inscription_show', { id: pre_inscription.id }) }}">Détails</a>

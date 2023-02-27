@@ -40,7 +40,6 @@ class PreInscription
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $pays = null;
-
    
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $email = null;
@@ -310,6 +309,9 @@ class PreInscription
         return $this;
     }
 
+ public function __toString(){
+        return $this->id;
+    }
    
 
    

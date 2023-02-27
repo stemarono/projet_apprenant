@@ -9,6 +9,8 @@ use App\Repository\PreInscriptionRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,8 +56,9 @@ class EspacePersonnelController extends AbstractController
     }
 
     #[Route('/espace/personnel/editFolder', name: 'app_espace_personnel_editFolder')]
-    public function editFolder(EntityManagerInterface $em,Request $request,PreInscription $preInscription=null): Response
+    public function editFolder(EntityManagerInterface $em,Request $request,PreInscription $preInscription=null,UserPasswordHasherInterface $passwordHasher): Response
     {
+        
         $user=$this->getUser();
         $preInscription= $em->getRepository(PreInscription::class)->findOneBy(['user'=>$user]);
         
@@ -64,7 +67,7 @@ class EspacePersonnelController extends AbstractController
         
        if($form->isSubmitted() && $form->isValid())
        {
-        
+       
         $em->persist($preInscription);
         $em->flush();
        
@@ -72,41 +75,53 @@ class EspacePersonnelController extends AbstractController
        }
 
       
-        return $this->renderForm('pre_inscription/editFolder.html.twig', [
-          
+        return $this->renderForm('pre_inscription/edit.html.twig', [
+           
           'pre_inscription'=>$preInscription,
           'form'=>$form,
         ]);
     }
 
 
-    // #[Route('/espace/personnel/delete/{id}', name: 'app_espace_personnel_delete', methods: ['POST'])]
-    // public function delete(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$preInscription->getId(), $request->request->get('_token'))) {
-    //         $preInscriptionRepository->remove($preInscription, true);
-    //     }
-
-    //     return $this->redirectToRoute('app_espace_personnel', [], Response::HTTP_SEE_OTHER);
-    // }
-
+    
 
     #[Route('/espace/personnel/deleteFolder', name: 'app_espace_personnel_deleteFolder')]
-    public function deleteFolder(EntityManagerInterface $em,Request $request,PreInscriptionRepository $preInscriptionRepository): Response
+    public function deleteFolder(EntityManagerInterface $em): Response
     {
         $user=$this->getUser();
-        $preInscription= $em->getRepository(PreInscription::class)->findOneBy(['user'=>$user]);
+        $preInscription= $em->getRepository(PreInscription::class)->findOneBy(['user'=>$user],['id'=>'desc']);// 'id'=>'desc' permet de supprimer un dossier de pré-inscription 
+        //et pas l'ensemble de ses demande de pré-inscriptions
       
         if($preInscription)
          {
+            // $prenom=$preInscription->getPrenom();
             $em->remove($preInscription);
-             $em->flush();  
-             return $this->render('espace_personnel/Espace_preinscription.html.twig');
+            $em->flush();  
+           
              
          }
-         return $this->redirectToRoute('app_espace_personnel');
-        
+         return new JsonResponse(" Vous venez de supprimer votre dossier de pré-inscription");
     }
 
+    
+    #[Route('/espace/personnel/supprimer', name: 'app_blabla')]
+    public function supprimer(EntityManagerInterface $em,Request $request)
+    {
+        $user=$this->getUser();
+        $preInscription= $em->getRepository(PreInscription::class)->findOneBy(['user'=>$user],['id'=>'desc']);
+      $ville=$request->request->get('ville');
+        if($preInscription)
+         {
+            $nom=$preInscription->getNom(); //pour récupérer le nom
+            $em->remove($preInscription);
+            $em->flush();  
+           
+             
+         }else{
+
+            $nom='inconnu';
+         }
+        return new JsonResponse("Vous avez bien supprimer la pré-inscription de $nom qui habite à $ville");
+    }
 
 }

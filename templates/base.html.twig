@@ -149,6 +149,9 @@
 					</div>
 				</div>
 				<div>
+					<h4 class="text-clear">Bonjour {{app.user.prenom}} {{app.user.nom}}</h4>
+				</div>
+				<div>
 					<div>
 					{# lien login #}
 					{# version desktop #}
@@ -172,8 +175,12 @@
 						</ul>
 					</div>
 					{# version mobile #}
+					<div>
+						<h4 class="text-clear">Bonjour {{app.user.prenom}} {{app.user.nom}}</h4>
+					</div>
 					<div class="mobile mx-4 text-center">
 						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
+					
 						<ul class="navbar-nav">
 							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
 							<li class="nav-item">

@@ -21,6 +21,10 @@
             {{ form_label(form.password,'Mot de passe :',{'label_attr':{'class':'mt-4'}}) }}
             {{ form_widget(form.password,{'attr':{'class':'form-control'}} )}}
         </div>
+        <div class="row g-2 d-none">
+            {{ form_label(form.roles,'Roles :',{'label_attr':{'class':'mt-4'}}) }}
+            {{ form_widget(form.roles,{'attr':{'class':'form-control'}} )}}
+        </div>
         
         <div class="text-center m-4">
             <button id="btn" class="btn btn-md btn-green">{{ button_label|default('Enregistrer') }}</button>
