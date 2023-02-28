@@ -101,7 +101,6 @@ class PreInscriptionType extends AbstractType
                     'rows' => '5'
                     ]
             ])
-<<<<<<< HEAD
             ->add('carteIdentite', FileType::class, [
                 'label' => 'carte d\'identité : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
@@ -109,14 +108,6 @@ class PreInscriptionType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-=======
-            ->add('carteIdentite', FileType::class,[
-                'label'=>'Carte d\'identité :',
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
->>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -128,20 +119,12 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('justifFinancement', FileType::class, [
-<<<<<<< HEAD
                 'label' => 'justificatif de financement : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-=======
-                'label'=>' Justificatifs de financement :',
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
->>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -153,20 +136,12 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('carteVitale', FileType::class, [
-<<<<<<< HEAD
                 'label' => 'attestation de carte vitale : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-=======
-                'label'=>'attestation de la carte Vitale :',
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
->>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -178,20 +153,12 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('autreDoc', FileType::class, [
-<<<<<<< HEAD
                 'label' => 'autre document : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-=======
-                'label'=>'Autre Document :',
-                'mapped'=>false,
-                'required'=> false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
->>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [

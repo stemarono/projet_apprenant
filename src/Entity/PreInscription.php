@@ -83,16 +83,6 @@ class PreInscription
     #[ORM\ManyToOne(inversedBy: 'preInscriptions')]
     private ?User $user = null;
 
-<<<<<<< HEAD
-=======
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $filename = null;
-
-   
-
-   
-
->>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
     public function getId(): ?int
     {
         return $this->id;
@@ -373,21 +363,7 @@ class PreInscription
         $this->user = $user;
 
         return $this;
-    }
-
- 
-    public function getFilename(): ?string
-    {
-        return $this->filename;
-    }
-
-    public function setFilename(?string $filename): self
-    {
-        $this->filename = $filename;
-
-        return $this;
-    }
-   
+    }  
 
     public function __toString(){
         return $this->id;
