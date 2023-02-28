@@ -108,13 +108,13 @@ class PreInscriptionType extends AbstractType
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
                 'constraints'=>[
-                    new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
-                            'application/pdf',
-                        ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
-                    ])
+                    // new File([
+                    //     'maxSize'=> '1024k',
+                    //     'mimeTypes'=>[
+                    //         'application/pdf',
+                    //     ],
+                    //     'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    // ])
                     ],
             ])
             ->add('justifFinancement', FileType::class, [
@@ -124,13 +124,13 @@ class PreInscriptionType extends AbstractType
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
                 'constraints'=>[
-                    new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
-                            'application/pdf',
-                        ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
-                    ])
+                    // new File([
+                    //     'maxSize'=> '1024k',
+                    //     'mimeTypes'=>[
+                    //         'application/pdf',
+                    //     ],
+                    //     'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    // ])
                     ],
             ])
             ->add('carteVitale', FileType::class, [
@@ -140,13 +140,13 @@ class PreInscriptionType extends AbstractType
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
                 'constraints'=>[
-                    new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
-                            'application/pdf',
-                        ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
-                    ])
+                    // new File([
+                    //     'maxSize'=> '1024k',
+                    //     'mimeTypes'=>[
+                    //         'application/pdf',
+                    //     ],
+                    //     'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    // ])
                     ],
 
             ])
@@ -157,13 +157,13 @@ class PreInscriptionType extends AbstractType
                 'required'=> false,
                 'attr' => ['class' => 'form-control'],
                 'constraints'=>[
-                    new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
-                            'application/pdf',
-                        ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
-                    ])
+                    // new File([
+                    //     'maxSize'=> '1024k',
+                    //     'mimeTypes'=>[
+                    //         'application/pdf',
+                    //     ],
+                    //     'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                    // ])
                     ],
             ])
             ->add('valider', SubmitType::class, [
