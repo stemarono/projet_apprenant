@@ -33,30 +33,38 @@ class PreInscriptionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           
-            $carteIdentiteFile=$form->get('carteIdentite')->getData();
-            if($carteIdentiteFile){
-               $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
-               $preInscription->setCarteIdentite($carteIdentiteFileName);
+           $file=$form->get('carteIdentite')->getData();
+           if($file){
+            $fichier=$file->getClientOriginalName();
+            $dossier='../public/assets/uploads';
+            $move=$file->move($dossier,$fichier);
+            if($move){
+                $preInscription->setCarteIdentite($fichier);
             }
+           }
+            // $carteIdentiteFile=$form->get('carteIdentite')->getData();
+            // if($carteIdentiteFile){
+            //    $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
+            //    $preInscription->setCarteIdentite($carteIdentiteFileName);
+            // }
 
-            $justifFinancementFile=$form->get('justifFinancement')->getData();
-            if($justifFinancementFile){
-               $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
-               $preInscription->setCarteIdentite($justifFinancementFileName);
-            }
+            // $justifFinancementFile=$form->get('justifFinancement')->getData();
+            // if($justifFinancementFile){
+            //    $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
+            //    $preInscription->setCarteIdentite($justifFinancementFileName);
+            // }
 
-            $carteVitaleFile=$form->get('carteVitale')->getData();
-            if($carteVitaleFile){
-               $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
-               $preInscription->setCarteIdentite($carteVitaleFileName);
-            }
+            // $carteVitaleFile=$form->get('carteVitale')->getData();
+            // if($carteVitaleFile){
+            //    $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
+            //    $preInscription->setCarteIdentite($carteVitaleFileName);
+            // }
 
-            $autreDocFile=$form->get('autreDoc')->getData();
-            if($autreDocFile){
-               $autreDocFileName= $fileUploader->upload($autreDocFile);
-               $preInscription->setCarteIdentite($autreDocFileName);
-            }
+            // $autreDocFile=$form->get('autreDoc')->getData();
+            // if($autreDocFile){
+            //    $autreDocFileName= $fileUploader->upload($autreDocFile);
+            //    $preInscription->setCarteIdentite($autreDocFileName);
+            // }
             $preInscriptionRepository->save($preInscription, true);
             return $this->redirectToRoute('app_espace_personnel', [], Response::HTTP_SEE_OTHER);
         }

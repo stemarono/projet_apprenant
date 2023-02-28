@@ -24,15 +24,15 @@ class PreInscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('user',EntityType::class,[
-            //     'class'=>User::class,
-            //     'attr' => ['class' => 'form-control', 'placeholder' => 'Login'],
-            //     'placeholder'=>'Login',
-            //     'required'=>false,
-            // ])
-            
-            ->add('nom',EntityType::class,[
+            ->add('user',EntityType::class,[
                 'class'=>User::class,
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Login'],
+                'placeholder'=>'Login',
+                'required'=>false,
+            ])
+            
+            ->add('nom',TextType::class,[
+                
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Nom']
             ])
             ->add('prenom',TextType::class,[
@@ -103,6 +103,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('carteIdentite', FileType::class,[
                 'label'=>'Carte d\'identité :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -111,7 +112,6 @@ class PreInscriptionType extends AbstractType
                         'maxSize'=> '1024k',
                         'mimeTypes'=>[
                             'application/pdf',
-                            'application/x-pdf',
                         ],
                         'mimeTypesMessage'=>'votre fichier doit être en PDF',
                     ])
@@ -119,6 +119,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('justifFinancement', FileType::class, [
                 'label'=>' Justificatifs de financement :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -127,7 +128,6 @@ class PreInscriptionType extends AbstractType
                         'maxSize'=> '1024k',
                         'mimeTypes'=>[
                             'application/pdf',
-                            'application/x-pdf',
                         ],
                         'mimeTypesMessage'=>'votre fichier doit être en PDF',
                     ])
@@ -135,6 +135,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('carteVitale', FileType::class, [
                 'label'=>'attestation de la carte Vitale :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -143,7 +144,6 @@ class PreInscriptionType extends AbstractType
                         'maxSize'=> '1024k',
                         'mimeTypes'=>[
                             'application/pdf',
-                            'application/x-pdf',
                         ],
                         'mimeTypesMessage'=>'votre fichier doit être en PDF',
                     ])
@@ -152,6 +152,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('autreDoc', FileType::class, [
                 'label'=>'Autre Document :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=> false,
                 'attr' => ['class' => 'form-control'],
@@ -160,7 +161,6 @@ class PreInscriptionType extends AbstractType
                         'maxSize'=> '1024k',
                         'mimeTypes'=>[
                             'application/pdf',
-                            'application/x-pdf',
                         ],
                         'mimeTypesMessage'=>'votre fichier doit être en PDF',
                     ])
