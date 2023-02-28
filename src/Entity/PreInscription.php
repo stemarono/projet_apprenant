@@ -54,13 +54,25 @@ class PreInscription
     private ?string $carteIdentite = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $carteIdentiteNom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $justifFinancement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $justifFinancementNom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $carteVitale = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $carteVitaleNom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $autreDoc = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $autreDocNom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $n_ss = null;
@@ -71,6 +83,8 @@ class PreInscription
     #[ORM\ManyToOne(inversedBy: 'preInscriptions')]
     private ?User $user = null;
 
+<<<<<<< HEAD
+=======
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
@@ -78,6 +92,7 @@ class PreInscription
 
    
 
+>>>>>>> bc9231f0f22dd06727670f04af2efbb07487462d
     public function getId(): ?int
     {
         return $this->id;
@@ -240,6 +255,18 @@ class PreInscription
         return $this;
     }
 
+    public function getCarteIdentiteNom(): ?string
+    {
+        return $this->carteIdentite;
+    }
+
+    public function setCarteIdentiteNom(?string $carteIdentiteNom): self
+    {
+        $this->carteIdentiteNom = $carteIdentiteNom;
+
+        return $this;
+    }
+
     public function getJustifFinancement(): ?string
     {
         return $this->justifFinancement;
@@ -248,6 +275,18 @@ class PreInscription
     public function setJustifFinancement(?string $justifFinancement): self
     {
         $this->justifFinancement = $justifFinancement;
+
+        return $this;
+    }
+
+    public function getJustifFinancementNom(): ?string
+    {
+        return $this->justifFinancementNom;
+    }
+
+    public function setJustifFinancementNom(?string $justifFinancementNom): self
+    {
+        $this->justifFinancementNom = $justifFinancementNom;
 
         return $this;
     }
@@ -264,6 +303,18 @@ class PreInscription
         return $this;
     }
 
+    public function getCarteVitaleNom(): ?string
+    {
+        return $this->carteVitaleNom;
+    }
+
+    public function setCarteVitaleNom(?string $carteVitaleNom): self
+    {
+        $this->carteVitaleNom = $carteVitaleNom;
+
+        return $this;
+    }
+
     public function getAutreDoc(): ?string
     {
         return $this->autreDoc;
@@ -272,6 +323,18 @@ class PreInscription
     public function setAutreDoc(?string $autreDoc): self
     {
         $this->autreDoc = $autreDoc;
+
+        return $this;
+    }
+
+    public function getAutreDocNom(): ?string
+    {
+        return $this->autreDocNom;
+    }
+
+    public function setAutreDocNom(?string $autreDocNom): self
+    {
+        $this->autreDocNom = $autreDocNom;
 
         return $this;
     }
