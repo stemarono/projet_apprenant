@@ -49,7 +49,7 @@ class EspacePersonnelController extends AbstractController
         $user=$this->getUser();
            $preInscription= $em->getRepository(PreInscription::class)->findOneBy(['user'=>$user]);
       
-        return $this->render('pre_inscription/show.html.twig', [
+        return $this->render('pre_inscription/showFile.html.twig', [
            'user'=>$user,
            'pre_inscription'=>$preInscription,
         ]);

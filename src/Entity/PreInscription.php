@@ -71,6 +71,9 @@ class PreInscription
     #[ORM\ManyToOne(inversedBy: 'preInscriptions')]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
+
    
 
    
@@ -309,11 +312,22 @@ class PreInscription
         return $this;
     }
 
- public function __toString(){
-        return $this->id;
+ 
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): self
+    {
+        $this->filename = $filename;
+
+        return $this;
     }
    
 
-   
+    public function __toString(){
+        return $this->id;
+    }
     
 }
