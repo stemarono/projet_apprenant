@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ContactType extends AbstractType
 {
@@ -41,7 +43,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'Objet'
                 ] 
             ])
-            ->add('message', TextareaType::class, [
+            ->add('message', CKEditorType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Message',
@@ -58,7 +60,8 @@ class ContactType extends AbstractType
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
-                            'application/pdf'
+                            'application/pdf',
+                            'application/x-pdf,'
                         ],
                         'mimeTypesMessage' => 'Choisir un fichier au format pdf'
                     ])
@@ -75,7 +78,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Contact::class,
         ]);
     }
 }

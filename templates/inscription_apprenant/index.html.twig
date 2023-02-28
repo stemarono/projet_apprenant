@@ -8,6 +8,7 @@
 <div class="container p-5 mt-5 bg-blueclear">
   <h1 class="pt-2 pb-5 text-clear">Liste des inscriptions</h1>
 </div>
+<p class="w-100 text-center"id="loader"><img src="{{asset('images/loading.png')}}" alt="" width="5%"></p>
 
 {# boutons #}
 <div class="container d-flex justify-content-between py-5 d-print-none">
@@ -20,10 +21,16 @@
   <button class="btn bg-blue">
     <a class="text-clear" type="button" onclick="print_page()">Imprimer</a>
   </button>
+  <button class="btn bg-blue">
+    <a class="text-clear" type="button" href="{{ path('app_inscription_pdf') }}">Télécharger au format pdf</a>
+  </button>
+  <button class="btn bg-blue">
+    <a class="text-clear" type="button" href="{{ path('app_inscription_excel') }}">Télécharger au format Excel</a>
+  </button>
 </div>
 
 {# table #}
-<div class="d-flex justify-content-center mb-5">
+{# <div class="d-flex justify-content-center mb-5">
   <table class="table table responsive w-75">
     <thead class="bg-blue text-clear">
       <tr>
@@ -70,6 +77,81 @@
       {% endfor %}
     </tbody>
   </table>
-</div>
+</div> #}
 
+{# affichage des inscrits avec recherche #}
+<div class="d-flex justify-content-center mb-5">
+  <table class="table table responsive w-75">
+    <thead class="bg-blue text-clear">
+    
+    </thead>
+    <tbody id ="tbody_inscrit"></tbody>
+  </table>
+</div>
+<script>
+  // function pour remplir la liste des produits 
+  var url_product_data= "{{path('app_product_data')}}";
+
+  $(function(){// équivalent à javascript window.onload=function(){}
+  // pour cacher le sablier
+  $('#loader').hide();
+  remplir();
+  // pour valider en appuyant sur entrée sans avoir besoin de cliquer sur la loupe 
+  $('#mot').keydown(function(event)
+  {
+    if(event.keyCode==13)
+    {
+        remplir();
+    }
+  });
+  })
+
+  function remplir(){
+    
+    var mot=$("#mot").val();
+   $.ajax({
+    type:"POST",
+    url:url_product_data,
+    data:{
+        // 'mot'=> correspond au get('mot')qu'on trouve dans productController.php = $mot=$request->get('mot');
+        // mot=> correspond au var mot qui se trouve dans Var mot qui renvoie à l'ID =mot qui se trouve dans base.html.twig
+        'mot':mot,
+    },
+    beforeSend:function(){
+        // pour voir le sablier quand on a cliqué sur la loupe de recherche
+        $('#loader').show();
+    },
+    success:function(response){
+        var html=response.map(function(row){// à chaque ligne de data on va avoir un row
+            return `
+                <tr>
+                    <td class="text-center">${row.id}</td>
+                    <td class="text-center">${row.identifiant}</td>
+                    <td class="text-start">${row.nom}</td>
+                    <td class="text-end">${row.prenom}</td>
+                    <td class="text-end">${row.dateNaissance}</td>
+                    <td class="text-end">${row.telephone}</td>
+                    <td class="text-end">${row.email}</td>
+                    <td class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-sm btn-success"> Afficher</a>
+                        <a href="#" class="btn btn-sm btn-primary"> Modifier</a>
+                        <a href="#" class="btn btn-sm btn-danger"> Supprimer</a>
+                    </td>
+                </tr>
+            `
+        }).join('');
+        $("#tbody_product").html(html);
+        // le sablier est caché lorsque les éléments demandés apparaissent
+        $('#loader').hide();
+    },
+    error:function(){
+        // le sablier est caché si on commet une erreur
+        $('#loader').hide();
+        alert("Vous avez commis une erreur !");
+    },
+
+
+   });
+}
+</script>
 {% endblock %}
