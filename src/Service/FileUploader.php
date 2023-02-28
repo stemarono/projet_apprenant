@@ -31,7 +31,7 @@ class FileUploader
             $file->move($this->getTargetDirectory(),$fileName);
         }catch(FileException $e)
         {
-            return null;
+            $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
         }
         return $fileName;
     }
