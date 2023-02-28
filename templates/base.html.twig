@@ -148,9 +148,7 @@
 						</ul>
 					</div>
 				</div>
-				<div>
-					<h4 class="text-clear">Bonjour {{app.user.prenom}} {{app.user.nom}}</h4>
-				</div>
+				
 				<div>
 					<div>
 					{# lien login #}
@@ -159,6 +157,9 @@
 						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
 						<ul class="navbar-nav">
 							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
+							<div>
+								<p class="text-clear">Bonjour {{app.user.prenom}} {{app.user.nom}}</p>
+							</div>
 							<li class="nav-item">
 								<a class="nav-link text-decoration-none text-clear" href="{{ path('app_logout') }}">Se déconnecter</a>
 							</li>
