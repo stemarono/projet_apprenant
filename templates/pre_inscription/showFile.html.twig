@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PreInscription{% endblock %}
+
+{% block body %}
+
+{# titre #}
+<div class="container p-5 mt-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Détails de la pré-inscription</h1>
+</div>
+
+{# Bouton retour #}
+<div class="container p-5 d-md-flex justify-content-md-start d-print-none">
+  <button class="btn bg-blue align-start">
+    <a class="text-clear" href="javascript:history.back()">Retour</a>
+  </button>
+</div>
+
+{# Carte #}
+<div class="container p-5 mb-5">
+    <div class="bg-clear shadow p-4">
+        <div class="card-body">
+            <h3 class="m-2">Récapitulatif du dossier</h3>
+            <div class="d-flex justify-content-around py-4">
+                <div class="">
+                    <p><b>Nom :</b> {{ pre_inscription.nom }}</p>
+                    <p><b>Prénom :</b> {{ pre_inscription.prenom }}</p>
+                    <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</p>
+                    <p><b>E-mail :</b> {{ pre_inscription.email }}</p>
+                    <p><b>Téléphone :</b> {{ pre_inscription.telephone }}</p>
+                    <p><b>N° de sécurité sociale :</b> {{ pre_inscription.nSs }}</p>
+                </div>
+                <div>
+                    <p><b>Sexe :</b> {{ pre_inscription.sexe }}</p>
+                    <p><b>Adresse :</b> {{ pre_inscription.adresse }}</p>
+                    <p><b>Code postal :</b> {{ pre_inscription.codePostal }}</p>
+                    <p><b>Ville :</b> {{ pre_inscription.ville }}</p>
+                    <p><b>Région :</b> {{ pre_inscription.region }}</p>
+                    <p><b>Pays :</b> {{ pre_inscription.pays }}</p>
+                    <p><b>Carte d'identité :</b> {{ pre_inscription.carteIdentite }}</p>
+                    <p><b>Justificatif de financement :</b> {{ pre_inscription.justifFinancement }}</p>
+                    <p><b>Carte vitale :</b> {{ pre_inscription.carteVitale }}</p>
+                    <p><b>Autre document :</b> {{ pre_inscription.autreDoc }}</p>
+                </div>
+            </div>
+            <div class="m-4">
+                <p><b>Motivations :</b> <br> {{ pre_inscription.motivations }}</p>
+            </div>
+            <div class="m-4 mb-5">
+                <p><b>Financement :</b> <br> {{ pre_inscription.financement }}</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end m-2 d-print-none">
+                <button class="btn btn-md bg-green p-2 px-4 mx-5" type="button">
+                    <a class="text-clear" href="{{ path('app_pre_inscription_apprenant_pdf', {id: pre_inscription.id}) }}">Télécharger</a>
+                </button>
+                <button class="btn bg-green">
+                    <a class="btn bg-green text-clear" type="button" onclick="print_page()">Imprimer</a>
+                </button>
+                <button class="btn btn-md bg-blue p-2 px-4 mx-5" type="button">
+                    <a class="text-clear" href="{{ path('app_espace_personnel_editFolder', { id:pre_inscription.id})}}">Modifier</a>
+                </button>
+                <button class="btn btn-md bg-red p-2 px-4 " type="button">
+                    <a class="text-clear" href="javascript:supprimer()">Supprimer</a>
+                </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var url_delete="{{path('app_espace_personnel_deleteFolder')}}";
+
+$(function(){
+  
+})
+function supprimer()
+{
+    if(confirm ('{{app.user.prenom}}, Êtes-vous sûr(e) de vouloir supprimer votre dossier de pré-inscription ? ')){
+       
+       $.ajax({
+        type:"POST",
+        url: url_delete,
+        data:{
+          
+        },
+        beforeSend: function(){
+
+        },
+
+        success:function(response){
+            alert(response);
+        },
+        error: function(){
+            alert('il existe une erreur');
+        },
+       })
+    }
+}
+
+</script>
+{% endblock %}

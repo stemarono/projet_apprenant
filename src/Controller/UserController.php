@@ -53,7 +53,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,$id=0,UserPasswordHasherInterface $passwordHasher): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher,$id=0): Response
     {
        if($id)
        {
@@ -103,7 +103,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/editFolder', name: 'app_user_editFolder', methods: ['GET', 'POST'])]
-    public function editFolder(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,$id=0,UserPasswordHasherInterface $passwordHasher): Response
+    public function editFolder(Request $request, User $user, UserRepository $userRepository,EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher,$id=0): Response
     {
        if($id)
        {
