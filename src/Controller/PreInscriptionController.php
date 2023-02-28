@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\PreInscription;
-use App\Form\PreInscriptionCursusType;
-use App\Form\PreInscriptionJustifType;
 use App\Form\PreInscriptionType;
 use App\Repository\PreInscriptionRepository;
 use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/pre/inscription')]
 class PreInscriptionController extends AbstractController
@@ -26,45 +27,84 @@ class PreInscriptionController extends AbstractController
     }
 
     #[Route('/new', name: 'app_pre_inscription_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
+    public function new(Request $request, PreInscriptionRepository $preInscriptionRepository, SluggerInterface $slugger, FileUploader $fileUploader): Response
     {
         $preInscription = new PreInscription();
         $form = $this->createForm(PreInscriptionType::class, $preInscription);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           $file=$form->get('carteIdentite')->getData();
-           if($file){
-            $fichier=$file->getClientOriginalName();
-            $dossier='../public/assets/uploads';
-            $move=$file->move($dossier,$fichier);
-            if($move){
-                $preInscription->setCarteIdentite($fichier);
+
+            /** @var UploadedFile $carteIdentiteContenu */
+            $carteIdentiteContenu = $form->get('carteIdentite')->getData();
+            if ($carteIdentiteContenu) {
+                $carteIdentiteNomOriginal = pathinfo($carteIdentiteContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $carteIdentiteNomSur = $slugger->slug($carteIdentiteNomOriginal);
+                $carteIdentiteNomNouveau = $carteIdentiteNomSur.'-'.uniqid().'.'.$carteIdentiteContenu->guessExtension();
+                try {
+                    $carteIdentiteContenu->move(
+                        $this->getParameter('files_directory'),
+                        $carteIdentiteNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setCarteIdentiteNom($carteIdentiteNomNouveau);
             }
-           }
-            // $carteIdentiteFile=$form->get('carteIdentite')->getData();
-            // if($carteIdentiteFile){
-            //    $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
-            //    $preInscription->setCarteIdentite($carteIdentiteFileName);
-            // }
 
-            // $justifFinancementFile=$form->get('justifFinancement')->getData();
-            // if($justifFinancementFile){
-            //    $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
-            //    $preInscription->setCarteIdentite($justifFinancementFileName);
-            // }
+            /** @var UploadedFile $justifFinancementContenu */
+            $justifFinancementContenu = $form->get('justifFinancement')->getData();
+            if ($justifFinancementContenu) {
+                $justifFinancementNomOriginal = pathinfo($justifFinancementContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $justifFinancementNomSur = $slugger->slug($justifFinancementNomOriginal);
+                $justifFinancementNomNouveau = $justifFinancementNomSur.'-'.uniqid().'.'.$justifFinancementContenu->guessExtension();
+                try {
+                    $justifFinancementContenu->move(
+                        $this->getParameter('files_directory'),
+                        $justifFinancementNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setJustifFinancementNom($justifFinancementNomNouveau);
+            }
 
-            // $carteVitaleFile=$form->get('carteVitale')->getData();
-            // if($carteVitaleFile){
-            //    $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
-            //    $preInscription->setCarteIdentite($carteVitaleFileName);
-            // }
+            /** @var UploadedFile $carteVitaleContenu */
+            $carteVitaleContenu = $form->get('carteVitale')->getData();
+            if ($carteVitaleContenu) {
+                $carteVitaleNomOriginal = pathinfo($carteVitaleContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $carteVitaleNomSur = $slugger->slug($carteVitaleNomOriginal);
+                $carteVitaleNomNouveau = $carteVitaleNomSur.'-'.uniqid().'.'.$carteVitaleContenu->guessExtension();
+                try {
+                    $carteVitaleContenu->move(
+                        $this->getParameter('files_directory'),
+                        $carteVitaleNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setCarteVitaleNom($carteVitaleNomNouveau);
+            }
 
-            // $autreDocFile=$form->get('autreDoc')->getData();
-            // if($autreDocFile){
-            //    $autreDocFileName= $fileUploader->upload($autreDocFile);
-            //    $preInscription->setCarteIdentite($autreDocFileName);
-            // }
+            /** @var UploadedFile $autreDocContenu */
+            $autreDocContenu = $form->get('autreDoc')->getData();
+            if ($autreDocContenu) {
+                $autreDocNomOriginal = pathinfo($autreDocContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $autreDocNomSur = $slugger->slug($autreDocNomOriginal);
+                $autreDocNomNouveau = $autreDocNomSur.'-'.uniqid().'.'.$autreDocContenu->guessExtension();
+                try {
+                    $autreDocContenu->move(
+                        $this->getParameter('files_directory'),
+                        $autreDocNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setAutreDocNom($autreDocNomNouveau);
+            }
+
+            $this->addFlash('message', 'Votre formulaire a bien été envoyé');
+       
             $preInscriptionRepository->save($preInscription, true);
             return $this->redirectToRoute('app_espace_personnel', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,73 +115,10 @@ class PreInscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/newFormCursus', name: 'app_new_form_Cursus', methods: ['GET', 'POST'])]
-    public function newFormCursus(Request $request, PreInscriptionRepository $preInscriptionRepository): Response
-    {
-        $preInscription2 = new PreInscription();
-        $form = $this->createForm(PreInscriptionCursusType::class, $preInscription2);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $preInscriptionRepository->save($preInscription2, true);
-
-            return $this->redirectToRoute('app_new_form_justif', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('pre_inscription/new_formCursus.html.twig', [
-            'pre_inscription2' => $preInscription2,
-            'form' => $form,
-        ]);
-    }
-
-
-
-    #[Route('/newFormJustif', name: 'app_new_form_justif', methods: ['GET', 'POST'])]
-    public function newFormJustif(Request $request, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
-    {
-        $preInscription3 = new PreInscription();
-        $form = $this->createForm(PreInscriptionJustifType::class, $preInscription3);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $preInscriptionRepository->save($preInscription3, true);
-
-            $carteIdentiteFile=$form->get('carteIdentite')->getData();
-            if($carteIdentiteFile){
-               $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
-               $preInscription3->setCarteIdentite($carteIdentiteFileName);
-            }
-
-            $justifFinancementFile=$form->get('justifFinancement')->getData();
-            if($justifFinancementFile){
-               $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
-               $preInscription3->setCarteIdentite($justifFinancementFileName);
-            }
-
-            $carteVitaleFile=$form->get('carteVitale')->getData();
-            if($carteVitaleFile){
-               $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
-               $preInscription3->setCarteIdentite($carteVitaleFileName);
-            }
-
-            $autreDocFile=$form->get('autreDoc')->getData();
-            if($autreDocFile){
-               $autreDocFileName= $fileUploader->upload($autreDocFile);
-               $preInscription3->setCarteIdentite($autreDocFileName);
-            }
-
-            return $this->redirectToRoute('app_espace_personnel_show', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('pre_inscription/new_formJustif.html.twig', [
-            'pre_inscription3' => $preInscription3,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_espace_preInscription', methods: ['GET'])]
     public function Espace_preInscription (EntityManagerInterface $em,$id): Response
     {
+        // le template n'existe pas
         $preInscription=$em->getRepository(PreInscription::class)->find($id);
         return $this->render('pre_inscription/espace_preinscription.html.twig', [
             'preInscription' => $preInscription,
@@ -157,38 +134,86 @@ class PreInscriptionController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'app_pre_inscription_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, PreInscription $preInscription, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
+    public function edit(Request $request, PreInscription $preInscription, SluggerInterface $slugger, PreInscriptionRepository $preInscriptionRepository,FileUploader $fileUploader): Response
     {
         $form = $this->createForm(PreInscriptionType::class, $preInscription);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $carteIdentiteFile=$form->get('carteIdentite')->getData();
-            if($carteIdentiteFile){
-               $carteIdentiteFileName= $fileUploader->upload($carteIdentiteFile);
-               $preInscription->setCarteIdentite($carteIdentiteFileName);
+            
+            /** @var UploadedFile $carteIdentiteContenu */
+            $carteIdentiteContenu = $form->get('carteIdentite')->getData();
+            if ($carteIdentiteContenu) {
+                $carteIdentiteNomOriginal = pathinfo($carteIdentiteContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $carteIdentiteNomSur = $slugger->slug($carteIdentiteNomOriginal);
+                $carteIdentiteNomNouveau = $carteIdentiteNomSur.'-'.uniqid().'.'.$carteIdentiteContenu->guessExtension();
+                try {
+                    $carteIdentiteContenu->move(
+                        $this->getParameter('files_directory'),
+                        $carteIdentiteNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setCarteIdentiteNom($carteIdentiteNomNouveau);
             }
 
-            $justifFinancementFile=$form->get('justifFinancement')->getData();
-            if($justifFinancementFile){
-               $justifFinancementFileName= $fileUploader->upload($justifFinancementFile);
-               $preInscription->setCarteIdentite($justifFinancementFileName);
+            /** @var UploadedFile $justifFinancementContenu */
+            $justifFinancementContenu = $form->get('justifFinancement')->getData();
+            if ($justifFinancementContenu) {
+                $justifFinancementNomOriginal = pathinfo($justifFinancementContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $justifFinancementNomSur = $slugger->slug($justifFinancementNomOriginal);
+                $justifFinancementNomNouveau = $justifFinancementNomSur.'-'.uniqid().'.'.$justifFinancementContenu->guessExtension();
+                try {
+                    $justifFinancementContenu->move(
+                        $this->getParameter('files_directory'),
+                        $justifFinancementNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setJustifFinancementNom($justifFinancementNomNouveau);
             }
 
-            $carteVitaleFile=$form->get('carteVitale')->getData();
-            if($carteVitaleFile){
-               $carteVitaleFileName= $fileUploader->upload($carteVitaleFile);
-               $preInscription->setCarteIdentite($carteVitaleFileName);
+            /** @var UploadedFile $carteVitaleContenu */
+            $carteVitaleContenu = $form->get('carteVitale')->getData();
+            if ($carteVitaleContenu) {
+                $carteVitaleNomOriginal = pathinfo($carteVitaleContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $carteVitaleNomSur = $slugger->slug($carteVitaleNomOriginal);
+                $carteVitaleNomNouveau = $carteVitaleNomSur.'-'.uniqid().'.'.$carteVitaleContenu->guessExtension();
+                try {
+                    $carteVitaleContenu->move(
+                        $this->getParameter('files_directory'),
+                        $carteVitaleNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setCarteVitaleNom($carteVitaleNomNouveau);
             }
 
-            $autreDocFile=$form->get('autreDoc')->getData();
-            if($autreDocFile){
-               $autreDocFileName= $fileUploader->upload($autreDocFile);
-               $preInscription->setCarteIdentite($autreDocFileName);
+            /** @var UploadedFile $autreDocContenu */
+            $autreDocContenu = $form->get('autreDoc')->getData();
+            if ($autreDocContenu) {
+                $autreDocNomOriginal = pathinfo($autreDocContenu->getClientOriginalName(), PATHINFO_FILENAME);
+                $autreDocNomSur = $slugger->slug($autreDocNomOriginal);
+                $autreDocNomNouveau = $autreDocNomSur.'-'.uniqid().'.'.$autreDocContenu->guessExtension();
+                try {
+                    $autreDocContenu->move(
+                        $this->getParameter('files_directory'),
+                        $autreDocNomNouveau
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
+                }
+                $preInscription->setAutreDocNom($autreDocNomNouveau);
             }
+
+            $this->addFlash('message', 'Votre formulaire a bien été envoyé');
+       
             $preInscriptionRepository->save($preInscription, true);
+            return $this->redirectToRoute('app_pre_inscription_new', [], Response::HTTP_SEE_OTHER);
 
-            return $this->redirectToRoute('app_pre_inscription_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pre_inscription/edit.html.twig', [
