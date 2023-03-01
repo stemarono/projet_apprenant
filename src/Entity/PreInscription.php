@@ -328,6 +328,10 @@ class PreInscription
 
     public function __toString(){
         return $this->id;
+        return $this->carteIdentite;
+        return $this->justifFinancement;
+        return $this->carteVitale;
+        return $this->autreDoc;
     }
     
 }

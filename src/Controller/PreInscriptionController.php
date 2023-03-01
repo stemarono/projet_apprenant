@@ -151,6 +151,7 @@ class PreInscriptionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
              /** @var UploadedFile $carteIdentiteFile */
              $carteIdentiteFile=$form->get('carteIdentite')->getData();
+             
              if($carteIdentiteFile)
              {
                  $fichierOriginal=pathinfo($carteIdentiteFile->getClientOriginalName(),PATHINFO_FILENAME);
@@ -166,11 +167,14 @@ class PreInscriptionController extends AbstractController
                  }catch(FileException $e){
                      $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
                  }
+                 
                  $preInscription->setCarteIdentite($nouveaufichier);
+                
              }
  
              
              $justifFile=$form->get('justifFinancement')->getData();
+             
              if($justifFile)
              {
                  $fichierOriginal=pathinfo($justifFile->getClientOriginalName(),PATHINFO_FILENAME);
@@ -186,10 +190,13 @@ class PreInscriptionController extends AbstractController
                  }catch(FileException $e){
                      $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
                  }
+                
                  $preInscription->setJustifFinancement($nouveaufichier);
+                
              }
            
              $carteVitaleFile=$form->get('carteVitale')->getData();
+            
              if($carteVitaleFile)
              {
                  $fichierOriginal=pathinfo($carteVitaleFile->getClientOriginalName(),PATHINFO_FILENAME);
@@ -205,10 +212,13 @@ class PreInscriptionController extends AbstractController
                  }catch(FileException $e){
                      $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
                  }
+                 
                  $preInscription->setCarteVitale($nouveaufichier);
+                
              }
  
              $autreDocFile=$form->get('autreDoc')->getData();
+            
              if($autreDocFile)
              {
                  $fichierOriginal=pathinfo($autreDocFile->getClientOriginalName(),PATHINFO_FILENAME);
@@ -224,7 +234,9 @@ class PreInscriptionController extends AbstractController
                  }catch(FileException $e){
                      $this->addFlash('message', 'Une erreur s\'est produite lors du téléchargement de votre fichier');
                  }
+                
                  $preInscription->setAutreDoc($nouveaufichier);
+                
              }
             $preInscriptionRepository->save($preInscription, true);
 

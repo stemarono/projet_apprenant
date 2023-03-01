@@ -52,9 +52,9 @@ class PreInscriptionType extends AbstractType
                 'attr' => ['class' => 'form-select'],
                 'choices' => [
                     'Sélectionner un sexe' => null,
-                    'Femme' => 02,
-                    'Homme' => 01,
-                    'Autre' => 03
+                    'Femme' => 'Femme',
+                    'Homme' => 'Homme',
+                    'Autre' => 'Autre'
                 ]
             ])
             ->add('adresse',TextType::class,[
@@ -103,6 +103,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('carteIdentite', FileType::class,[
                 'label'=>'Carte d\'identité :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -118,6 +119,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('justifFinancement', FileType::class, [
                 'label'=>' Justificatifs de financement :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -133,6 +135,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('carteVitale', FileType::class, [
                 'label'=>'attestation de la carte Vitale :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=>false,
                 'attr' => ['class' => 'form-control'],
@@ -149,6 +152,7 @@ class PreInscriptionType extends AbstractType
             ])
             ->add('autreDoc', FileType::class, [
                 'label'=>'Autre Document :',
+                'multiple'=>true,
                 'mapped'=>false,
                 'required'=> false,
                 'attr' => ['class' => 'form-control'],
