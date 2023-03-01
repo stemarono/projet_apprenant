@@ -25,9 +25,9 @@
                 <div class="">
                     <p><b>Nom :</b> {{ pre_inscription.nom }}</p>
                     <p><b>Prénom :</b> {{ pre_inscription.prenom }}</p>
-                    <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('Y-m-d') : '' }}</p>
+                    <p><b>Date de naissance :</b> {{  pre_inscription.dateNaissance ? pre_inscription.dateNaissance|date('d-m-Y') : '' }}</p>
                     <p><b>E-mail :</b> {{ pre_inscription.email }}</p>
-                    <p><b>Téléphone :</b> {{ pre_inscription.telephone }}</p>
+                    <p><b>Téléphone :</b> 0{{ pre_inscription.telephone }}</p>
                     <p><b>N° de sécurité sociale :</b> {{ pre_inscription.nSs }}</p>
                 </div>
                 <div>
