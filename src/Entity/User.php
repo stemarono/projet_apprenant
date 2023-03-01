@@ -31,8 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-   
-
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $prenom = null;
 
@@ -42,16 +40,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $nom = null;
 
-   
-
     public function __construct()
     {
         $this->preInscriptions = new ArrayCollection();
     }
-
-    
-
-    
 
     public function getId(): ?int
     {

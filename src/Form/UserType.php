@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\PreInscription;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -25,7 +27,6 @@ class UserType extends AbstractType
                 
             ])
             ->add('roles',ChoiceType::class,[
-                'label'=> 'Roles : ',
                 'mapped'=>false,
                 'multiple'=>true,
                 'choices'=>[
@@ -34,12 +35,9 @@ class UserType extends AbstractType
                     'ROLE_ADMIN'=>'ROLE_ADMIN',
                     'ROLE_VISITOR'=>'ROLE_VISITOR'
                 ],
-                
             ])
             ->add('email',EmailType::class,[
                 'label'=>'Adresse email :',
-                
-
             ])
             ->add('password',PasswordType::class,[
                 'mapped'=>false,
@@ -47,7 +45,6 @@ class UserType extends AbstractType
                 'label'=>'mot de passe :',
                 
             ])
-           
             
         ;
     }
