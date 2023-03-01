@@ -8,7 +8,13 @@
 		<link rel="stylesheet" href="{{asset('bootstrap-5.0.2-dist/css/datepicker.css')}}">
 		<link rel="stylesheet" href="{{asset('css/style_m.css')}}">
 		<link rel="stylesheet" href="{{asset('css/espacePersonnel.css')}}">
+		<link rel="stylesheet" href="{{ asset('easyui/themes/default/easyui.css') }}">
+		<link rel="stylesheet" href="{{ asset('easyui/themes/mobile.css') }}">
 		<script src="{{asset('js/jquery.js')}}"></script>
+		<script src="{{ asset('easyui/jquery.min.js') }}"></script>
+		<script src="{{ asset('easyui/jquery.easyui.min.js') }}"></script>
+		<script src="{{ asset('easyui/jquery.esayui.mobile.js') }}"></script>
+		<script type="text/javascript" src="datagrid-filter.js"></script>
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}

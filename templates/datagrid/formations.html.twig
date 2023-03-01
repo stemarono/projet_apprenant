@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des formations{% endblock %}
+
+{% block body %}
+
+{# titre #}
+<div class="container p-5 mt-5 bg-blueclear">
+  <h1 class="pt-2 pb-5 text-clear">Liste des formations</h1>
+</div>
+
+{# boutons #}
+<div class="container d-flex justify-content-between py-5 d-print-none">
+  <button class="btn bg-blue mx-5 align-start">
+		<a class="text-clear" href="javascript:history.back()">Retour</a>
+	</button>
+  <button class="btn bg-green">
+    <a class="text-clear" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
+  </button>
+ <button class="btn bg-blue">
+    <a class="btn text-clear" type="button" onclick="print_page()">Imprimer</a>
+ </button>
+</div>
+
+{# table #}
+<table id="tart"></table>
+
+
+
+{# script #}
+<script>
+    var url_data_list_formation="{{path('app_formation_datagrid_data')}}";
+    var url_update_formation="{{path('app_formation_edit', {'id':'formation_id'})}}";
+    var url_delete_formation="{{path('app_formation_delete', {'id':'formation_id'})}}";
+    var dg=$("#tart");
+    $(function() {
+        datagridListFormation();
+    })
+    function datagridListFormation() {
+        $("#tart").datagrid({
+            'filter':'enableFilter',
+            'url':url_data_list_formation,
+            'title':'',
+            'pageSize':20,
+            'pageList':[10,20,50,100,300],
+            'pagination':true,
+            'language':'fr',
+            'singleSelect':true,
+            'idField':'id',
+            'fit':true,
+            'fitColumns':true,
+            'scrollbarSize':0,
+            'loadMsg':'Patientez...',
+            'columns':[[
+                {'field':'ck',checkbox:true},
+                {'field':'id','title':'ID','halign':'center','align':'center','width':'8%'},
+                {'field':'code','title':'CODE','halign':'center','align':'left','width':'10%'},
+                {'field':'titre','title':'TITRE','halign':'center','align':'left','width':'10%'},
+                {'field':'description','title':'DESCRIPTION','halign':'center','align':'left','width':'60%'},
+            ]],
+            onDblClickRow:function(val,row){
+                var id=row.id;
+                afficherFormation(id);
+            }
+        }).datagrid('enableFilter');
+    }
+
+    function modifierFormation(){
+        var row=$("#tart").datagrid('getSelected');
+        if(row) {
+            var id=row['id'];
+            var url=url_update_formation.replace('formation_id',id)
+            popupCenter(url, 'Saisie_formation',screen.width*0.70,screen.height*0.50)
+        } else {
+            alert('Sélectionner bien une ligne');
+        }
+    }
+</script>
+
+
+{% endblock %}
