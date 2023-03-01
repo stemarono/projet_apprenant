@@ -19,7 +19,7 @@
 	<body>
 		<div class="container-fluid">
 			{# navbar desktop #}
-			<nav class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3 d-print-none">
+			<nav class="navbar navbar-expend-md bg-green sticky-top d-flex justify-content-between align-items-center px-3 d-print-none py-3">
 				{# logo #}
 				<div class="">
 					<img class="img-sm img-min mx-4" src="{{ asset('images/croissance (1).png') }}" alt="">
@@ -153,27 +153,21 @@
 					<div>
 					{# lien login #}
 					{# version desktop #}
-					<div class="desktop text-center">
+					<div class="desktop text-center d-flex">
 						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
-						<ul class="navbar-nav">
+						<div class="navbar-nav">
 							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
-							<div>
-								<p class="text-clear">Bonjour {{app.user.prenom}} {{app.user.nom}}</p>
+							<div class="d-flex align-items-center">
+								<p class="nav-link text-clear m-0 px-3 h5">Bonjour {{app.user.prenom}} {{app.user.nom}}</p>
+								<a class="nav-link text-clear" href="{{ path('app_logout') }}">Se déconnecter</a>
 							</div>
-							<li class="nav-item">
-								<a class="nav-link text-decoration-none text-clear" href="{{ path('app_logout') }}">Se déconnecter</a>
-							</li>
 							{% else %}
-							<div class='d-flex justify-content-center'>
-								<li class="nav-item">
+							<div class='d-flex justify-content-center px-2'>
 									<a class="nav-link text-decoration-none text-clear" href="{{ path('app_register') }}">S'inscrire |</a>
-								</li>
-								<li class="nav-item">
 									<a class="nav-link text-decoration-none ms-1 text-clear" href="{{ path('app_login') }}">Se connecter</a>
-								</li>
 							</div>
 							{% endif %}
-						</ul>
+						</div>
 					</div>
 					{# version mobile #}
 					{# <div>
