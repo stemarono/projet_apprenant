@@ -19,13 +19,13 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/pre/inscription')]
 class PreInscriptionController extends AbstractController
 {
-    #[Route('/datagrid/list',name:'app_preInscription_datagrid_list')]
+    #[Route('/datagrid/list',name:'app_pre_inscription_datagrid_list')]
     public function datagridList()
     {
         return $this->render("pre_inscription/datagridList.html.twig");
     }
 
-    #[Route('/datagrid/data',name:'app_preInscription_datagrid_data')]
+    #[Route('/datagrid/data',name:'app_pre_inscription_datagrid_data')]
     public function datagridData(EntityManagerInterface $em)
     {
         $preInscriptions=$em->getRepository(PreInscription::class)->findBy([],['id'=>'asc']);

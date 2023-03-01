@@ -14,11 +14,11 @@
 </div>
 <script>
 var inscrip=$('#table');
-var url_datagrid_data="{{path('app_preInscription_datagrid_data')}}";
-var url_preInscription_edit="{{path('app_pre_inscription_edit',{'id':'preInscription_id'})}}";
-var url_preInscription_show="{{path('app_pre_inscription_show',{'id':'preInscription_id'})}}";
+var url_datagrid_data="{{path('app_pre_inscription_datagrid_data')}}";
+var url_preInscription_edit="{{path('app_pre_inscription_edit',{'id':'pre_inscription_id'})}}";
+var url_preInscription_show="{{path('app_pre_inscription_show',{'id':'pre_inscription_id'})}}";
 var url_preInscription_new="{{path('app_pre_inscription_new')}}";
-var url_preInscription_delete="{{path('app_pre_inscription_delete',{'id':'preInscription_id'})}}";
+var url_preInscription_delete="{{path('app_pre_inscription_delete',{'id':'pre_inscription_id'})}}";
 
 $(function(){
     
@@ -32,7 +32,7 @@ $(function(){
             url:url_datagrid_data,
             idField:'id',
             singleSelect:true,
-            pageSize:20,
+            pageSize:30,
             pageList:[20,30,50,100,300],
             pagination:true,
             fit:true,
@@ -70,11 +70,12 @@ $(function(){
     var row=inscrip.datagrid('getSelected');
     if(row){
         var id=row['id'];
-        var url=url_preInscription_show.replace('preInscription.id',id);
+        var url=url_preInscription_show.replace('pre_inscription_id',id);
         popupCenter(url,'show'+id,screen.width*0.70, screen.height*0.60);
     }else{
-        alert('Sélectionnez bien une ligne');
+        alert('Veuillez sélectionner une ligne');
     }
+    
 }
 function ajouterPreInscription(){
     popupCenter(url_preInscription_new,'new',screen.width*0.70,screen.height*0.60);
@@ -82,13 +83,12 @@ function ajouterPreInscription(){
 
 function modifierPreInscription(){
     var row= inscrip.datagrid('getselected');
-    if(row)
-    {
+    if(row){
         var id= row['id'];
-        var url=url_preInscription_edit.replace('preInscription_id',id);
+        var url=url_preInscription_edit.replace('pre_inscription_id',id);
         popupCenter(url,'edit'+id,screen.width*0.70,screen.height*0.60);
     }else{
-        alert('Sélectionnez une ligne !');
+        alert('Veuillez sélectionner une ligne ');
     }
 }
 function supprimerPreInscription()
@@ -99,10 +99,10 @@ function supprimerPreInscription()
         var id=row['id'];
         if(confirm("Voulez-vous vraiment supprimer la pré-inscription de  " + row.prenom  +  row.nom + "  ?"))
         {
-            var url=url_preInscription_delete.replace('preInscription_id',id);
+            var url=url_preInscription_delete.replace('pre_inscription_id',id);
             document.location.href=url;
         }else{
-            alert('Selectionnez une ligne ');
+            alert('Veuillez sélectionner une ligne ');
         }
     }
 
