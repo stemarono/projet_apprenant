@@ -22,6 +22,7 @@ class MenuType extends AbstractType
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Libelle']
             ])
             ->add('route', TextType::class, [
+                'required'=>false,
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Route']
             ])
             ->add('role', EntityType::class, [
