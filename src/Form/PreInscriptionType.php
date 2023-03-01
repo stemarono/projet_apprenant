@@ -101,70 +101,81 @@ class PreInscriptionType extends AbstractType
                     'rows' => '5'
                     ]
             ])
-            ->add('carteIdentite', FileType::class,[
-                'label'=>'Carte d\'identité :',
-                'multiple'=>true,
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
+
+            ->add('carteIdentite', FileType::class, [
+                'label' => 'carte d\'identité : ',
+                'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
+                'attr' => ['class' => 'form-control', 'type' => 'file'],
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+
                     new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
+                        'maxSize' => '1000k',
+                        'mimeTypes' => [
                             'application/pdf',
+                            'application/x-pdf,'
                         ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                        'mimeTypesMessage' => 'Choisir un fichier au format pdf'
                     ])
-                    ],
+                ]
             ])
             ->add('justifFinancement', FileType::class, [
-                'label'=>' Justificatifs de financement :',
-                'multiple'=>true,
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
+
+                'label' => 'justificatif de financement : ',
+                'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
+                'attr' => ['class' => 'form-control', 'type' => 'file'],
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+
                     new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
+                        'maxSize' => '1000k',
+                        'mimeTypes' => [
                             'application/pdf',
+                            'application/x-pdf,'
                         ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                        'mimeTypesMessage' => 'Choisir un fichier au format pdf'
                     ])
-                    ],
+                ]
             ])
             ->add('carteVitale', FileType::class, [
-                'label'=>'attestation de la carte Vitale :',
-                'multiple'=>true,
-                'mapped'=>false,
-                'required'=>false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
-                    new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
-                            'application/pdf',
-                        ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
-                    ])
-                    ],
 
+                'label' => 'attestation de carte vitale : ',
+                'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
+                'attr' => ['class' => 'form-control', 'type' => 'file'],
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+
+                    new File([
+                        'maxSize' => '1000k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf,'
+                        ],
+                        'mimeTypesMessage' => 'Choisir un fichier au format pdf'
+                    ])
+                ]
             ])
             ->add('autreDoc', FileType::class, [
-                'label'=>'Autre Document :',
-                'multiple'=>true,
-                'mapped'=>false,
-                'required'=> false,
-                'attr' => ['class' => 'form-control'],
-                'constraints'=>[
+
+                'label' => 'autre document : ',
+                'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
+                'attr' => ['class' => 'form-control', 'type' => 'file'],
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+
                     new File([
-                        'maxSize'=> '1024k',
-                        'mimeTypes'=>[
+                        'maxSize' => '1000k',
+                        'mimeTypes' => [
                             'application/pdf',
+                            'application/x-pdf,'
                         ],
-                        'mimeTypesMessage'=>'votre fichier doit être en PDF',
+                        'mimeTypesMessage' => 'Choisir un fichier au format pdf'
                     ])
-                    ],
+                ]
             ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
