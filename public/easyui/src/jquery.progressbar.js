@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * EasyUI for jQuery 1.10.14
+=======
+ * EasyUI for jQuery 1.10.15
+>>>>>>> de045ffd97acb3cdbb9e0c956fcec7a248f5e59c
  * 
  * Copyright (c) 2009-2023 www.jeasyui.com. All rights reserved.
  *
