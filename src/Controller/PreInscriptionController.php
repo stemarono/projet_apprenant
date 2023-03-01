@@ -140,6 +140,7 @@ class PreInscriptionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             
             /** @var UploadedFile $carteIdentiteContenu */
             $carteIdentiteContenu = $form->get('carteIdentite')->getData();
@@ -211,6 +212,7 @@ class PreInscriptionController extends AbstractController
 
             $this->addFlash('message', 'Votre formulaire a bien été envoyé');
        
+
             $preInscriptionRepository->save($preInscription, true);
             return $this->redirectToRoute('app_pre_inscription_new', [], Response::HTTP_SEE_OTHER);
 

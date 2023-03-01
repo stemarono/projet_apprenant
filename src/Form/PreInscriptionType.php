@@ -52,9 +52,9 @@ class PreInscriptionType extends AbstractType
                 'attr' => ['class' => 'form-select'],
                 'choices' => [
                     'Sélectionner un sexe' => null,
-                    'Femme' => 02,
-                    'Homme' => 01,
-                    'Autre' => 03
+                    'Femme' => 'Femme',
+                    'Homme' => 'Homme',
+                    'Autre' => 'Autre'
                 ]
             ])
             ->add('adresse',TextType::class,[
@@ -101,6 +101,7 @@ class PreInscriptionType extends AbstractType
                     'rows' => '5'
                     ]
             ])
+
             ->add('carteIdentite', FileType::class, [
                 'label' => 'carte d\'identité : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
@@ -108,6 +109,7 @@ class PreInscriptionType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
+
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -119,12 +121,14 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('justifFinancement', FileType::class, [
+
                 'label' => 'justificatif de financement : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
+
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -136,12 +140,14 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('carteVitale', FileType::class, [
+
                 'label' => 'attestation de carte vitale : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
+
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
@@ -153,12 +159,14 @@ class PreInscriptionType extends AbstractType
                 ]
             ])
             ->add('autreDoc', FileType::class, [
+
                 'label' => 'autre document : ',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
                 'attr' => ['class' => 'form-control', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
+
                     new File([
                         'maxSize' => '1000k',
                         'mimeTypes' => [
