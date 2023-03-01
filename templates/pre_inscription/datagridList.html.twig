@@ -5,12 +5,12 @@
 <div>
     <h1>Liste des pré-inscriptions</h1>
     <div class='d-flex my-4 justify-content-between'>
-        <a class="btn btn-md btn-success" href="javascript:ajouterPreInscription()">Ajouter</a>
-        <a class="btn btn-md btn-primary" href="javascript:modifierPreInscription()">Modifier</a>
-        <a class="btn btn-md btn-danger" href="javascript:supprimerPreInscription()">Supprimer</a>
-        <a class="btn btn-md btn-primary" href="javascript:afficherPreInscription()">Afficher</a>
+        <a href="javascript:ajouterPreInscription()" class="btn btn-md btn-success">Ajouter</a>
+        <a href="javascript:modifierPreInscription()" class="btn btn-md btn-primary">Modifier</a>
+        <a href="javascript:supprimerPreInscription()" class="btn btn-md btn-danger" >Supprimer</a>
+        <a href="javascript:afficherPreInscription()" class="btn btn-md btn-primary">Afficher</a>
     </div>
-    <table id="table" class="w-100"></table>
+    <table id="table" class="w-100"></table> 
 </div>
 <script>
 var inscrip=$('#table');
@@ -42,7 +42,7 @@ $(function(){
                     {'field':'nom','title':'Nom','width':'20%','halign':'center','align':'center'},
                     {'field':'prenom','title':'Prénom','width':'20%','halign':'center','align':'left'},
                     {'field':'dateNaissance','title':'date de naissance','width':'10%','halign':'center','align':'right'},
-                    {'field':'sexe','title':'Sexe','width':'10%','halign':'center','align':'right'},
+                    {'field':'sexe','title':'Sexe','width':'5%','halign':'center','align':'right'},
                     {'field':'adresse','title':'Adresse','width':'10%','halign':'center','align':'right'},
                     {'field':'codePostal','title':'Code postal','width':'10%','halign':'center','align':'right'},
                     {'field':'ville','title':'Ville','width':'10%','halign':'center','align':'right'},
@@ -70,14 +70,14 @@ $(function(){
     var row=inscrip.datagrid('getSelected');
     if(row){
         var id=row['id'];
-        var url=url_article_show.replace('preInscription_id',id);
+        var url=url_preInscription_show.replace('preInscription.id',id);
         popupCenter(url,'show'+id,screen.width*0.70, screen.height*0.60);
     }else{
         alert('Sélectionnez bien une ligne');
     }
 }
 function ajouterPreInscription(){
-    popupCenter(url_article_new,'new',screen.width*0.70,screen.height*0.60);
+    popupCenter(url_preInscription_new,'new',screen.width*0.70,screen.height*0.60);
 }
 
 function modifierPreInscription(){
@@ -88,7 +88,7 @@ function modifierPreInscription(){
         var url=url_preInscription_edit.replace('preInscription_id',id);
         popupCenter(url,'edit'+id,screen.width*0.70,screen.height*0.60);
     }else{
-        alert('Sélectionnez bien une ligne !');
+        alert('Sélectionnez une ligne !');
     }
 }
 function supprimerPreInscription()
@@ -97,12 +97,12 @@ function supprimerPreInscription()
     if(row)
     {
         var id=row['id'];
-        if(confirm("Voulez-vous vraiement supprimer cette pré-inscription"+row.prenom+" ?"))
+        if(confirm("Voulez-vous vraiment supprimer la pré-inscription de  " + row.prenom  +  row.nom + "  ?"))
         {
-            var url=url_article_delete.replace('preInscription_id',id);
+            var url=url_preInscription_delete.replace('preInscription_id',id);
             document.location.href=url;
         }else{
-            alert('Selectionnez bien une ligne ');
+            alert('Selectionnez une ligne ');
         }
     }
 
