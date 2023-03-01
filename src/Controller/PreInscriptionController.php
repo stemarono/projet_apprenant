@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +19,44 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/pre/inscription')]
 class PreInscriptionController extends AbstractController
 {
+    #[Route('/datagrid/list',name:'app_preInscription_datagrid_list')]
+    public function datagridList()
+    {
+        return $this->render("pre_inscription/datagridList.html.twig");
+    }
+
+    #[Route('/datagrid/data',name:'app_preInscription_datagrid_data')]
+    public function datagridData(EntityManagerInterface $em)
+    {
+        $preInscriptions=$em->getRepository(PreInscription::class)->findBy([],['id'=>'asc']);
+        $json_preInscriptions['rows']=[];
+        foreach($preInscriptions as $preInscription)
+        {
+            $json_preInscriptions['rows'][]=[
+                'id'=>$preInscription->getId(),
+                'nom'=>$preInscription->getNom(),
+                'prenom'=>$preInscription->getPrenom(),
+                'dateNaissance'=>$preInscription->getDateNaissance(),
+                'sexe'=>$preInscription->getSexe(),
+                'adresse'=>$preInscription->getAdresse(),
+                'codePostal'=>$preInscription->getCodePostal(),
+                'ville'=>$preInscription->getVille(),
+                'Region'=>$preInscription->getRegion(),
+                'pays'=>$preInscription->getPays(),
+                'email'=>$preInscription->getEmail(),
+                'carteIndetite'=>$preInscription->getCarteIdentiteNom(),
+                'justifFinancement'=>$preInscription->getJustifFinancementNom(),
+                'carteVitale'=>$preInscription->getCarteVitaleNom(),
+                'autreDoc'=>$preInscription->getAutreDocNom(),
+                'n_ss'=>$preInscription->getNSs(),
+                'telephone'=>$preInscription->getTelephone(),
+                'user'=>$preInscription->getUser(),
+
+            ];
+        }
+        return new JsonResponse($json_preInscriptions);
+    }
+
     #[Route('/', name: 'app_pre_inscription_index', methods: ['GET'])]
     public function index(PreInscriptionRepository $preInscriptionRepository): Response
     {
