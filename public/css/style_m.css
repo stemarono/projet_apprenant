@@ -104,14 +104,16 @@ aside {
 a {
     text-decoration:none;
 }
-/* Formulaire multipages */
+/* Formulaires */
 .page {
     display: none;
 }
 .header {
     display: none;
 }
-
+#editor {
+    border: 1px solid black;
+}
 /* RESPONSIVE */
 /* petits écrans */
 @media all and (max-device-width: 799px)
