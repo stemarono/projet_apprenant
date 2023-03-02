@@ -3,12 +3,14 @@
 {% block title %}Liste des pré-inscriptions{% endblock %}
 {% block body %}
 <div>
-    <h1>Liste des pré-inscriptions</h1>
+    <div class="container p-5 my-5 bg-blueclear">
+        <h1>Liste des pré-inscriptions</h1>
+    </div>
     <div class='d-flex my-4 justify-content-between'>
-        <a href="javascript:ajouterPreInscription()" class="btn btn-md btn-success">Ajouter</a>
-        <a href="javascript:modifierPreInscription()" class="btn btn-md btn-primary">Modifier</a>
-        <a href="javascript:supprimerPreInscription()" class="btn btn-md btn-danger" >Supprimer</a>
-        <a href="javascript:afficherPreInscription()" class="btn btn-md btn-primary">Afficher</a>
+        <a href="javascript:ajouterPreInscription()" class="btn btn-md btn-green">Ajouter</a>
+        <a href="javascript:modifierPreInscription()" class="btn btn-md btn-blue">Modifier</a>
+        <a href="javascript:supprimerPreInscription()" class="btn btn-md btn-red" >Supprimer</a>
+        <a href="javascript:afficherPreInscription()" class="btn btn-md btn-blue">Afficher</a>
     </div>
     <table id="table" class="w-100"></table> 
 </div>

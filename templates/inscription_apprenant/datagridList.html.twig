@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des inscriptions {% endblock %}
+{% block body %}
+<div>
+    <div class="container p-5 my-5 bg-blueclear">
+        <h1>Liste des pré-inscriptions</h1>
+    </div class='d-flex my-4 justify-content-between'>
+    <div>
+        <a class="btn btn-md btn-green" href="javascript:ajouterInscriptionApprenant()">Ajouter</a>
+        <a class="btn btn-md btn-blue" href="javascript:modifierInscriptionApprenant()">Modifier</a>
+        <a class="btn btn-md btn-red" href="javascript:supprimerInscriptinApprenant()">Supprimer</a>
+        <a class="btn btn-md btn-blue" href="javascript:afficherInscriptinoApprenant()">Afficher</a>
+    </div>
+    <table id="table" class="w-100"></table>
+</div>
+<script>
+var dg=$('#table');
+var url_datagrid_data="{{path('app_inscription_apprenant_datagrid_data')}}";
+var url_inscriptionApprenant_show="{{path('app_inscription_apprenant_show',{'id':'inscriptionApprenant_id})}}";
+var url_inscriptionApprenant_edit="{{path('app_inscription_apprenant_edit',{'id':'inscriptionApprenant_id})}}";
+var url_inscriptionApprenant_new="{{path('app_inscription_apprenant_new')}}";
+var url_inscriptionApprenant_delete="{{path('app_inscription_apprenant_delete',{'id':'inscriptionApprenant_id})}}";
+
+$(function(){
+    loadListInscriptionApprenant();
+});
+
+function loadListInscriptionApprenant(){
+    $("#table").datagrid({
+        url:url_datagrid_data,
+        idField:'id',
+        singleSelect:true,
+        pageSize:20,
+        pageList:[20,30,50,100,300],
+        pagination:true,
+        fit:true,
+        fitcolumns:true,
+        columns:[[
+            {'field':'id','title':'ID','width':'10%','halign':'center','align':'center'},
+            {'field':'identifiant','title':'Identifiant','width':'20%','halign':'center','align':'center'},
+            {'field':'nom','title':'Nom','width':'10%','halign':'center','align':'left'},
+            {'field':'prenom','title':'Prénom','width':'10%','halign':'center','align':'right'},
+            {'field':'dateNaissance','title':'Date de naissance','width':'10%','halign':'center','align':'right'},
+            {'field':'telephone','title':'Téléphone','width':'10%','halign':'center','align':'right'},
+            {'field':'email','title':'Email','width':'10%','halign':'center','align':'right'}
+        ]],
+        onDblClickRow:function(val, row){
+            var id=row.id;
+            afficherInscriptionApprenant();
+        }
+    });
+    $("#table").datagrid('enableFilter');
+}
+
+function afficherInscriptionApprenant(){
+    var row=dg.datagrid('getSelected');
+    if(row){
+        var id=row['id'];
+        var url=url_inscriptionApprenant_show.replace('inscriptionApprenant_id',id);
+        popupCenter(url,'show'+id,screen.width*0.70,screen.height*0.60);
+    }else{
+        alert('Veuillez sélectionner une ligne');
+    }
+}
+
+function ajouterInscriptionApprenant(){
+    popupCenter(url_inscriptionApprenant_new,'new',screen.width*0.70,screen.height*0.60);
+}
+
+function modifierInscriptionApprenant(){
+    var row=dg.datagrid('getSelected');
+    if(row)
+    {
+        var id=row['id'];
+        var url=url_inscriptionApprenant_edit.replace('inscriptionApprenant_id',id);
+        popupCenter(url,'edit'+id,screen-width*0.70,screen.height*0.60);
+    }else{
+        alert('Veuillez sélectionner une ligne');
+    }
+}
+
+function supprimerInscriptionApprenant(){
+    var row=dg.datagrid('getSelected');
+    if(row)
+    {
+        var id=row['id'];
+        var url=url_inscriptionApprenant_delete.replace('inscriptionApprenant_id',id);
+        popupCenter(url,'delete'+id,screen.width*0.70, screen.height*0.60);
+    }
+}
+</script>
+
+    
+{% endblock %}
