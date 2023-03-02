@@ -145,23 +145,18 @@
 							<li class="nav-item">
 								<a class="font3 nav-link text-clear" href="{{ path('app_register') }}">Formulaire</a>
 							</li>
-							{# lien lié à l'utilisateur du site #}
-							{% if is_granted("ROLE_USER") %}
 							<li class="nav-item">
 								<a class="font3 nav-link text-clear" href="{{path('app_espace_personnel')}}">Espace personnel</a>
 							</li>
-							{% endif %}
 						</ul>
 					</div>
 				</div>
-				
 				<div>
-					<div>
 					{# lien login #}
 					{# version desktop #}
-					<div class="desktop text-center d-flex">
-						<img class="img-min" src="{{ asset('images/utilisateur.png') }}" alt="">
-						<div class="navbar-nav">
+					<div class="text-center d-flex">
+						<img class="img-min desktop" src="{{ asset('images/utilisateur.png') }}" alt="">
+						<div class="navbar-nav desktop">
 							{% if is_granted("IS_AUTHENTICATED_FULLY")  %}
 							<div class="d-flex align-items-center">
 								<p class="nav-link text-clear m-0 px-3 h5">Bonjour {{app.user.prenom}} {{app.user.nom}}</p>
@@ -230,7 +225,7 @@
 								</h4>
 							</div>
 							<div class="col-md-3 d-flex justify-content-center align-items-center">
-								<img class="desktop img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
+								<img class="img-sm" src="{{ asset('images/croissance (1).png') }}" alt="">
 							</div>
 						</div>
 						<div class="mx-3">
