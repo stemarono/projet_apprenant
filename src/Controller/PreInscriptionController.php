@@ -29,6 +29,7 @@ class PreInscriptionController extends AbstractController
     public function datagridData(EntityManagerInterface $em)
     {
         $preInscriptions=$em->getRepository(PreInscription::class)->findBy([],['id'=>'asc']);
+        $json_preInscriptions['total']=count($preInscriptions);
         $json_preInscriptions['rows']=[];
         foreach($preInscriptions as $preInscription)
         {
@@ -36,7 +37,9 @@ class PreInscriptionController extends AbstractController
                 'id'=>$preInscription->getId(),
                 'nom'=>$preInscription->getNom(),
                 'prenom'=>$preInscription->getPrenom(),
-                'dateNaissance'=>$preInscription->getDateNaissance(),
+                'dateNaissance'=>$preInscription->getDateNaissance()->format('d/m/Y'),
+                'n_ss'=>$preInscription->getNSs(),
+                'telephone'=>$preInscription->getTelephone(),
                 'sexe'=>$preInscription->getSexe(),
                 'adresse'=>$preInscription->getAdresse(),
                 'codePostal'=>$preInscription->getCodePostal(),
@@ -48,10 +51,6 @@ class PreInscriptionController extends AbstractController
                 'justifFinancement'=>$preInscription->getJustifFinancementNom(),
                 'carteVitale'=>$preInscription->getCarteVitaleNom(),
                 'autreDoc'=>$preInscription->getAutreDocNom(),
-                'n_ss'=>$preInscription->getNSs(),
-                'telephone'=>$preInscription->getTelephone(),
-                'user'=>$preInscription->getUser(),
-
             ];
         }
         return new JsonResponse($json_preInscriptions);

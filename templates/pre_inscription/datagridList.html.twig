@@ -42,9 +42,11 @@ $(function(){
                     {'field':'nom','title':'Nom','width':'20%','halign':'center','align':'center'},
                     {'field':'prenom','title':'Prénom','width':'20%','halign':'center','align':'left'},
                     {'field':'dateNaissance','title':'date de naissance','width':'10%','halign':'center','align':'right'},
+                    {'field':'n_ss','title':'numéro de SS','width':'10%','halign':'center','align':'right'},
+                    {'field':'telephone','title':'Téléphone','width':'10%','halign':'center','align':'right'},
                     {'field':'sexe','title':'Sexe','width':'5%','halign':'center','align':'right'},
                     {'field':'adresse','title':'Adresse','width':'10%','halign':'center','align':'right'},
-                    {'field':'codePostal','title':'Code postal','width':'10%','halign':'center','align':'right'},
+                    {'field':'codePostal','title':'Code postal','width':'5%','halign':'center','align':'right'},
                     {'field':'ville','title':'Ville','width':'10%','halign':'center','align':'right'},
                     {'field':'region','title':'Région','width':'10%','halign':'center','align':'right'},
                     {'field':'pays','title':'Pays','width':'10%','halign':'center','align':'right'},
@@ -52,9 +54,8 @@ $(function(){
                     {'field':'carteIdentite','title':'Carte Identité','width':'10%','halign':'center','align':'right'},
                     {'field':'justifFinancement','title':'justificatif financement','width':'10%','halign':'center','align':'right'},
                     {'field':'autreDoc','title':'autre document','width':'10%','halign':'center','align':'right'},
-                    {'field':'n_ss','title':'numéro de SS','width':'10%','halign':'center','align':'right'},
-                    {'field':'telephone','title':'Téléphone','width':'10%','halign':'center','align':'right'},
-                    {'field':'user','title':'User','width':'10%','halign':'center','align':'right'},    
+                    
+                      
             ]],
             onDblClickRow:function(val,row)
             {
@@ -78,11 +79,12 @@ $(function(){
     
 }
 function ajouterPreInscription(){
-    popupCenter(url_preInscription_new,'new',screen.width*0.70,screen.height*0.60);
+    var url=url_preInscription_new;
+    popupCenter(url,'new',screen.width*0.70,screen.height*0.60);
 }
 
 function modifierPreInscription(){
-    var row= inscrip.datagrid('getselected');
+    var row= inscrip.datagrid('getSelected');
     if(row){
         var id= row['id'];
         var url=url_preInscription_edit.replace('pre_inscription_id',id);
