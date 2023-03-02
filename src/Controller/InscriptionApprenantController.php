@@ -15,6 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/inscription/apprenant')]
 class InscriptionApprenantController extends AbstractController
 {
+    #[Route('/datagrid/list',name:'app_inscription_apprenant_datagrid_list')]
+    public function datagridList()
+    {
+        return $this->render('inscription_apprenant/datagridList.html.twig');
+    }
+
+    #[Route('/datagrid/data',name:"app_inscription_apprenant_datagrid_data")]
+    public function datagridData(EntityManagerInterface $em)
+    {
+        $inscriptionApprenants=$em->getRepository(InscriptionApprenantType::class)->findBy([],['id'=>'asc']);
+        $json_inscriptionApprenants['rows']=[];
+        foreach($inscriptionApprenants as $inscriptionApprenant)
+        {
+            $json_inscriptionApprenants['rows'][]=[
+                'id'=>$inscriptionApprenant->getId(),
+                'identifiant'=>$inscriptionApprenant->getIdentifiant(),
+                'nom'=>$inscriptionApprenant->getNom(),
+                'prenom'=>$inscriptionApprenant->getPrenom(),
+                'dateNaissance'=>$inscriptionApprenant->getDateNaissance()->format('d/m/Y'),
+                'telephone'=>$inscriptionApprenant->getTelephone(),
+                'email'=>$inscriptionApprenant->getEmail(),
+            ];
+        }
+        return new JsonResponse($json_inscriptionApprenants);
+    }
+
+
     #[Route('/', name: 'app_inscription_apprenant_index', methods: ['GET'])]
     public function index(InscriptionApprenantRepository $inscriptionApprenantRepository): Response
     {
