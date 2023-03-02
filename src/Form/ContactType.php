@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ContactType extends AbstractType
 {
@@ -43,13 +44,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'Objet'
                 ] 
             ])
-            ->add('message', CKEditorType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Message',
-                    'rows' => '5'
-                ] 
-            ])
+            ->add('message', HiddenType::class)
             ->add('fichier', FileType::class, [
                 'label' => 'Transmettre un formulaire rempli au format pdf',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],

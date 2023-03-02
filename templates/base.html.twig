@@ -243,6 +243,7 @@
     	<script src="{{asset('easyui/locale/easyui-lang-fr.js')}}"></script>
 		<script src="{{asset('js/scripts.js')}}"></script>
 		<script src ="{{asset('js/popup.js')}}"></script>
+		{% block javascript %}{% endblock %}
 		<script>
 			$(function () {
 				$('.datepicker').datepicker({ // affichage du calendrier
