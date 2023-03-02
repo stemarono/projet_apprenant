@@ -1,32 +1,36 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des inscriptions {% endblock %}
+
+{% block title %}Liste des inscriptions{% endblock %}
 {% block body %}
 <div>
     <div class="container p-5 my-5 bg-blueclear">
-        <h1>Liste des pré-inscriptions</h1>
-    </div class='d-flex my-4 justify-content-between'>
-    <div>
-        <a class="btn btn-md btn-green" href="javascript:ajouterInscriptionApprenant()">Ajouter</a>
-        <a class="btn btn-md btn-blue" href="javascript:modifierInscriptionApprenant()">Modifier</a>
-        <a class="btn btn-md btn-red" href="javascript:supprimerInscriptinApprenant()">Supprimer</a>
-        <a class="btn btn-md btn-blue" href="javascript:afficherInscriptinoApprenant()">Afficher</a>
+        <h1>Liste des inscriptions</h1>
     </div>
-    <table id="table" class="w-100"></table>
+    <div class='d-flex my-4 justify-content-between'>
+        <a href="javascript:ajouterInscription()" class="btn btn-md btn-green">Ajouter</a>
+        <a href="javascript:modifierInscription()" class="btn btn-md btn-blue">Modifier</a>
+        <a href="javascript:supprimerInscription()" class="btn btn-md btn-red" >Supprimer</a>
+        <a href="javascript:afficherInscription()" class="btn btn-md btn-blue">Afficher</a>
+    </div>
+    <table id="tableInscription" class="w-100"></table> 
 </div>
 <script>
-var dg=$('#table');
-var url_datagrid_data="{{path('app_inscription_apprenant_datagrid_data')}}";
-var url_inscriptionApprenant_show="{{path('app_inscription_apprenant_show',{'id':'inscriptionApprenant_id})}}";
-var url_inscriptionApprenant_edit="{{path('app_inscription_apprenant_edit',{'id':'inscriptionApprenant_id})}}";
-var url_inscriptionApprenant_new="{{path('app_inscription_apprenant_new')}}";
-var url_inscriptionApprenant_delete="{{path('app_inscription_apprenant_delete',{'id':'inscriptionApprenant_id})}}";
+var inscriptionApprenant=$('#tableInscription');
+var url_datagrid_data="{{path('inscription_apprenant/datagridList.html.twig')}}";
+var url_inscription_edit="{{path('app_inscription_apprenant_edit',{'id':'inscription_apprenant_id'})}}";
+var url_inscription_show="{{path('app_inscription_apprenant_show',{'id':'inscription_apprenant_id'})}}";
+var url_inscription_new="{{path('app_inscription_apprenant_new)}}";
+var url_inscription_delete="{{path('app_inscription_apprenant_delete',{'id':'inscription_apprenant_id'})}}";
 
 $(function(){
-    loadListInscriptionApprenant();
+    
+     loadListInscription();
+     
 });
 
-function loadListInscriptionApprenant(){
-    $("#table").datagrid({
+function loadListInscription()
+{
+    $("#tableInscription").datagrid({
         url:url_datagrid_data,
         idField:'id',
         singleSelect:true,
@@ -34,61 +38,69 @@ function loadListInscriptionApprenant(){
         pageList:[20,30,50,100,300],
         pagination:true,
         fit:true,
-        fitcolumns:true,
+        fitColumns:true,
         columns:[[
             {'field':'id','title':'ID','width':'10%','halign':'center','align':'center'},
-            {'field':'identifiant','title':'Identifiant','width':'20%','halign':'center','align':'center'},
-            {'field':'nom','title':'Nom','width':'10%','halign':'center','align':'left'},
-            {'field':'prenom','title':'Prénom','width':'10%','halign':'center','align':'right'},
+            {'field':'identifiat','title':'Identifiant','width':'20%','halign':'center','align':'center'},
+            {'field':'nom','title':'Nom','width':'20%','halign':'center','align':'center'},
+            {'field':'prenom','title':'Prénom','width':'50%','halign':'center','align':'left'},
             {'field':'dateNaissance','title':'Date de naissance','width':'10%','halign':'center','align':'right'},
             {'field':'telephone','title':'Téléphone','width':'10%','halign':'center','align':'right'},
-            {'field':'email','title':'Email','width':'10%','halign':'center','align':'right'}
+            {'field':'email','title':'email','width':'10%','halign':'center','align':'right'},
         ]],
-        onDblClickRow:function(val, row){
-            var id=row.id;
-            afficherInscriptionApprenant();
+        onDblClickRow:function(val,row){
+            var id=row.id,
+            afficherInscription();
         }
     });
-    $("#table").datagrid('enableFilter');
+    $("#tableInscription").datagrid('enableFilter');
 }
 
-function afficherInscriptionApprenant(){
-    var row=dg.datagrid('getSelected');
+function afficherInscription()
+{
+    var row= inscriptionApprenant.datagrid('getSelected');
     if(row){
         var id=row['id'];
-        var url=url_inscriptionApprenant_show.replace('inscriptionApprenant_id',id);
+        var url=url_inscription_show.replace('inscription_apprenant_id',id);
         popupCenter(url,'show'+id,screen.width*0.70,screen.height*0.60);
     }else{
         alert('Veuillez sélectionner une ligne');
     }
 }
 
-function ajouterInscriptionApprenant(){
-    popupCenter(url_inscriptionApprenant_new,'new',screen.width*0.70,screen.height*0.60);
+function ajouterInscriptino()
+{
+    popupCenter(url_inscription_new,'new',screen.width*0.70,screen.height*0.60);
 }
 
-function modifierInscriptionApprenant(){
-    var row=dg.datagrid('getSelected');
+function modifierInscription()
+{
+    var row=inscriptionApprenant.datagrid('getSelected');
     if(row)
     {
         var id=row['id'];
-        var url=url_inscriptionApprenant_edit.replace('inscriptionApprenant_id',id);
-        popupCenter(url,'edit'+id,screen-width*0.70,screen.height*0.60);
+        var url=url_inscription_edit.replace('inscription_apprenant_id',id);
+        popupCenter(url,'edit'+id,screen.width*0.70,screen.height*0.60);
     }else{
         alert('Veuillez sélectionner une ligne');
     }
 }
 
-function supprimerInscriptionApprenant(){
-    var row=dg.datagrid('getSelected');
+function supprimerInscription()
+{
+    var row=inscriptionApprenant.datagrid('getSelected');
     if(row)
     {
         var id=row['id'];
-        var url=url_inscriptionApprenant_delete.replace('inscriptionApprenant_id',id);
-        popupCenter(url,'delete'+id,screen.width*0.70, screen.height*0.60);
+        if(confirm('Voulez-vous vraiment cet inscription ?' ))
+        {
+            var url=url_inscription_delete.replace('inscription_apprenant_id',id);
+            document.location.href=url;
+        }else{
+            alert('veuillez sélectionner une ligne');
+        }
     }
 }
+   
 </script>
-
-    
 {% endblock %}

@@ -101,7 +101,7 @@ function supprimerPreInscription()
     if(row)
     {
         var id=row['id'];
-        if(confirm("Voulez-vous vraiment supprimer la pré-inscription de  " + row.prenom  +  row.nom + "  ?"))
+        if(confirm("Voulez-vous vraiment supprimer la pré-inscription de" + row.prenom +' '+ row.nom + "  ?"))
         {
             var url=url_preInscription_delete.replace('pre_inscription_id',id);
             document.location.href=url;

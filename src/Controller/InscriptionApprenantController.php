@@ -24,7 +24,7 @@ class InscriptionApprenantController extends AbstractController
     #[Route('/datagrid/data',name:"app_inscription_apprenant_datagrid_data")]
     public function datagridData(EntityManagerInterface $em)
     {
-        $inscriptionApprenants=$em->getRepository(InscriptionApprenantType::class)->findBy([],['id'=>'asc']);
+        $inscriptionApprenants=$em->getRepository(InscriptionApprenant::class)->findBy([],['id'=>'asc']);
         $json_inscriptionApprenants['rows']=[];
         foreach($inscriptionApprenants as $inscriptionApprenant)
         {
