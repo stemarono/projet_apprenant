@@ -158,6 +158,9 @@ a {
     .responsive-margin {
         margin-bottom: 50px;
     }
+    .w-50 {
+        width: 100% !important;
+    }
 }
 /* écrans moyens */
 @media all and (min-device-width:800px) {
