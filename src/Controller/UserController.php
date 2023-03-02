@@ -74,18 +74,18 @@ class UserController extends AbstractController
         
         $form = $this->createForm(UserType::class, $user);
         // $form
-        //     ->add('Roles',ChoiceType::class,[
-        //         'mapped'=>false,
-        //         'choices'=>$choice_roles,
-        //         'multiple'=>true,
-        //         'label'=>'Roles :',
-        //         'attr'=>['class'=>'form-control']
+            // ->add('Roles',ChoiceType::class,[
+            //     'mapped'=>false,
+            //     'choices'=>$choice_roles,
+            //     'multiple'=>true,
+            //     'label'=>'Roles :',
+            //     'attr'=>['class'=>'form-control']
              
-        //     ]);
+            // ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $roles=$form->get('Roles')->getData();
+            $roles=$form->get('roles')->getData();
             $user->setRoles($roles);
             $passwd=$form->get('password')->getData();
             if($passwd){
