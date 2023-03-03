@@ -58,12 +58,10 @@
 							<a class="nav-link text-clear" href="{{ path('app_contact')}}">Contact</a>
 						</li>
 						<li class="nav-item">
-						{% if is_granted("ROLE_VISITOR")%}
-							<a class="nav-link text-clear" href="{{ path('app_register') }}">Formulaire</a>
-						{% elseif  is_granted("ROLE_USER") %}
+						{% if is_granted("ROLE_USER")%}
 							<a class="nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">Formulaire</a>
 						{% else  %}
-							<a class="nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">Formulaire</a>
+							<a class="nav-link text-clear" href="{{ path('app_register') }}">Formulaire</a>
 						{% endif %}
 						</li>
 						{# lien lié à l'utilisateur du site #}
