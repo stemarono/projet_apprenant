@@ -28,7 +28,7 @@ class PdfController extends AbstractController
         $html = $this->renderView('pdf/inscription_liste_pdf.html.twig', [
             'inscriptions' => $inscriptions
         ]);
-        $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+        $html2pdf = new Html2Pdf('L', 'A4', 'fr');
         $fichier = 'liste_inscrits.pdf';
         $html2pdf->writeHTML($html);
         $html2pdf->output($fichier, 'D');

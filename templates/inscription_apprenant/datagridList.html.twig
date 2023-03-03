@@ -23,8 +23,9 @@ var url_inscription_new="{{path('app_inscription_apprenant_new')}}";
 var url_inscription_delete="{{path('app_inscription_apprenant_delete',{'id':'inscription_apprenant_id'})}}";
 
 $(function(){
-    
+   
      loadListInscription();
+    
      
 });
 
@@ -41,15 +42,15 @@ function loadListInscription()
         fitColumns:true,
         columns:[[
             {'field':'id','title':'ID','width':'10%','halign':'center','align':'center'},
-            {'field':'identifiat','title':'Identifiant','width':'20%','halign':'center','align':'center'},
-            {'field':'nom','title':'Nom','width':'20%','halign':'center','align':'center'},
-            {'field':'prenom','title':'Prénom','width':'50%','halign':'center','align':'left'},
-            {'field':'dateNaissance','title':'Date de naissance','width':'10%','halign':'center','align':'right'},
-            {'field':'telephone','title':'Téléphone','width':'10%','halign':'center','align':'right'},
-            {'field':'email','title':'email','width':'10%','halign':'center','align':'right'},
+            {'field':'identifiant','title':'Identifiant','width':'20%','halign':'center','align':'center'},
+            {'field':'nom','title':'Nom','width':'15%','halign':'center','align':'center'},
+            {'field':'prenom','title':'Prénom','width':'15%','halign':'center','align':'left'},
+            {'field':'dateNaissance','title':'Date de naissance','width':'15%','halign':'center','align':'right'},
+            {'field':'telephone','title':'Téléphone','width':'15%','halign':'center','align':'right'},
+            {'field':'email','title':'email','width':'15%','halign':'center','align':'right'},
         ]],
         onDblClickRow:function(val,row){
-            var id=row.id,
+            var id=row.id;
             afficherInscription();
         }
     });
@@ -68,7 +69,7 @@ function afficherInscription()
     }
 }
 
-function ajouterInscriptino()
+function ajouterInscription()
 {
     popupCenter(url_inscription_new,'new',screen.width*0.70,screen.height*0.60);
 }
@@ -92,7 +93,7 @@ function supprimerInscription()
     if(row)
     {
         var id=row['id'];
-        if(confirm('Voulez-vous vraiment cet inscription ?' ))
+        if(confirm('Voulez-vous vraiment supprimer cette inscription ?' ))
         {
             var url=url_inscription_delete.replace('inscription_apprenant_id',id);
             document.location.href=url;

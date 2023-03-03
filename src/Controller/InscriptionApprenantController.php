@@ -25,6 +25,7 @@ class InscriptionApprenantController extends AbstractController
     public function datagridData(EntityManagerInterface $em)
     {
         $inscriptionApprenants=$em->getRepository(InscriptionApprenant::class)->findBy([],['id'=>'asc']);
+        $json_inscriptionApprenants['total']=count($inscriptionApprenants);
         $json_inscriptionApprenants['rows']=[];
         foreach($inscriptionApprenants as $inscriptionApprenant)
         {
