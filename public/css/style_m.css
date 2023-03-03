@@ -112,7 +112,9 @@ a {
     display: none;
 }
 #editor {
-    border: 1px solid black;
+    border: solid rgb(202, 200, 200) 1px;
+    background-color: rgba(255, 255, 255, 0.398);
+    height: 8rem;
 }
 /* RESPONSIVE */
 /* petits écrans */

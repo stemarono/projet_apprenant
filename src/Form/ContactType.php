@@ -22,25 +22,25 @@ class ContactType extends AbstractType
         $builder
             ->add('nom', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control me-2',
+                    'class' => 'form-control my-3',
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('prenom', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control ms-2',
+                    'class' => 'form-control my-3',
                     'placeholder' => 'Prénom'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control my-3',
                     'placeholder' => 'E-mail'
                 ] 
             ])
             ->add('objet', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control my-3',
                     'placeholder' => 'Objet'
                 ] 
             ])
@@ -48,7 +48,7 @@ class ContactType extends AbstractType
             ->add('fichier', FileType::class, [
                 'label' => 'Transmettre un formulaire rempli au format pdf',
                 'label_attr' => ['class' => 'form-label text-secondary fw-lighter mt-3'],
-                'attr' => ['class' => 'form-control', 'type' => 'file'],
+                'attr' => ['class' => 'form-control my-3', 'type' => 'file'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -64,7 +64,7 @@ class ContactType extends AbstractType
             ])
             ->add('envoyer', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn bg-green text-clear'
+                    'class' => 'btn bg-green text-clear my-3'
                 ]
             ])
         ;
