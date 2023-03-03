@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/formation/datagrid')]
 class FormationDatagridController extends AbstractController
 {
-    #[Route('/', name: 'app_formation_datagrid_data')]
+    #[Route('/data', name: 'app_formation_datagrid_data')]
     public function datagridData(EntityManagerInterface $em)
     {
         $formations = $em->getRepository(Formation::class)->findBy([], ['id' => 'desc']);
