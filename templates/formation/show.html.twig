@@ -43,11 +43,11 @@
     <h5 class="my-3">Parcours</h5>
     <p>{{ formation.parcours }}</p>
     <button class="btn bg-green">
-    {% if is_granted("ROLE_VISITOR")%}
-    <a class="text-clear" href="{{ path('app_register') }}">S'inscrire</a></button>
-    {% else %}
-     <a class="text-clear" href="{{ path('app_pre_inscription_new') }}">S'inscrire</a></button>
-     {% endif %}
+    {% if is_granted("ROLE_USER")%}
+		  <a class="nav-link text-clear" href="{{ path('app_pre_inscription_new') }}">S'inscrire</a>
+		{% else  %}
+			<a class="nav-link text-clear" href="{{ path('app_register') }}">S'inscrire</a>
+		{% endif %}
   </aside>
 </div>
 
