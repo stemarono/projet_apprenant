@@ -1,0 +1,267 @@
+/* initialisation */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* colors and fonts */
+@import url('https://fonts.googleapis.com/css2?family=Petrona:wght@300&family=Poppins:wght@300;500&display=swap');:root {
+    --bs-white: #f8f8fa;
+    --bs-blue: #023e48;
+    --bs-salmon: #ca8a64;
+    --bs-grey: #666b6a;
+    --bs-font-body: 'Poppins', sans-serif;
+    --bs-font-title: 'Petrona', serif;
+}
+h1 {
+    font-size: 40px;
+    font-family: var(--bs-font-title);
+}
+h2 {
+    font-size: 30px;
+    font-family: var(--bs-font-title);
+    color: var(--bs-blue);
+}
+h3 {
+    font-size: 25px;
+    font-family: var(--bs-font-title);
+    color: var(--bs-blue);
+}
+h4 {
+    font-size: 22px;
+    font-family: var(--bs-font-title);
+    color: var(--bs-blue);
+}
+p {
+    font-size: 19px;
+    font-family: var(--bs-font-body); 
+    line-height: 2rem;
+    color: var(--bs-grey);
+}
+a, button {
+    font-size: 22px;
+    font-family: var(--bs-font-body); 
+    line-height: 2rem;
+    color: var(--bs-grey);
+}
+/* body */
+body {
+    background-color: var(--bs-white);
+}
+.ml-30-negative {
+    margin-left: -30px;
+    margin-top: 10px;
+}
+.mt-3 {
+    margin-top: 3rem;
+}
+.mb-30-negative {
+    margin-bottom: -30px;
+}
+.mt-100-mb-negative {
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
+.p-5 {
+    padding: 5rem;
+}
+.p-2 {
+    padding: 2rem;
+}
+.p-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+}
+.px-5 {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+.pr-5 {
+    padding-right: 5rem;
+}
+.pr-10 {
+    padding-right: 10rem;
+}
+.pb-5 {
+    padding-bottom: 5rem;
+}
+.pb-1 {
+    padding-bottom: 1rem;
+}
+.pl-1 {
+    padding-left: 1rem;
+}
+.pl-2 {
+    padding-left: 2rem;
+}
+.pl-20 {
+    padding-left: 20rem;
+}
+.pt-5 {
+    padding-top: 5rem;
+}
+.bg-blue {
+    background-color: var(--bs-blue);
+}
+.bg-pink {
+    background-color: var(--bs-salmon);
+}
+.bg-img-1 {
+    background-image: url(../assets/mathilde/competences.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 15%;
+}
+.bg-img-2 {
+    background-image: url(../assets/mathilde/education.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 15%;
+}
+.bg-img-3 {
+    background-image: url(../assets/mathilde/mallette.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 15%;
+}
+.bg-img-4 {
+    background-image: url(../assets/mathilde/passe-temps.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 15%;
+}
+.bg-img-5 {
+    background-image: url(../assets/mathilde/lettre.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 15%;
+}
+.text-white {
+    color: var(--bs-white);
+}
+.text-pink {
+    color: var(--bs-salmon);
+}
+.text-upper {
+    text-transform: uppercase;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.small-caps {
+    font-variant-caps: small-caps;
+}
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-column-end {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.flex-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+/* images */
+.logo {
+    width: 2rem;
+    height: auto;
+}
+.mini {
+    width: 4rem;
+    height: auto;
+}
+.midi {
+    width: 12rem;
+    height: auto;
+}
+.border-round {
+    border-radius: 3rem;
+    padding: 1rem;
+}
+/* boutons */
+.button {
+    border-radius: .5rem;
+    background-color: var(--bs-salmon);
+    color: var(--bs-white);
+    padding: 5px 20px;
+    border: 0;
+}
+/* form */
+form {
+    box-shadow: 5px 5px 3px var(--bs-grey);
+}
+.input, textarea {
+    border: #666b6a solid 1px;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    color: var(--bs-white);
+}
+::placeholder {
+    font-family: var(--bs-font-body);
+    font-size: 19px;
+}
+/* deco */
+.border-left {
+    border-left: dotted var(--bs-salmon);
+}
+/* display */
+.d-none {
+    display: none;
+}

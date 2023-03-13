@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AccueilController extends AbstractController
-{
+{   
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
