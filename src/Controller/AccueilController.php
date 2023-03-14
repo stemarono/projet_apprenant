@@ -24,6 +24,18 @@ class AccueilController extends AbstractController
         ]);
     }
 
+    #[Route('/stephanie', name: 'app_stephanie')]
+    public function portfolioStephanie(): Response
+    {
+        return $this->render('portfolio/stephanie.html.twig');
+    }
+
+    #[Route('/mathilde', name: 'app_mathilde')]
+    public function portfolioMathilde(): Response
+    {
+        return $this->render('portfolio/mathilde.html.twig');
+    }
+
     #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
