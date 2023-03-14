@@ -19,19 +19,21 @@ class AccueilController extends AbstractController
     #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
-        $server=$_SERVER["SERVER_NAME"];
-        if(strstr($server,'stephanie')){
-            $html="accueil/stephanie.html.twig";
-         }elseif(strstr($server,'mathilde')){
-            $html="accueil/mathilde.html.twig";
-         }else{
-              $html="accueil/stephanie.html.twig";
-            // $html="accueil/index.html.twig";
-         }
+		$server=$_SERVER["SERVER_NAME"];
+		switch($server){
+			case 'www.stephanie.stage-cda.fr':
+			$html='accueil/stephanie.html.twig';
+				break;
+			case 'www.mathilde.stage-cda.fr':
+			$html='accueil/mathilde.html.twig';
+				break;
+			default:
+			$html='accueil/index.html.twig';
+				break;
+		}
 
         return $this->render($html, [
             'controller_name' => 'AccueilController',
-            ''
         ]);
     }
 
